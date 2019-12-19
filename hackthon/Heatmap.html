@@ -66,29 +66,17 @@ function drawCalendar(myData) {
     myData[i].today =  myData[i].submissionTime.slice(0,10);
   }
 
-  // var scale = d3.scaleLinear()
-  //                 .domain(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"])
-  //                 .range([0, (cellSize * 7) + (cellMargin * 8)]);
-
-  //   // Add scales to axis
-  // var x_axis = d3.axisBottom()
-  //                  .scale(scale)
-  //                  .ticks(7);
-
- 
-
   var svg = d3.select("#calendar").selectAll("svg")
     .data(months)
     .enter().append("svg")
       .attr("class", "month")
-      .style("marginLeft", marginleft) 
       .attr("width", (cellSize * 7) + (cellMargin * 8) + 20 )
       .attr("height", function(d) {
         var rows = calendarRows(d);
         return (cellSize * rows) + (cellMargin * (rows + 1)) + 50; // the 20 is for the month labels
       })
     .append("g")
-//     .attr("transform", "translate(" + marginleft + ",0)")
+    .attr("transform", "translate(" + marginleft/2 + ",0)")
 
   svg.append("text")
     .attr("class", "month-name")
