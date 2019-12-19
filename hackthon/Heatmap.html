@@ -70,11 +70,9 @@ function drawCalendar(myData) {
     .data(months)
     .enter().append("svg")
       .attr("class", "month")
-      .attr("width", (cellSize * 7) + (cellMargin * 8) + 20 )
-      .attr("height", function(d) {
-        var rows = calendarRows(d);
-        return (cellSize * rows) + (cellMargin * (rows + 1)) + 50; // the 20 is for the month labels
-      })
+//       .attr("width", (cellSize * 7) + (cellMargin * 8) + 20 )
+      .attr("width", window.innerWidth )
+      .attr("height", window.innerHeight)
     .append("g")
     .attr("transform", "translate(" + marginleft/2 + ",0)")
 
