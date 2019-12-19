@@ -191,6 +191,8 @@
         function showList(d, i) {
             if (Number(d.node) < 13 && Number(d.node) > 4) {
 //                 console.log([d.name, d.value])
+                 console.log("Send post message");
+                  window.postMessage("Post message from web", "*");
             }
         }
     });
