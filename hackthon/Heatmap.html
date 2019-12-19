@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <style>
 #calendar {
-  margin: 20px;
+  margin-top: 20px;
 }
 .month {
   margin-right: 8px;
@@ -49,9 +49,9 @@ function drawCalendar(myData) {
   var minDate = d3.min(myData, function(d) { return new Date(d.submissionTime); });
   var maxDate = d3.max(myData, function(d) { return new Date(d.submissionTime); });
 
-  var cellMargin = 2,
+  var cellMargin = 3,
       cellSize = 30;
-  var marginleft = window.innerWidth - cellSize * 7 - 6 * cellMargin;
+  var marginleft = (window.innerWidth - cellSize * 7 - 6 * cellMargin)/2;
   var day = d3.timeFormat("%w"),
       week = d3.timeFormat("%U"),
       date = d3.timeFormat("%d"),
@@ -74,7 +74,7 @@ function drawCalendar(myData) {
       .attr("width", window.innerWidth )
       .attr("height", window.innerHeight)
     .append("g")
-    .attr("transform", "translate(" + marginleft/2 + ",0)")
+    .attr("transform", "translate(" + marginleft + ",0)")
 
   svg.append("text")
     .attr("class", "month-name")
