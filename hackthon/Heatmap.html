@@ -50,7 +50,7 @@ function drawCalendar(myData) {
   var maxDate = d3.max(myData, function(d) { return new Date(d.submissionTime); });
 
   var cellMargin = 2,
-      cellSize = 20;
+      cellSize = 30;
 
   var day = d3.timeFormat("%w"),
       week = d3.timeFormat("%U"),
