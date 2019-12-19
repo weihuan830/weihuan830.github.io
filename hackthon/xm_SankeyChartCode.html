@@ -4,13 +4,17 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
-      document.firstElementChild.style.zoom = "reset";
+    document.firstElementChild.style.zoom = "reset";
 </script>
 <!-- Load the sankey.js function -->
 <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
+<div>
+    <svg id="my_dataviz" style="margin-left: 20px;">
+        
+    </svg>
+</div>
 
 <!-- Add style to links or they won't appear properly-->
 <style>
@@ -33,16 +37,14 @@
             bottom: 10,
             left: 20
         },
-    var width = window.innerWidth - margin.left - margin.right;
+        var width = window.innerWidth - margin.left - margin.right;
     var height = width - margin.top - margin.bottom;
 
     // Append the svg object to the body of the page
     var svg = d3.select("#my_dataviz").append("svg")
-        .attr("width", width )
+        .attr("width", width)
         .attr("height", height)
-        .append("g")
-        .attr("transform",
-            "translate(" + margin.left + ", 0 )");
+        .append("g");
 
     // Color scale used
     var color = d3.scaleOrdinal(d3.schemeCategory20);
