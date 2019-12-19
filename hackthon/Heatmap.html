@@ -12,6 +12,16 @@
   fill: #777;
   font-family: Arial, Helvetica;
 }
+.weekday-name {
+  font-size: 70%;
+  fill: #777;
+  font-family: Arial, Helvetica;
+}
+.day-name {
+  font-size: 70%;
+  fill: #eaeaea;
+  font-family: Arial, Helvetica;
+}
 .day.hover {
   stroke: #6d6E70;
   stroke-width: 2;
@@ -44,23 +54,37 @@ function drawCalendar(myData) {
 
   var day = d3.timeFormat("%w"),
       week = d3.timeFormat("%U"),
+      date = d3.timeFormat("%d"),
       format = d3.timeFormat("%Y-%m-%d"),
       titleFormat = d3.utcFormat("%a, %d-%b"),
       monthName = d3.timeFormat("%B"),
       months= d3.timeMonth.range(d3.timeMonth.floor(minDate), maxDate);
 
+  var maxRow = calendarRows(months[0])
+
   for(var i=0; i<myData.length; i++){
     myData[i].today =  myData[i].submissionTime.slice(0,10);
   }
+
+  // var scale = d3.scaleLinear()
+  //                 .domain(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"])
+  //                 .range([0, (cellSize * 7) + (cellMargin * 8)]);
+
+  //   // Add scales to axis
+  // var x_axis = d3.axisBottom()
+  //                  .scale(scale)
+  //                  .ticks(7);
+
+ 
 
   var svg = d3.select("#calendar").selectAll("svg")
     .data(months)
     .enter().append("svg")
       .attr("class", "month")
-      .attr("width", (cellSize * 7) + (cellMargin * 8) )
+      .attr("width", (cellSize * 7) + (cellMargin * 8) + 20 )
       .attr("height", function(d) {
         var rows = calendarRows(d);
-        return (cellSize * rows) + (cellMargin * (rows + 1)) + 20; // the 20 is for the month labels
+        return (cellSize * rows) + (cellMargin * (rows + 1)) + 50; // the 20 is for the month labels
       })
     .append("g")
 
@@ -71,11 +95,24 @@ function drawCalendar(myData) {
     .attr("text-anchor", "middle")
     .text(function(d) { return monthName(d); })
 
+  var weekday_text = svg.selectAll(".weekday_text")
+                .data(["S", "M", "T", "W", "T", "F", "S"])
+                .enter().append("text")
+                .attr("class", "weekday-name")
+                .attr("text-anchor", "middle")
+                .text(function(d){ return d; })
+                .attr("x", function(d, i){ return i * (cellMargin+cellSize)+12})
+                .attr("y", (cellSize * maxRow) + (cellMargin * (maxRow + 1)) + 35)
+
+  
+
+
   var rect = svg.selectAll("rect.day")
     .data(function(d, i) {
       return d3.timeDays(d, new Date(d.getFullYear(), d.getMonth()+1, 1));
     })
     .enter().append("rect")
+      .text(function(d, i) { console.log(i); return i+1 })
       .attr("class", "day")
       .attr("width", cellSize)
       .attr("height", cellSize)
@@ -100,10 +137,34 @@ function drawCalendar(myData) {
   rect.append("title")
     .text(function(d) { return titleFormat(new Date(d)); });
 
+  var ref_text = svg.selectAll(".ref_text")
+                .data(function(d){
+                  console.log(d3.timeDays(d, new Date(d.getFullYear(), d.getMonth()+1, 1)).filter(function(v){return day(v)==6;}))
+                  return d3.timeDays(d, new Date(d.getFullYear(), d.getMonth()+1, 1));
+                  })
+                .enter().append("text")
+                .attr("class", "day-name")
+                .attr("text-anchor", "middle")
+                .text(function(d){ 
+                  
+                  
+                  return date(d); })
+                .attr("x", function(d){ return (day(d) * cellSize) + (day(d) * cellMargin) + cellMargin + cellSize/2 })
+                .attr("y", function(d) {
+        return ((week(d) - week(new Date(d.getFullYear(),d.getMonth(),1))) * cellSize) +
+               ((week(d) - week(new Date(d.getFullYear(),d.getMonth(),1))) * cellMargin) +
+               cellMargin + 23 + cellSize/2;
+       })
+
+  
+
   var lookup = d3.nest()
     .key(function(d) { return d.today; })
     .rollup(function(leaves) { return leaves.length; })
     .object(myData);
+
+  ref_text.filter(function(d) { return d in lookup; })
+    .style("fill", 'white')
 
   count = d3.nest()
     .key(function(d) { return d.today; })
@@ -116,6 +177,7 @@ function drawCalendar(myData) {
 
   rect.filter(function(d) { return d in lookup; })
     .style("fill", function(d) { return d3.interpolatePuBu(scale(lookup[d])); })
+    
     .classed("clickable", true)
     .on("click", function(d){
       if(d3.select(this).classed('focus')){
