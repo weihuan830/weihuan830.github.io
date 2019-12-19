@@ -3,16 +3,14 @@
 
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<script>
-    document.firstElementChild.style.zoom = "reset";
-</script>
+
 <!-- Load the sankey.js function -->
 <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
 
 <!-- Create a div where the graph will take place -->
 <div>
-    <svg id="my_dataviz" style="margin-left: 20px;">
-        
+    <svg id="my_dataviz" style="margin:20px">
+
     </svg>
 </div>
 
@@ -33,26 +31,27 @@
     // Set the dimensions and margins of the graph
     var margin = {
             top: 10,
-            right: 20,
+            right: 10,
             bottom: 10,
-            left: 20
+            left: 10
         },
-        var width = window.innerWidth - margin.left - margin.right;
-    var height = width - margin.top - margin.bottom;
+        width = window.innerWidth - margin.left - margin.right,
+        height = window.innerWidth - margin.top - margin.bottom;
 
     // Append the svg object to the body of the page
     var svg = d3.select("#my_dataviz")
         .attr("width", width)
         .attr("height", height)
-        .append("g");
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // Color scale used
     var color = d3.scaleOrdinal(d3.schemeCategory20);
 
     // Set the sankey diagram properties
     var sankey = d3.sankey()
-        .nodeWidth(35)
-        .nodePadding(20)
+        .nodeWidth(50)
+        .nodePadding(30)
         .size([width, height]);
 
     // Load the data
@@ -167,7 +166,7 @@
             })
             .attr("dy", ".35em")
             .attr("text-anchor", "end")
-            .style("font-size", 10)
+            .style("font-size", 22)
             .attr("transform", null)
             .text(function(d) {
                 return d.name + "\n" + d.value;
