@@ -175,13 +175,23 @@
         // add in the title for the nodes
         node
             .append("text")
-            .attr("x", -6)
-            .attr("y", function(d) {
-                return d.dy / 2;
+            .attr("x", function(d) {
+                if (d.name == "Savings") {
+                    return -50
+                } else {
+                    return -6;
+                }
             })
-            .attr("dy", ".35em")
+            .attr("y", function(d) {
+                if (d.name == "Savings") {
+                    return -9
+                } else {
+                    return d.dy / 2;
+                }
+            })
+            .attr("dy", ".25em")
             .attr("text-anchor", "end")
-            .style("font-size", 10)
+            .style("font-size", 16)
             .attr("transform", null)
             .text(function(d) {
                 return d.name + "\n" + d.value.toFixed(2);
@@ -190,7 +200,13 @@
                 return d.x < width / 2;
             })
             .attr("x", 6 + sankey.nodeWidth())
-            .attr("text-anchor", "start");
+            .attr("text-anchor", function(d) {
+                if (d.name == "Savings") {
+                    return "middle"
+                } else {
+                    return "start"
+                }
+            });
         // the function for moving the nodes
         function dragmove(d) {
             d3.select(this)
