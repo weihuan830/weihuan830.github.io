@@ -36,7 +36,7 @@
             left: 20
         },
         width = window.innerWidth - margin.left - margin.right - margin.right,
-        height = window.innerHeight - margin.top - margin.top - margin.bottom;
+        height = window.innerHeight - margin.top - margin.top;
     // Append the svg object to the body of the page
     var svg = d3.select("#my_dataviz")
         .attr("width", width)
@@ -191,7 +191,7 @@
             })
             .attr("dy", ".25em")
             .attr("text-anchor", "end")
-            .style("font-size", 16)
+            .style("font-size", 10)
             .attr("transform", null)
             .text(function(d) {
                 return d.name + "\n" + d.value.toFixed(2);
