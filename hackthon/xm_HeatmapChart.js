@@ -5,7 +5,7 @@ var margin = { top: 20, right: 100, bottom: 20, left: 20 },
     transleft = 100,
     legendElementWidth = gridSize * 2,
     buckets = 9,
-    colors = ["#ffffd9", "#edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#253494", "#081d58"], // alternatively colorbrewer.YlGnBu[9]
+    colors = ["#f3f0f9", "#ece7f6", "#e5def3", "#ddd4ef", "#dad0ee", "#c4bbd6", "#aea6be", "#9891a6", "#6d6877"],
     days = [],
     times = [];
 
