@@ -1,4 +1,4 @@
-var margin = { top: 100, right: 20, bottom: 20, left: 60 },
+var margin = { top: 100, right: 20, bottom: 20, left: 100 },
     width = window.innerWidth * 0.6,
     height = window.innerHeight * 0.5;
 var radarChartOptions = {
