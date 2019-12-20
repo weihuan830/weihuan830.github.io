@@ -1,0 +1,34 @@
+{
+  "name": "Consolidated Account Summary",
+  "children" :
+    [
+      { "name": "HSBC",
+        "children": [
+          { "name": "HKD Savings Deposits", "size": 91.35 }
+         ,{ "name": "Foreign Currency Savings Deposits", "size": 48.50 }
+         ,{ "name": "Fund", "size": 43.00 }
+         ,{ "name": "Stock", "size": 36.00 }]
+      }
+
+      ,{ "name": "BOCHK",
+         "children":  [
+          { "name": "HKD Savings Deposits",  "size": 700.45 }
+          ,{ "name": "Foreign Currency Savings Deposits", "size": 200 }
+         ,{ "name": "Fund",  "size": 997.53 }
+         ,{ "name": "Stock", "size": 36.00 }]
+      }
+
+      ,{ "name" : "SC",
+         "children": [
+          { "name" : "HKD Savings Deposits",  "size": 80.00 }
+         ,{ "name" : "Stock", "size": 206.77 }
+         ]
+      }
+
+      ,{ "name": "Citi",
+         "children": [
+            { "name" : "HKD Savings Deposits",  "size": 500.00 }]
+      }
+
+    ]
+  }

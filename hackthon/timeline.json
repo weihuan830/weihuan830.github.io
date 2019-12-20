@@ -1,0 +1,24 @@
+[
+  {
+  "id": 0,
+  "name": "BOCHK HKUST Visa Card",
+  "startDate": "2019-12-30",
+  "Amount": 14002,
+  "category": "BOC"
+},
+{
+  "id": 1,
+  "name": "SC Asia Miles Mastercard",
+  "startDate": "2019-12-27",
+  "Amount": 20304,
+  "category": "Other"
+},
+{
+  "id": 0,
+  "name": "BOCHK UnionPay Card",
+  "startDate": "2020-1-5",
+  "Amount": 5600,
+  "category": "BOC"
+}
+
+]
