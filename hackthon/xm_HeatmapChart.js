@@ -1,8 +1,8 @@
-var margin = { top: 20, right: 100, bottom: 20, left: 20 },
-    width = 700 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom,
+var margin = { top: 20, right: 20, bottom: 20, left: 20 },
+    width = window.innerWidth - margin.left - margin.right,
+    height = window.innerHeight * 0.5 - margin.top - margin.bottom,
     gridSize = Math.floor(width / 13),
-    transleft = 100,
+    transleft = 50,
     legendElementWidth = gridSize * 2,
     buckets = 9,
     colors = ["#f3f0f9", "#ece7f6", "#e5def3", "#ddd4ef", "#dad0ee", "#c4bbd6", "#aea6be", "#9891a6", "#6d6877"],
@@ -137,9 +137,9 @@ var dayLabels = svg.selectAll(".dayLabel")
     .data(days)
     .enter().append("text")
     .text(function(d) { return d[1]; })
-    .attr("x", 0)
+    .attr("x", 10)
     .attr("y", function(d, i) { return i * gridSize; })
-    .style("font-size", 18)
+    .style("font-size", 10)
     .style("text-anchor", "end")
     .attr("transform", "translate(" + transleft + "," + (gridSize / 1.5 + margin.top) + ")")
     .attr("class", function(d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
@@ -149,7 +149,8 @@ var timeLabels = svg.selectAll(".timeLabel")
     .enter().append("text")
     .text(function(d) { return d[1]; })
     .attr("x", function(d, i) { return i * gridSize; })
-    .attr("y", 0)
+    .attr("y", function(d, i) { return -i % 2 * 6 + 2 })
+    .style("font-size", 10)
     .style("text-anchor", "middle")
     .attr("transform", "translate(" + (gridSize / 2 + transleft + margin.left) + "," + (margin.top - 6) + ")");
 
