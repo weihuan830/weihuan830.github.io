@@ -13,7 +13,7 @@ var radarChartOptions = {
     labelFactor: 1.1, //How much farther than the radius of the outer circle should the labels be placed
     roundStrokes: true,
     getcolor: function(index) {
-        let colorList = ["#f3f0f9", "#ece7f6", "#e5def3", "#ddd4ef", "#dad0ee", "#c4bbd6", "#aea6be", "#9891a6", "#6d6877"];
+        let colorList = ["#66c2a5", "#fc8d62", "#8da0cb", "#a6d854", "#e5c494", "#b3b3b3"];
         return colorList[index]
     },
     playerchecked: {}
