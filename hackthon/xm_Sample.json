@@ -26,9 +26,9 @@
         { "source": 4, "target": 11, "value": 6361.48 },
         { "source": 4, "target": 12, "value": 22882.67 },
         { "source": 4, "target": 5, "value": 21847.95 },
-        { "source": 3, "target": 4, "value": 20000.00 },
-        { "source": 3, "target": 5, "value": 100000.00 },
-        { "source": 2, "target": 5, "value": 30000.00 },
-        { "source": 13, "target": 4, "value":  20152.78}
+        { "source": 3, "target": 4, "value": 5000.00 },
+        { "source": 3, "target": 5, "value": 40000.00 },
+        { "source": 2, "target": 5, "value": 10000.00 },
+        { "source": 13, "target": 4, "value": 20152.78 }
     ]
 }
