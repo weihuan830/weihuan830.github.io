@@ -85,7 +85,7 @@ g
 // projection config.
 const projection = d3
     .geoMercator()
-    .center([114.1095, 22.3964])
+    .center([114.1195, 22.3984])
     .scale(80000)
     .translate([WIDTH / 2, HEIGHT / 2]);
 
