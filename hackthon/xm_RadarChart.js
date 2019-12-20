@@ -1,6 +1,6 @@
-var margin = { top: 100, right: 100, bottom: 100, left: 100 },
-    width = 300,
-    height = 300;
+var margin = { top: 100, right: 20, bottom: 20, left: 60 },
+    width = window.innerWidth * 0.6,
+    height = window.innerHeight * 0.5;
 var radarChartOptions = {
     w: width,
     h: height,
@@ -13,7 +13,7 @@ var radarChartOptions = {
     labelFactor: 1.1, //How much farther than the radius of the outer circle should the labels be placed
     roundStrokes: true,
     getcolor: function(index) {
-        let colorList = ["#66c2a5", "#fc8d62", "#8da0cb", "#a6d854", "#e5c494", "#b3b3b3"];
+        let colorList = ["#CB4335", "#7D3C98", "#2E86C1", "#138D75", "#F1C40F", "#A6ACAF", "#616A6B", "#212F3D"];
         return colorList[index]
     },
     playerchecked: {}
@@ -193,11 +193,11 @@ function RadarChart(data, options) {
     });
     //Initiate the radar chart SVG
     var svg = d3.select("#id_radarChart")
-        .attr("width", cfg.w + cfg.margin.left + cfg.margin.right)
-        .attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
+        .attr("width", window.innerWidth)
+        .attr("height", window.innerHeight * 0.5)
     svg.selectAll("*").remove()
         //Append a g element		
-    var g = svg.append("g").attr("transform", "translate(270,250)");
+    var g = svg.append("g").attr("transform", "translate(170,180)");
     //circle grid & axes
     var axisGrid = g.append("g").attr("class", "axisWrapper");
     //Draw the background circles
