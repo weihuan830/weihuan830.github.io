@@ -197,7 +197,7 @@ function RadarChart(data, options) {
         .attr("height", window.innerHeight * 0.5)
     svg.selectAll("*").remove()
         //Append a g element		
-    var g = svg.append("g").attr("transform", "translate(170,180)");
+    var g = svg.append("g").attr("transform", "translate(190,180)");
     //circle grid & axes
     var axisGrid = g.append("g").attr("class", "axisWrapper");
     //Draw the background circles
