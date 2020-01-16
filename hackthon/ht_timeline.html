@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      html {
+  padding: 20px 50px;
+}
+h2 {
+  font-family: 'Thasadith', sans-serif;
+  font-size: 32px;
+}
+.timeline-base {
+  stroke: #444;
+  stroke-width: 0.2;
+}
+.circle-category {
+  transition: fill-opacity 0.2s, r 0.5s;
+  -webkit-transition: fill-opacity 0.2s, r 0.5s;
+}
+.circle-boc,
+.circle-boc ~ .text-position,
+.details-boc .text-position {
+  color: #f6b93b;
+  fill: #f6b93b;
+}
+.circle-other,
+.circle-other ~ .text-position,
+.details-other .text-position {
+  color: #78e08f;
+  fill: #78e08f;
+}
+.circle-hovered {
+  fill-opacity: 0.2;
+}
+.circle-clicked {
+  fill: #fff;
+  transition: fill 1s, r 0.9s;
+  -webkit-transition: fill 1s, r 0.9s;
+}
+.text-date,
+.text-position {
+  transition: opacity 0.7s ease-in-out;
+  -webkit-transition: opacity 0.7s ease-in-out;
+}
+.text-date {
+  fill: #888;
+  font-family: 'Thasadith', sans-serif;
+}
+.details .text-date {
+  margin-right: 15px;
+}
+.text-place {
+  font-family: 'Thasadith', sans-serif;
+  font-size: 18px;
+  fill: #888;
+  margin-top: 10px;
+}
+.text-place.hovered,
+.text-desc.hovered,
+.text-date-end.hovered {
+  transition: opacity 1.5s;
+}
+.text-place,
+.text-desc,
+.text-date-end {
+  transition: opacity 0.1s;
+}
+.position-title {
+  font-size: 25px;
+}
+.text-position,
+.text-desc {
+  font-family: 'Roboto', sans-serif;
+  font-weight: lighter;
+}
+.text-desc {
+  color: #444;
+  margin-top: 20px;
+}
+.close-icon {
+  color: #ccc;
+  cursor: pointer;
+  float: right;
+  font-size: 38px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.title {
+  clear: both;
+  display: inline-block;
+}
+.details {
+  transition: opacity 1s ease-in-out;
+}
+
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400|Thasadith" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="assets/timeline.css"> -->
+    <!-- Libs -->
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <!-- End libs -->
+		
+    <title>D3ITL</title>
+  </head>
+
+  <body>
+    <div id='timeline'>
+      <div id='timelineChart'></div>
+    </div>
+  </body>
+  <script>
+  document.addEventListener('DOMContentLoaded', function(){
+  d3.json("timeline.json", function(error, data) {
+    if (error) throw error;
+    drawChart(data);
+  })
+});
+
+function drawChart(data) {
+  const svg = d3.select(" #timelineChart").append("svg").attr('id','Chart').attr("width", '100%').attr("height", 500);
+  
+  svg.append('line').attr('class', 'timeline-base')
+    .attr("x1", 100)
+    .attr("y1", 0)
+    .attr("x2", 100)
+    .attr("y2", '90%');
+  // Get the value of the svg to for scaleLinear
+  function getLineVal(val) {
+    if(val === 'max') {
+      let el = document.getElementById('Chart');
+      return el.getBoundingClientRect().width;
+    }
+    else {
+      return 0;
+    }
+  }
+  // Convert to UNIX timestamp
+  function convertToTimeStamp(date) {
+    // let parts = date.match(/(\d{4})-(\d{2})-(\d{2})/);
+    return new Date(date).getTime();
+  }
+
+  let scaleLine = d3.scaleLinear()
+    .domain([Date.now(), Date.now()+moment.duration(30,'d').asMilliseconds()])
+    .range([getLineVal('min') + 20 , getLineVal('max') - 100]); // OFFSET = 20
+
+  let scaleCircle = d3.scaleLinear()
+    .domain([0, 100000])
+    .range([10, 200]);
+
+  let allGroups = svg.selectAll('g').data(data);
+  let group = allGroups.enter().append('g').attr('id', function(data){return 'group-' + data.id});
+
+  group.append('circle')
+    .attr('cx', 100)
+    .attr('cy', function(data) {return scaleLine(convertToTimeStamp(data.startDate));})
+    .attr('r', function(data) {return scaleCircle(data.Amount);})
+    .attr('fill-opacity', 0.5)
+    .attr('class', function(data) { return('circle-category circle-' + data.category.toLowerCase())})
+    .attr('id', function(data) {
+      return 'circle-' + data.id
+    })
+    // When hover a circle
+    .on('mouseover', function(d, i) {
+      d3.select(this).attr('r', function(data) {return scaleCircle(convertToTimeStamp(data.endDate) - convertToTimeStamp(data.startDate)) + 20;});
+      d3.select(this).classed('circle-hovered', true);
+      d3.select(this.parentNode).selectAll('text').style('opacity', 1);
+      d3.select(this.parentNode).selectAll('.text-place').classed('hovered', true).style('opacity', 0);
+      d3.select(this.parentNode).selectAll('.text-desc').classed('hovered', true).style('opacity', 0);
+      d3.select(this.parentNode).selectAll('.text-date-end').classed('hovered', true).style('opacity', 0);
+    })
+    // // When un-hover a circle
+    .on('mouseout', function(d, i){
+      d3.select(this).attr('r', function(data) {return scaleCircle(convertToTimeStamp(data.endDate) - convertToTimeStamp(data.startDate));});
+      d3.select(this).classed('circle-hovered', false);
+      // d3.select(this.parentNode).selectAll('text').style('opacity', 0);
+    });
+
+  group.append('text')
+    .style('opacity', 1)
+    .text(function(data) { return(data.name);})
+    .attr('x', 230)
+    .attr('y', function(data) {
+      let elementWitdh = this.getBoundingClientRect().width;
+      // Avoid overflow
+      if(scaleLine(convertToTimeStamp(data.startDate)) + elementWitdh >= getLineVal('max')) {
+        return scaleLine(convertToTimeStamp(data.startDate)) - elementWitdh;
+      }
+      else {
+        return scaleLine(convertToTimeStamp(data.startDate));
+      }
+    })
+    .attr('class', 'text-position');
+
+  group.append('text')
+    .text(function(data) {
+    // Get only YYYY-MM
+    // if(data.startDate.length > 20) {
+    //   return (data.startDate.slice(0,20))
+    // }
+    // else {
+    //   return(data.startDate)
+    // }
+
+    return data.startDate
+  })
+  .attr('x', 130)
+  .attr('y', function(data) {
+    // Get sibling to have the len and align the date
+    let elementWitdh= this.getBoundingClientRect().width;
+    let positionWidth = this.parentNode.querySelector('text.text-position').getBoundingClientRect().width;
+    if(scaleLine(convertToTimeStamp(data.startDate)) + positionWidth >= getLineVal('max')) {
+      return scaleLine(convertToTimeStamp(data.startDate)) - elementWitdh;
+    }
+    else {
+      return scaleLine(convertToTimeStamp(data.startDate));
+    }
+  })
+  .attr('class', 'text-date')
+  .style('opacity', 1);
+
+  // data.map(d => {
+  //   let details = d3.select('#timelineChart').append('div').classed('details', true).classed('details-' + d.category.toLowerCase(), true).attr('id', 'details-' + d.id);
+  //   details.append('i').classed('material-icons close-icon', true).text('close');
+  //   details.append('div').classed('title', true).append('span').classed('date text-date date-title', true).text(d.startDate + '-' + d.endDate);
+  //   details.select(' .title').append('span').classed('position-title text-position', true).text(d.name);
+  //   details.append('div').classed('place-name text-place hovered', true).text(d.placeName);
+  //   details.append('div')
+  //     .attr('class', 'text-desc')
+  //     .attr('id', 'descriptionId-'+ d.id)
+  //     .text(function(){
+  //       if(typeof(d.description) === 'string') {
+  //         return d.description;
+  //       }
+  //       else {
+  //         return d.description.toString()
+  //       }
+  //     });
+  //   details.style('opacity', 0);
+  // });
+
+  // Hide the details div (once opened by clicking on circle)
+  // d3.selectAll('.close-icon').on('click', function() {
+  //   d3.select(this.parentNode).style('opacity', 0);
+  //   setTimeout(function() {
+  //     svg.attr('height', 500);
+  //     d3.select('.timeline-base').style('opacity', 1)
+  //     d3.selectAll('circle').classed('circle-clicked', false);
+  //     d3.selectAll('circle').style('opacity', 1);
+  //     d3.selectAll('.details').style('display', 'block');
+  //   }, 1000)
+  // })
+}
+
+  
+  
+  </script>
+</html>
