@@ -523,7 +523,7 @@ h6 small,
 h1,
 h2,
 h3 {
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-bottom: 10px
 }
 
@@ -546,7 +546,7 @@ h2,
 
 h3,
 .h3 {
-    font-size: 24px
+    /* font-size: 24px */
 }
 
 h4,

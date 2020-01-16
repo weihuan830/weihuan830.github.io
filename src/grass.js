@@ -157,7 +157,7 @@
 
         function genTopPoint(point2) {
             var xpos = Math.random() * 200 - 100;
-            var top = -Math.random() * 200;
+            var top = -Math.random() * 250;
             point2.push([xpos + (point2[0][0] + point2[1][0]) / 2, top])
                 // console.log(xpos+(point2[0][0]+point2[][1])/2)
             return point2
