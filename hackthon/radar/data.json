@@ -1,0 +1,46 @@
+[{
+        "Fund": "Allianz China Equity (A Dis) (HKD)",
+        "Annual Returns": [-3.31, -0.61, 36.91, -17.64, 10.28],
+        "3 Year Sharpe Ratio": "0.38",
+        "3 Year Standard Deviation": "16.51%",
+        "3 Year Alpha": "-3.31%",
+        "Risk Rating": 4,
+        "Morningstar Rating": 3
+    },
+    {
+        "Fund": "BOCHK China Equity Fund",
+        "Annual Returns": [-9.36, -0.96, 44.90, -20.06, 12.45],
+        "3 Year Sharpe Ratio": "0.43",
+        "3 Year Standard Deviation": "18.40%",
+        "3 Year Alpha": "-2.85%",
+        "Risk Rating": 4,
+        "Morningstar Rating": 3
+    },
+    {
+        "Fund": "JPMorgan China A-Share Opportunities Fund (acc) - HKD",
+        "Annual Returns": [-2.38, -18.46, 48.82, -28.67, 41.13],
+        "3 Year Sharpe Ratio": "0.60",
+        "3 Year Standard Deviation": "20.31%",
+        "3 Year Alpha": "12.82%",
+        "Risk Rating": 5,
+        "Morningstar Rating": 3
+    },
+    {
+        "Fund": "Schroder ISF-Hong Kong Equity (Acc)",
+        "Annual Returns": [-5.24, 0.48, 51.63, -14.12, 8.82],
+        "3 Year Sharpe Ratio": "0.59",
+        "3 Year Standard Deviation": "17.56%",
+        "3 Year Alpha": "2.12%",
+        "Risk Rating": 4,
+        "Morningstar Rating": 5
+    },
+    {
+        "Fund": "AB SICAV I - India Growth Portfolio (A HKD)",
+        "Annual Returns": [-4.76, -3.68, 52.05, -23.22, 0.40],
+        "3 Year Sharpe Ratio": "0.30",
+        "3 Year Standard Deviation": "18.24%",
+        "3 Year Alpha": "-5.32%",
+        "Risk Rating": 5,
+        "Morningstar Rating": 2
+    }
+]

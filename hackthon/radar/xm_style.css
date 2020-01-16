@@ -1,0 +1,280 @@
+@font-face {
+    font-family: HYSWSSW;
+    src: url("fonts/HYShangWeiShouShuW.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+strong {
+    font-size: 1.2rem;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 微软雅黑;
+    margin: 0;
+    overflow-x: hidden;
+    font-size: 1em;
+    line-height: 2.5;
+    color: #000;
+    background-color: #fff;
+    margin: 0;
+    text-indent: 2em;
+}
+
+.xjtext {
+    text-align: center;
+    font-size: 15px;
+    font-family: simsun;
+    font-weight: normal;
+    fill: rgb(193, 18, 66);
+}
+
+.xjnum {
+    font-size: 24px;
+    font-family: Roboto;
+    font-weight: bold;
+    fill: rgb(193, 18, 66);
+}
+
+.othertext {
+    font-family: simsun;
+    font-weight: normal;
+    fill: rgb(210, 184, 135);
+    font-size: 15px;
+}
+
+.othernum {
+    font-size: 24px;
+    font-family: Roboto;
+    font-weight: bold;
+    fill: rgb(210, 184, 135);
+}
+
+.vstext {
+    font-family: heiregular;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.zhouqitext {
+    font-family: simsun;
+    font-size: 15px;
+    fill: rgb(193, 18, 66)
+}
+
+section {
+    position: relative;
+    padding-top: 50px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.juzhong {
+    margin: 0 auto !important;
+    text-align: justify !important;
+}
+
+.intro {
+    position: relative;
+    width: 63%;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+.intro-text {
+    position: relative;
+}
+
+.first-page {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    /*background: url(../img/zqcover.jpg);
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: 100%, 100%;
+  */
+}
+
+.cover_title {
+    position: absolute;
+    font-family: HYSWSSW;
+    font-size: 6.5vw;
+    color: white;
+    left: 7em;
+    top: 2.3em;
+}
+
+.foreword {
+    color: white;
+    position: absolute;
+    left: 49%;
+    top: 53%;
+    width: 41%;
+    font-size: 1.2rem;
+}
+
+.second-page {
+    width: 100%;
+}
+
+.title {
+    /*font-size: 0.4em;*/
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title .sub-title {
+    position: relative;
+    font-family: 黑体;
+    font-size: 2em;
+}
+
+.title-diamond {
+    background: #f22525;
+    width: 13px;
+    height: 13px;
+    transform: rotate(45deg);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.5em;
+}
+
+.redpanel {
+    background: url(../img/right.png), url(../img/left.png);
+    background-position: 151% 1%, -28% bottom;
+    background-size: 55%, 37%;
+    background-repeat: no-repeat, no-repeat;
+}
+
+.extext {
+    font-size: 0.9rem;
+}
+
+.textimg {
+    margin-top: 2em;
+}
+
+.textimgafter {
+    margin-bottom: 2em;
+}
+
+.third-page {
+    top: 0rem;
+}
+
+.forth-page {
+    width: 100%;
+}
+
+.svg-container {
+    left: 20%;
+    position: relative;
+}
+
+.mdscontainer {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mdsimage {
+    width: 60%;
+}
+
+.footer_img_text_container {
+    top: 8em;
+    position: relative;
+    line-height: 2.2
+}
+
+.footer_img_container {
+    font-size: 0.4em;
+    display: inline-block;
+    text-align: left;
+}
+
+.footer_text_container {
+    /*line-height: 1.5;*/
+    font-size: 0.4em;
+    text-indent: 0;
+    display: inline-block;
+    padding-left: 4em;
+    text-align: left;
+    vertical-align: top;
+}
+
+.footer_text {
+    width: 23em;
+    display: inline;
+    float: left;
+    padding-left: 4em;
+}
+
+.footer_text2 {
+    width: 26em;
+    display: inline;
+    float: left;
+    padding-left: 4em;
+}
+
+.footer_text3 {
+    width: 8em;
+    display: inline;
+    float: left;
+}
+
+.svgcontainer {
+    text-indent: 0;
+}
+
+.postSeasonIntro {
+    position: absolute;
+    z-index: 100;
+    right: 5%;
+    bottom: 15%;
+}
+
+.footer {
+    width: 100%;
+    position: relative;
+    height: 20em;
+    background: url(../img/footer.png) no-repeat top 0em left 0 / 18%, -webkit-linear-gradient(top, white 0%, white 20%, #efefef 20%, #efefef 100%);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.zhouqifooter {
+    position: absolute;
+    top: -5em;
+    width: 20em;
+    left: 0em;
+}
+
+.logocontainer {
+    /*display: inline-block;*/
+    font-size: 0.6em;
+    /*float: left;*/
+    text-indent: 0;
+}
+
+.top {
+    vertical-align: top;
+}
+
+.logodiv {
+    width: 11em;
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+}

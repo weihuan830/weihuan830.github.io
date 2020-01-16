@@ -9,7 +9,7 @@
 
 <!-- Create a div where the graph will take place -->
 <div>
-    <svg id="my_dataviz" style="margin:20px">
+    <svg id="my_dataviz" style="margin-left:20px;margin-top:-10px">
 
     </svg>
 </div>
@@ -30,40 +30,33 @@
 <script>
     // Set the dimensions and margins of the graph
     var margin = {
-            top: 10,
-            right: 10,
+            top: 0,
+            right: 20,
             bottom: 10,
-            left: 10
+            left: 20
         },
-        width = window.innerWidth - margin.left - margin.right,
-        height = window.innerWidth - margin.top - margin.bottom;
-
+        width = window.innerWidth - margin.left - margin.right - margin.right,
+        height = window.innerHeight - margin.top - margin.top - margin.bottom;
     // Append the svg object to the body of the page
     var svg = d3.select("#my_dataviz")
         .attr("width", width)
         .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
+        .append("g");
     // Color scale used
     var color = d3.scaleOrdinal(d3.schemeCategory20);
-
     // Set the sankey diagram properties
     var sankey = d3.sankey()
-        .nodeWidth(50)
-        .nodePadding(30)
+        .nodeWidth(35)
+        .nodePadding(10)
         .size([width, height]);
-
     // Load the data
     d3.json("xm_Sample.json", function(error, graph) {
         console.log(graph)
-
-        // Constructs a new Sankey generator with the default settings.
+            // Constructs a new Sankey generator with the default settings.
         sankey
             .nodes(graph.nodes)
             .links(graph.links)
             .layout(1);
-
         for (links = 0; links < graph.links.length; links++) {
             console.log(graph.links[links])
             var gradient = svg.append("linearGradient")
@@ -73,16 +66,13 @@
                     return graph.links[links].source.x
                 })
                 .attr("x2", graph.links[links].target.x);
-
             gradient.append("stop")
                 .attr("offset", "0%")
                 .attr("stop-color", color(graph.links[links].source.name));
-
             gradient.append("stop")
                 .attr("offset", "100%")
                 .attr("stop-color", color(graph.links[links].target.name));
         }
-
         // Add in the links
         var link = svg.append("g")
             .selectAll(".link")
@@ -100,7 +90,6 @@
             .sort(function(a, b) {
                 return b.dy - a.dy;
             });
-
         // Add in the nodes
         var node = svg.append("g")
             .selectAll(".node")
@@ -118,13 +107,11 @@
             //         this.parentNode.appendChild(this);
             //     })
             //     .on("drag", dragmove));
-
-        // Add hover text
+            // Add hover text
         node.append("title")
             .text(function(d) {
                 return d.name + "\n" + d.value;
             });
-
         // Add the rectangles for the nodes
         rectBox = node.append("rect")
             .data(graph.nodes)
@@ -143,7 +130,6 @@
             .attr("stroke", function(d) {
                 return d3.rgb(d.color).darker(2);
             });
-
         rectBox.on("click", showList)
             .on("mouseover", function(d) {
                 if (Number(d.node) < 13 && Number(d.node) > 4) {
@@ -155,8 +141,6 @@
                     d3.select(".node_" + String(d.node)).attr("stroke-width", 1)
                 }
             });
-
-
         // add in the title for the nodes
         node
             .append("text")
@@ -166,17 +150,16 @@
             })
             .attr("dy", ".35em")
             .attr("text-anchor", "end")
-            .style("font-size", 22)
+            .style("font-size", 10)
             .attr("transform", null)
             .text(function(d) {
-                return d.name + "\n" + d.value;
+                return d.name + "\n" + d.value.toFixed(2);
             })
             .filter(function(d) {
                 return d.x < width / 2;
             })
             .attr("x", 6 + sankey.nodeWidth())
             .attr("text-anchor", "start");
-
         // the function for moving the nodes
         function dragmove(d) {
             d3.select(this)
@@ -191,7 +174,7 @@
 
         function showList(d, i) {
             if (Number(d.node) < 13 && Number(d.node) > 4) {
-                console.log([d.name, d.value])
+                window.postMessage(d.name, "*");
             }
         }
     });

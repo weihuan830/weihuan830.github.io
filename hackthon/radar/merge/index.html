@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>周琦NBA之路</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <style>
+        .axis path,
+        .axis line {
+            opacity: 0.0;
+        }
+
+        .axis text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+
+        .line1 {
+            stroke: #CCCCCC;
+            stroke-width: 1;
+        }
+
+        .line2 {
+            stroke: steelblue;
+            stroke-width: 1;
+        }
+
+        .tooltip {
+            position: absolute;
+            width: 107px;
+            height: auto;
+            color: white;
+            font-family: kaiti;
+            font-size: 14px;
+            text-align: left;
+            border-style: solid;
+            border-width: 0px;
+            background-color: steelblue;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body marginwidth="0" marginheight="0">
+    <section class="first-page" style="padding: 0">
+        <div class="cover_title"> 
+                <p>James Harden</p>
+                <p>NBA MVP</p></div>
+        <div class="foreword">
+            <p>
+                Despite being regarded by many NBA fans as one of basketball’s most polarizing players due to his play style, James Harden has managed to show the majority of court-side spectators why he is the arguably
+                the insane man on the basket court as of recent times.
+            </p>
+            <p>
+                The seven-time All-Star — who won NBA MVP in 2017-18 — is currently playing at a historic level,
+                averaging a career-best 36.5 points, 7.9 assists and 6.8 rebounds per game in his seventh year with the
+                Houston Rockets.
+            </p>
+        </div>
+        <div style="text-indent:0;">
+            <img src="./headimage/hardenbg.png" class="coverimg" style="width:100%">
+        </div>
+    </section>
+    <div class="second-page" style="margin:0 auto;text-align:center;">
+        <div class="title">
+            <div class="sub-title" style="">
+                <div class="title-diamond"></div>
+                Stats of Harden and other 6 top player in recent 6 years
+            </div>
+        </div>
+        <div class="intro" style="top: 0rem;margin-top: 0.4em;">
+            <div class="intro-text">
+                James Harden has been keeping high level performance from 2014 to 2019 regular season, and reach at peak
+                in recent 2 years. Harden performed outstandingly on scoring and assisting, especially for scoring. In
+                addition, Harden got the highest VROP in this season. “VROP (Value over Replacement Player) is a box
+                score estimate of the points per 100 TEAM possessions that a player contributed above a
+                replacement-level (-2.0) player, translated to an average team and prorated to an 82-game season” .
+            </div>
+        </div>
+        <div class="svgcontainer">
+            <svg id="id_svg1" style="position: relative;" width="1440px" height="300px">
+            </svg>
+        </div>
+        <div style="margin:0 auto;text-align:center;">
+                <div class="intro-text extext">Stats change of Harden and another 6 top players from 2014 to 2019</div>
+        </div>
+    </div>
+
+    <!-- ===================================
+        THIRD PAGE
+    ==================================== -->
+    <div class="third-page" style="margin:0 auto;text-align:center;">
+        <div class="title" style="margin-top: 2.8em;">
+            <div class="sub-title" style="">
+                <div class="title-diamond"></div>
+                How insane James Harden's scoring streak is
+            </div>
+        </div>
+
+        <div class="intro" style="">
+            <div class="intro-text" style="top: 0rem;margin-top: 0.4em;">
+                It’s already well-known from figure 1 that James Harden got the highest points per game in 2018-2019
+                regular season, but how insane James Harden's scoring streak is? The following chart shows highest
+                points scored by opponent player for each team. James Harden occupy 10 points which means there are 10
+                teams’ opponent player’s highest points scored by Harden.
+            </div>
+        </div>
+        <div class="svgcontainer">
+            <svg id="id_map" style="position: relative;" width="900" height="400">
+            </svg>
+            <div style="margin:0 auto;text-align:center;">
+                    <div class="intro-text extext">Highest points scored by oppnent player for each team</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="forth-page" style="margin:0 auto;text-align:center;">
+        <div class="title" style="margin-top: 2.8em;">
+            <div class="sub-title" style="">
+                <div class="title-diamond"></div>
+                The best all-around player
+            </div>
+        </div>
+        <div class="intro">
+            <div class="intro-text" style="margin-top:1em;margin-bottom: 0.6em;">
+                James Harden not only does a good job on personal scoring capability, but also he improve his team in
+                all aspect. Following chart show that comparing with other 6 top players in this season, Harden do a
+                better job on scoring, assist, steal, WS, BPM and VROP. “BPM (Box Plus/Minus) is A box score estimate of
+                the points per 100 possessions a player contributed above a league-average player, translated to an
+                average team. WS (Win shares) is an estimate of the number of wins contributed by a player provided by
+                NBA official.
+            </div>
+        </div>
+    </div>
+    <div class="fifth-page" style="margin:0 auto;background: #f7f8f8;">
+        <div style="position:relative;width:100%;">
+            <div class="svgcontainer" style="display: flex;width: 700px;margin: auto;">
+                <div id="checkList" class="form-check">
+                </div>
+                <svg id="id_radarChart" style="position: relative;" width="1440px" height="300px">
+                </svg>
+            </div>
+            <div style="margin:0 auto;text-align:center;">
+                    <div class="intro-text extext">Stats of Harden and another 6 top player in 2018-2019 regualr season</div>
+            </div>
+        </div>
+    </div>
+    <script src="pic1.js" type="text/javascript"></script>
+    <script src="pic2.js" type="text/javascript"></script>
+    <script src="pic3.js" type="text/javascript"></script>
+</body>
+
+</html>

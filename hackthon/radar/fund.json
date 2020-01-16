@@ -1,0 +1,111 @@
+[{
+        "Fund": "Allianz China Equity (A Dis) (HKD)",
+        "Annual Returns": [-3.31, -0.61, 36.91, -17.64, 10.28],
+        "3 Year Sharpe Ratio": "0.38",
+        "3 Year Standard Deviation": "16.51%",
+        "3 Year Alpha": "-3.31%",
+        "Risk Rating": 4,
+        "Morningstar Rating": 3,
+        "Equity Holdings Sector Allocation": {
+            "Consumer Cyclical": 22.51,
+            "Financial Services": 18.57,
+            "Industrials": 12.67,
+            "Communication Services": 11.85,
+            "Technology": 9.29,
+            "Consumer Defensive": 8.78,
+            "Real Estate": 4.96,
+            "Healthcare": 3.47,
+            "Basic Materials": 3.00,
+            "Energy": 2.94,
+            "Utilities": 0.75
+        }
+    },
+    {
+        "Fund": "BOCHK China Equity Fund",
+        "Annual Returns": [-9.36, -0.96, 44.90, -20.06, 12.45],
+        "3 Year Sharpe Ratio": "0.43",
+        "3 Year Standard Deviation": "18.40%",
+        "3 Year Alpha": "-2.85%",
+        "Risk Rating": 4,
+        "Morningstar Rating": 3,
+        "Equity Holdings Sector Allocation": {
+            "Consumer Cyclical": 17.03,
+            "Financial Services": 25.34,
+            "Industrials": 4.60,
+            "Communication Services": 4.41,
+            "Technology": 17.85,
+            "Consumer Defensive": 4.61,
+            "Real Estate": 8.58,
+            "Healthcare": 3.47,
+            "Basic Materials": 3.83,
+            "Energy": 4.63,
+            "Utilities": 2.78
+        }
+    },
+    {
+        "Fund": "JPMorgan China A-Share Opportunities Fund (acc) - HKD",
+        "Annual Returns": [-2.38, -18.46, 48.82, -28.67, 41.13],
+        "3 Year Sharpe Ratio": "0.60",
+        "3 Year Standard Deviation": "20.31%",
+        "3 Year Alpha": "12.82%",
+        "Risk Rating": 5,
+        "Morningstar Rating": 3,
+        "Equity Holdings Sector Allocation": {
+            "Consumer Cyclical": 3.27,
+            "Financial Services": 23.26,
+            "Industrials": 11.55,
+            "Communication Services": 0.72,
+            "Technology": 18.84,
+            "Consumer Defensive": 17.71,
+            "Real Estate": 5.83,
+            "Healthcare": 14.21,
+            "Basic Materials": 1.78,
+            "Energy": 0,
+            "Utilities": 1.71
+        }
+    },
+    {
+        "Fund": "Schroder ISF-Hong Kong Equity (Acc)",
+        "Annual Returns": [-5.24, 0.48, 51.63, -14.12, 8.82],
+        "3 Year Sharpe Ratio": "0.59",
+        "3 Year Standard Deviation": "17.56%",
+        "3 Year Alpha": "2.12%",
+        "Risk Rating": 4,
+        "Morningstar Rating": 5,
+        "Equity Holdings Sector Allocation": {
+            "Consumer Cyclical": 23.78,
+            "Financial Services": 25.26,
+            "Industrials": 12.97,
+            "Communication Services": 2.48,
+            "Technology": 5.92,
+            "Consumer Defensive": 4.04,
+            "Real Estate": 14.33,
+            "Healthcare": 4.68,
+            "Basic Materials": 0.33,
+            "Energy": 4.79,
+            "Utilities": 0
+        }
+    },
+    {
+        "Fund": "AB SICAV I - India Growth Portfolio (A HKD)",
+        "Annual Returns": [-4.76, -3.68, 52.05, -23.22, 0.40],
+        "3 Year Sharpe Ratio": "0.30",
+        "3 Year Standard Deviation": "18.24%",
+        "3 Year Alpha": "-5.32%",
+        "Risk Rating": 5,
+        "Morningstar Rating": 2,
+        "Equity Holdings Sector Allocation": {
+            "Consumer Cyclical": 6.08,
+            "Financial Services": 40.50,
+            "Industrials": 15.83,
+            "Communication Services": 4.53,
+            "Technology": 12.68,
+            "Consumer Defensive": 2.88,
+            "Real Estate": 1.63,
+            "Healthcare": 0,
+            "Basic Materials": 2.58,
+            "Energy": 6.01,
+            "Utilities": 7.29
+        }
+    }
+]
