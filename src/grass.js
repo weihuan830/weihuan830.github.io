@@ -62,7 +62,7 @@
 
         function genData() {
             var arr = [];
-            var x1 = Math.random() * width;
+            var x1 = Math.random() * width - 50;
             var x2 = Math.random() * 8;
             return genPoints(genTopPoint([
                 [x1, 0],
