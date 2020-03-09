@@ -7655,16 +7655,6 @@ h2.notes img {
     }
 }
 
-#head-slider {
-    padding: 1em 0
-}
-
-@media (min-width:992px) {
-    #head-slider {
-        padding: 4em 0
-    }
-}
-
 #hello {
     z-index: 980;
     position: relative;
@@ -7853,23 +7843,23 @@ article header h2 {
     visibility: hidden
 }
 
-#i-can-help {
+#wk-experience {
     text-align: center;
     /* padding: 0 0 4em */
 }
 
 @media (min-width:992px) {
-    #i-can-help {
+    #wk-experience {
         /* padding: 3em 0 8em */
     }
 }
 
-#i-can-help article {
+#wk-experience article {
     /* max-width: 600px; */
     margin: 0 auto
 }
 
-#i-can-help h3 {
+#wk-experience h3 {
     /* padding-top: 1em */
 }
 
