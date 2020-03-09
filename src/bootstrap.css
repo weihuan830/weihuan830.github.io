@@ -7658,13 +7658,13 @@ h2.notes img {
 #hello {
     z-index: 980;
     position: relative;
-    padding: 3em 0 0;
+    padding: 1em 0 0;
     margin: 0 0 3em
 }
 
 @media (min-width:992px) {
     #hello {
-        padding: 6em 0 0;
+        padding: 1em 0 0;
         margin: 0 0 6em
     }
 }
