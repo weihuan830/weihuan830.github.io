@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\r{0.85}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\r), yscale=.5*(\r)] 
+
+\draw[xstep=1cm,ystep=1cm,color=gray!20] (-2, -5) grid (6, 5);
+
+\draw[->] (-2, 0) -- ({6+0.3/(\r)},0) node[right] {\small$x$};
+\draw[->] (0,-5) -- (0, {5+0.3/(\r)}) node[above] {\small$y$};
+
+\clip[] (-2, -5) rectangle (6, 5);
+
+\foreach \p/\q in {1/1.5, 2/1.4, 3/6}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {sqrt((\x-1)*(\x-2)*(\x-3)});
+		
+\foreach \p/\q in {1.423/0.620, 3.46789/1.30191}
+\draw[purple, fill]  ({(\p)}, {(\q))}) circle({0.05/(\r)});	
+	
+\begin{scope}[yscale=-1,xscale=1]
+
+\foreach \p/\q in {1/1.5, 2/1.4, 3/6}
+\draw[teal, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {sqrt((\x-1)*(\x-2)*(\x-3)});
+		
+\foreach \p/\q in {1.423/0.620, 3.46789/1.30191}
+\draw[teal, fill]  ({(\p)}, {(\q))}) circle({0.05/(\r)});	
+
+\end{scope}
+
+\foreach \x in {1}
+\draw (\x, {2pt/(\r)}) -- (\x, {-2pt/(\r)}) node[anchor=north, scale=0.6] {$\x$};
+
+\foreach \y in {1}
+\draw ({2pt/(\r)}, \y) -- ({-2pt/(\r)}, \y) node[anchor=east, scale=0.6] {$\y$};
+
+\node[scale=0.8] at ({-0.3/(\r)}, {-0.3/(\r)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

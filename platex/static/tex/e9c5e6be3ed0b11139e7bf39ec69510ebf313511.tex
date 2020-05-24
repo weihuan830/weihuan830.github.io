@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\rx{1.25}
+\def\ry{0.5}
+\def\a{2.75}
+\def\b{5.25}
+
+\begin{tikzpicture}[>=latex,xscale=.5*(\rx), yscale=.5*(\ry)]
+
+\draw[->] (-1, 0) -- ({2*pi+1+0.3/(\rx)}, 0)node[right] {\small $\theta$} ;
+\draw[->] (0, {\a-\b-3}) -- (0, {\a+\b+2+0.3/(\ry)})node[above] {\small $r$} ;
+
+\foreach \p/\q in {0/{rad(acos(-(\a)/(\b)))/2}, {rad(acos(-(\a)/(\b)))/2}/{pi/2+(rad(acos(-(\a)/(\b))))/2}, {pi/2+(rad(acos(-(\a)/(\b))))/2}/{3*pi/2-(rad(acos(-(\a)/(\b))))/2}, {3*pi/2-(rad(acos(-(\a)/(\b))))/2}/{2*pi-(rad(acos(-(\a)/(\b))))/2}}
+\draw[->, >=stealth', teal, samples=100, smooth, domain=\p:\q, variable=\t] 
+		plot ({\t}, {(\a)+(\b)*cos(\t r)});
+
+\draw[teal, samples=100, smooth, domain={2*pi-(rad(acos(-(\a)/(\b))))/2}:2*pi, variable=\t] 
+		plot ({\t}, {(\a)+(\b)*cos(\t r)});
+
+\draw ({pi},{2pt/(\ry)}) -- ({pi},{-2pt/(\ry)}) node[anchor=north, xshift=0, scale=0.7] {$\pi$};
+\draw ({2*pi},{2pt/(\ry)}) -- ({2*pi},{-2pt/(\ry)}) node[anchor=north, xshift=0, scale=0.7] {$2\pi$};
+
+\draw ({-2pt/(\rx)}, {\a+\b}) -- ({2pt/(\rx)}, {\a+\b}) node[anchor=east] {\tiny $a+b$};
+\draw ({-2pt/(\rx)}, {\a-\b}) -- ({2pt/(\rx)}, {\a-\b}) node[anchor=east] {\tiny $a-b$};
+
+\draw [yshift=-3.5cm, <->|, >=stealth] (0, 0) -- ({rad(acos(-(\a)/(\b)))}, 0) node[fill = white, pos=0.5, scale=0.5] {$\arccos(-\frac{a}{b})$};
+\draw [yshift=-4.5cm, <->|, >=stealth] (0, 0) -- ({2*pi- rad(acos(-(\a)/(\b)))}, 0) node[fill = white, pos=0.5, scale=0.5] {$2\pi-\arccos(-\frac{a}{b})$};
+
+\node[teal, scale=0.7] at ({pi}, {\a+\b-1}) {$r=a+b\cos \theta$};
+
+\node at ({rad(acos(-(\a)/(\b)))/2-0.3}, {(\a+\b)/2}) {\ding{192}};
+\node at ({2*pi/3-0.1}, -1) {\ding{193}};
+\node at ({4*pi/3+0.1}, -1) {\ding{194}};
+\node at ({2*pi-rad(acos(-(\a)/(\b)))/2+0.3}, {(\a+\b)/2}) {\ding{195}};
+
+\node[scale=0.7] at ({-0.3/(\rx)}, {-0.3/(\ry)}) {$O$};
+
+\end{tikzpicture}\hskip1cm\begin{tikzpicture}[>=latex,xscale=.5*0.5, yscale=.5*0.5][font=\sf\small] 
+    %Circles 
+   \foreach \r in {1, 1.5, 3, 5, 7, 9}
+      \draw[thin, color=gray!40] (0,0) circle (\r);
+    \foreach \r in {2, 4, 6, 8}
+      \draw[thick, color=gray!40] (0,0) circle (\r);   
+    %1° Rays
+    \foreach \a in {0, 1,...,359}
+      \draw[] (\a:9.7) -- (\a:10);
+    %5° Rays
+    \foreach \a in {0, 5,...,359}
+      \draw[] (\a:9.5) -- (\a:10);      
+    %15° Rays
+    \foreach \a in {0, 15,...,359}
+      \draw[thick, color=gray!40] (\a:1.5) -- (\a:10); 
+    %30° Rays
+    \foreach \a in {0, 30,...,359}
+      \draw[thick, color=gray!40] (0, 0) -- (\a:10);
+    %Radius labels (background filled white)
+    \foreach \r in {{5.25-2.75}}
+      \draw[] ({\r},0) node[inner sep=1pt,above=1pt,rectangle,fill=white, xshift=6, scale=0.5] {$b-a$};
+    \foreach \r in {{5.25+2.75}}
+      \draw[] ({\r},0) node[inner sep=1pt,above=1pt,rectangle,fill=white, xshift=6, scale=0.5] {$b+a$};
+    %Main rays
+    \foreach \a in {0, 90,...,359}
+      \draw[very thick, color=gray!40] (0, 0) -- (\a:10);
+    %Angle labels  
+    \foreach \a in {0, 15,...,359}
+      \draw (\a: 10.75) node[scale=0.5] {$\a^\circ$};
+    %Central point
+    \draw[fill=red] (0,0) circle(0.7mm/0.5);
+
+\clip (0, 0) circle (10);
+
+\foreach \p/\q in {0/{2*pi}}    		
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\t] 
+		plot ({(2.75+5.25*cos(\t r))*cos(\t r)}, {(2.75+5.25*cos(\t r))*sin(\t r)});
+
+\draw[teal, dashed] (0, 0) -- ({10*cos((rad(acos(-(\a)/(\b)))) r)}, {10*sin((rad(acos(-(\a)/(\b)))) r)}) node[right, pos=0.8, fill=white, xshift=3, scale=0.5] {$\theta=\arccos(-\frac{a}{b})$};
+\draw[teal, dashed] (0, 0) -- ({10*cos((2*pi-rad(acos(-(\a)/(\b)))) r)}, {10*sin((2*pi-rad(acos(-(\a)/(\b)))) r)}) node[right, pos=0.8, fill=white, xshift=3, scale=0.5] {$\theta=2\pi- \arccos(-\frac{a}{b})$};
+
+\foreach \x in {{\b-\a}, {\b+\a}}
+	\draw (\x, {2pt/(\ry)}) -- (\x, {-2pt/(\ry)});
+
+\node at ({(\a+\b)/2+0.2}, 5.5) {\ding{192}};
+\node at ({(\b-\a)/2+0.2}, -1.5) {\ding{193}};
+\node at ({(\b-\a)/2+0.2},  1.5) {\ding{194}};
+\node at ({(\a+\b)/2+0.2}, -5.5) {\ding{195}};
+    
+\end{tikzpicture}
+\end{document}

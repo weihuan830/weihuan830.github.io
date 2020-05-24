@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\r{1.333}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\r), yscale=.5*(\r)] 
+
+\draw[gray!20, fill=green!5] (-4, -4) -- (0, -4) --++ (0, 8) --++ (-4, 0) -- cycle;
+
+\draw[xstep=1cm,ystep=1cm,color=gray!20] (-4, -4) grid (4, 4);
+
+\draw[->] (-4, 0) -- ({4+0.3/(\r)},0) node[right] {\small$x$};
+\draw[->] (0,-4) -- (0, {4+0.3/(\r)}) node[above] {\small$y$};
+
+\clip[] (-4, -4) rectangle (4, 4);
+
+\foreach \a in {-0.25, -0.5, -1, -2, -4, -8}
+{
+\foreach \p/\q in {-4/4}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\t] 
+	plot ({cosh(\t)}, {cosh(\t) + sqrt(-\a)*sinh(\t)});
+}
+
+\begin{scope}[yscale=-1,xscale=-1]
+
+\foreach \a in {-0.25, -0.5, -1, -2, -4, -8}
+{
+\foreach \p/\q in {-4/4}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\t] 
+	plot ({cosh(\t)}, {cosh(\t) + sqrt(-\a)*sinh(\t)});
+}
+
+\end{scope}
+
+\foreach \a in {-0.25, -0.5, -1, -2, -4, -8}
+ {
+\foreach \p/\q in {-4/4}
+{
+\draw[dashed, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {(1+sqrt(-\a))*(\x)});
+\draw[dashed, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {(1-sqrt(-\a))*(\x)});
+}
+}
+
+\node[fill=white, scale=0.4] at ({cosh(-1.85)}, {cosh(-1.85) + sqrt(-(-0.25))*sinh(-1.85)}) {$a=-0.25$};
+\node[fill=white, scale=0.4] at ({cosh(-1.8)}, {cosh(-1.8) + sqrt(-(-0.5))*sinh(-1.8)}) {$a=-0.5$};
+\node[fill=white, scale=0.4] at ({cosh(-1.7)}, {cosh(-1.7) + sqrt(-(-1))*sinh(-1.7)}) {$a=-1$};
+\node[fill=white, scale=0.4] at ({cosh(-1.6)}, {cosh(-1.6) + sqrt(-(-2))*sinh(-1.6)}) {$a=-2$};
+\node[fill=white, scale=0.4] at ({cosh(-1.5)}, {cosh(-1.5) + sqrt(-(-4))*sinh(-1.5)}) {$a=-4$};
+\node[fill=white, scale=0.4] at ({cosh(-1.4)}, {cosh(-1.4) + sqrt(-(-8))*sinh(-1.4)}) {$a=-8$};
+
+\draw[purple, fill]  (1, 1) circle({0.05/(\r)});
+	
+\foreach \a in {-0.25, -0.5}
+{
+\draw[purple, fill]  ({1/sqrt(1+\a)}, {sqrt(1+\a)}) circle({0.05/(\r)});	
+}
+
+\foreach \x in {1}
+\draw (\x, {2pt/(\r)}) -- (\x, {-2pt/(\r)}) node[anchor=north, scale=0.6] {$\x$};
+
+\foreach \y in {-1}
+\draw ({-2pt/(\r)}, \y) -- ({2pt/(\r)}, \y) node[anchor=west, scale=0.6] {$\y$};
+
+\end{tikzpicture}
+\end{document}

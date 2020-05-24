@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\r{0.4}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\r), yscale=.5*(\r)] 
+
+\draw[xstep=1cm,ystep=1cm,color=gray!20] (-10, -14) grid (10, 6);
+
+\draw[->] (-10, 0) -- ({10+0.3/(\r)},0) node[right] {\small$x$};
+\draw[->] (0,-14) -- (0, {6+0.3/(\r)}) node[above] {\small$y$};
+
+\clip[] (-10, -14) rectangle (10, 6);
+
+\foreach \p/\q in {-10/-1.2, -0.8/10}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {(\x)^4/(1+\x)^3});
+	
+\foreach \p/\q in {-4/{-256/27}, 0/0}
+\draw[purple, fill]  ({(\p)}, {(\q))}) circle({0.05/(\r)});	
+
+\draw[densely dotted, opacity=0.5] (-1, -14) -- (-1, 6);
+\node[left, opacity=0.5, scale=0.6] at (-1, 4) {$x=-1$};
+
+\foreach \p/\q in {-10/10}
+\draw[densely dotted, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {\x-3});
+\node[above, opacity=0.5, scale=0.6, rotate=45] at (-3, -6) {$y=x-3$};
+	
+\foreach \x in {-4}
+\draw (\x, {2pt/(\r)}) -- (\x, {-2pt/(\r)}) node[anchor=north, scale=0.6] {$\x$};
+
+\foreach \y in {1}
+\draw ({2pt/(\r)}, \y) -- ({-2pt/(\r)}, \y) node[anchor=east, scale=0.6] {$\y$};
+\foreach \y in {-9}
+\draw ({-2pt/(\r)}, \y) -- ({2pt/(\r)}, \y) node[anchor=west, scale=0.6] {$\y$};
+
+\node[scale=0.8] at ({-0.3/(\r)}, {-0.3/(\r)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

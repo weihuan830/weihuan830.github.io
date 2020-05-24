@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\rx{0.75}
+\def\ry{0.25}
+
+\begin{tikzpicture}[spy using outlines= {rectangle, magnification=3, connect spies}, >=latex, xscale=.5*(\rx), yscale=.5*(\ry)] 
+
+\draw[xstep=1cm,ystep=3cm,color=gray!20] (-10, -27.01) grid (15, 12);
+
+\draw[->] (-10, 0) -- ({15+0.3/(\rx)},0) node[right] {\small$x$};
+\draw[->] (0,-27) -- (0, {12+0.3/(\ry)}) node[above] {\small$y$};
+
+\clip[] (-10, -27) rectangle (15, 12);
+
+\foreach \p/\q in {-10/1.9, 2.1/2.9, 3.1/15}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {((\x)^2-1)/((\x)^2-5*(\x)+6});
+
+\draw[densely dotted, opacity=0.5] (-10, 1) -- (15, 1);
+\node[above, opacity=0.5, scale=0.6] at (-7, 1) {$y=1$};
+
+\draw[densely dotted, opacity=0.5] (2, -27) -- (2, 12);
+\node[left, opacity=0.5, scale=0.6] at (2, -15) {$x=2$};
+
+\draw[densely dotted, opacity=0.5] (3, -27) -- (3, 12);
+\node[right, opacity=0.5, scale=0.6] at (3, -15) {$x=3$};
+
+\foreach \x in {-1, 1}
+\draw (\x, {2pt/(\ry)}) -- (\x, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$\x$};
+
+\foreach \y in {3, -18, -21}
+\draw ({2pt/(\rx)}, \y) -- ({-2pt/(\rx)}, \y) node[anchor=east, scale=0.6] {$\y$};
+
+\foreach \p/\q in {-0.585833/-0.0708341, 0.420204/-0.202041, 2.3798/-19.798}
+\draw[purple, fill, xscale=1/\rx, yscale=1/\ry]  ({(\p)*(\rx)}, {(\q)*(\ry)}) circle({0.05});	
+
+\spy [blue, size=2.5cm, opacity=1, xscale=1/\rx, yscale=1/\ry] on ({0*(\rx)}, {0*(\ry)}) in node [fill=blue!5!white] at ({10*(\rx)}, {-14*(\ry)});
+
+\node[scale=0.8] at ({0.3/(\rx)}, {0.3/(\ry)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

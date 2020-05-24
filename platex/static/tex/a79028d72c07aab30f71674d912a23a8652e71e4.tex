@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\r{1.5}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\r), yscale=.5*(\r)] 
+
+\draw[xstep=1cm,ystep=1cm,color=gray!20] (-2, -3) grid (4, 3);
+
+\draw[->] (-2, 0) -- ({4+0.3/(\r)},0) node[right] {\small$x$};
+\draw[->] (0,-3) -- (0, {3+0.3/(\r)}) node[above] {\small$y$};
+
+\clip[] (-2, -3.1) rectangle (4, 3);
+
+\foreach \a in {-2, -1, 0, 1, 2}
+{
+\foreach \p/\q in {-2/4}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {(\x)^2 -2*(\x) + (\a)});
+\node[fill=white, scale=0.4] at (1.75, {(1.75)^2 -2*(1.75) + (\a)}) {$a=\a$};
+}
+	
+\foreach \a in {-3, -2, -1, 0, 1}
+\draw[purple, fill]  ({(1)}, {(\a))}) circle({0.05/(\r)});	
+
+\foreach \x in {-1, 1}
+\draw (\x, {2pt/(\r)}) -- (\x, {-2pt/(\r)}) node[anchor=north, scale=0.6] {$\x$};
+
+\foreach \y in {1}
+\draw ({2pt/(\r)}, \y) -- ({-2pt/(\r)}, \y) node[anchor=east, scale=0.6] {$\y$};
+\foreach \y in {-1}
+\draw ({-2pt/(\r)}, \y) -- ({2pt/(\r)}, \y) node[anchor=west, scale=0.6] {$\y$};
+
+\node[scale=0.8] at ({0.3/(\r)}, {-0.3/(\r)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

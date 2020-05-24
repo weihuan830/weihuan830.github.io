@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\rx{1}
+\def\ry{1}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\rx), yscale=.5*(\ry)] 
+
+\draw[xstep=1cm,ystep=1cm,color=gray!20] ({-4-0.01}, -4) grid (4, 4);
+
+\draw[->] (-4, 0) -- ({4+0.3/(\rx)},0) node[right] {\small$x$};
+\draw[->] (0,-4) -- (0, {4+0.3/(\ry)}) node[above] {\small$y$};
+
+\clip[] (-4, -4) rectangle (4, 4);
+
+\foreach \p/\q in {0/4}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {sqrt((\x)^2+1)*ln((\x)+sqrt((\x)^2+1))});
+
+\begin{scope}[yscale=-1,xscale=-1]
+
+\foreach \p/\q in {0/4}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {sqrt((\x)^2+1)*ln((\x)+sqrt((\x)^2+1))});
+
+\end{scope}
+
+\foreach \x in {2}
+\draw (\x, {2pt/(\ry)}) -- (\x, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$\x$};
+
+\foreach \y in {1}
+\draw ({2pt/(\rx)}, \y) -- ({-2pt/(\rx)}, \y) node[anchor=east, scale=0.6] {$\y$};
+
+\foreach \p/\q in {0/0}
+\draw[purple, fill, xscale=1/\rx, yscale=1/\ry]  ({(\p)*(\rx)}, {(\q)*(\ry)}) circle({0.05});	
+
+\node[scale=0.8] at ({0.3/(\rx)}, {-0.3/(\ry)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

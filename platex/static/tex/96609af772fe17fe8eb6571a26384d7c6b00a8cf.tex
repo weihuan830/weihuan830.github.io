@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\r{1.5}
+
+\begin{tikzpicture}[>=latex,xscale=.5*(\r), yscale=.5*(\r)][font=\sf\small] 
+
+\draw[->] (-1, 0) -- (5.5, 0)node[right] {\small $x$};
+\draw[->] (0, -1) -- (0, 4)node[above] {\small $y$};
+
+\draw[teal] (0, 0)--(4,3);
+
+\draw[fill] ({4}, {3}) circle({0.05/(\r)}) node[above, scale=0.7] {$P(r, \theta)=P(x,y)$};
+
+\draw (4,0)--++(0, 3)node[black, midway, pos=0.5, right, xshift=0, scale=0.7]{$y$};
+\node[below, scale=0.7] at (2, 0) {$x$};
+
+\draw ({4-0.2},{0})--++({0},{0.2})--++(0.2, 0);
+
+\node[xshift=12, yshift=4, scale=0.7] at (0,0) {$\theta$}; 
+
+\node[scale=0.8] at ({-0.3/(\r)}, {-0.3/(\r)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

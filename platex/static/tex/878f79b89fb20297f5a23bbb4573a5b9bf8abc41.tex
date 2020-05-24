@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\rx{1}
+\def\ry{1}
+\def\a{3}
+
+\begin{tikzpicture}[>=latex,xscale=.5*1, yscale=.5*1][font=\sf\small] 
+    %Circles 
+   \foreach \r in {1, 1.5, 3, 5, 7, 9}
+      \draw[thin, color=gray!40] (0,0) circle (\r/2);
+    \foreach \r in {2, 4, 6, 8}
+      \draw[thick, color=gray!40] (0,0) circle (\r/2);   
+    %1° Rays
+    \foreach \a in {0, 1,...,359}
+      \draw[] (\a:9.7/2) -- (\a:10/2);
+    %5° Rays
+    \foreach \a in {0, 5,...,359}
+      \draw[] (\a:9.5/2) -- (\a:10/2);      
+    %15° Rays
+    \foreach \a in {0, 15,...,359}
+      \draw[thick, color=gray!40] (\a:1.5/2) -- (\a:10/2); 
+    %30° Rays
+    \foreach \a in {0, 30,...,359}
+      \draw[thick, color=gray!40] (0, 0) -- (\a:10/2);
+    %Radius labels (background filled white)
+    \foreach \r in {2/2}
+      \draw[] ({\r},0) node[inner sep=1pt,above=1pt,rectangle,fill=white, xshift=2, scale=0.5] {$1$};
+    %Main rays
+    \foreach \a in {0, 90,...,359}
+      \draw[very thick, color=gray!40] (0, 0) -- (\a:10/2);
+    %Angle labels  
+    \foreach \a in {0, 15,...,359}
+      \draw (\a: 10.75/2) node[scale=0.5] {$\a^\circ$};
+    %Central point
+    \draw[fill=red] (0,0) circle(0.7mm/1);
+
+\clip (0, 0) circle (10/2);
+
+\foreach \p/\q in {{(sqrt(5)-1)/2}/5}
+\draw[purple, thick, samples=400, smooth, domain=\p:\q, variable=\r] 
+		plot ({(\r)*(\r-1)/(\r)^2}, {(\r)*sin((rad(acos((\r-1)/(\r)^2))) r)});
+
+\begin{scope}[xscale=1, yscale=-1]
+
+\foreach \p/\q in {{(sqrt(5)-1)/2}/5}
+\draw[purple, thick, samples=400, smooth, domain=\p:\q, variable=\r] 
+		plot ({(\r)*(\r-1)/(\r)^2}, {(\r)*sin((rad(acos((\r-1)/(\r)^2))) r)});
+
+\end{scope}
+
+\draw[dashed] (1, -9.8) -- (1, 9.8);
+
+\foreach \p/\q in {-0.123374/0.881584, -0.618/0}
+\draw[purple, fill, xscale=1/\rx, yscale=1/\ry]  ({(\p)*(\rx)}, {(\q)*(\ry)}) circle({0.05});	
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\r{1}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\r), yscale=.5*(\r)] 
+
+\draw[xstep=1cm,ystep=1cm,color=gray!20] (-6, -4) grid (6, 4);
+
+\draw[->] (-6, 0) -- ({6+0.3/(\r)},0) node[right] {\small$x$};
+\draw[->] (0,-4) -- (0, {4+0.3/(\r)}) node[above] {\small$y$};
+
+\clip[] (-6, -4) rectangle (6, 4);
+
+\foreach \p/\q in {-6/-1.05, -1.06/-1.001, 1.001/1.06, 1.05/6}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {(\x)/((\x)^2-1)^(1/3)});
+
+\foreach \p/\q in {-0.999/0.999}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {-(\x)/(1-(\x)^2)^(1/3)});
+
+\foreach \p/\q in {-3/{-3/2}, {-sqrt(3)}/{-sqrt(3)/2^(1/3)}, 0/0, {sqrt(3)}/{sqrt(3)/2^(1/3)}, 3/{3/2}}
+\draw[purple, fill]  ({(\p)}, {(\q))}) circle({0.05/(\r)});	
+
+\draw[densely dotted, opacity=0.5] (-1, -6) -- (-1, 6);
+\node[left, opacity=0.5, scale=0.6] at (-1, 3) {$x=-1$};
+
+\draw[densely dotted, opacity=0.5] (1, -6) -- (1, 6);
+\node[right, opacity=0.5, scale=0.6] at (1, -3) {$x=1$};
+	
+\foreach \x in {-3, 3}
+\draw (\x, {2pt/(\r)}) -- (\x, {-2pt/(\r)}) node[anchor=north, scale=0.6] {$\x$};
+
+\foreach \y in {1}
+\draw ({-2pt/(\r)}, \y) -- ({2pt/(\r)}, \y) node[anchor=west, scale=0.6] {$\y$};
+
+\node[scale=0.8] at ({-0.3/(\r)}, {-0.3/(\r)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

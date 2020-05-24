@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\rx{1}
+\def\ry{1}
+\def\a{4}
+
+\begin{tikzpicture}[>=latex,xscale=.5*(\rx), yscale=.5*(\ry)]
+
+\draw[->] (-2, 0) -- ({8+0.3/(\rx)}, 0)node[right] {\small $\theta$} ;
+\draw[->] (0, -2) -- (0, {6+0.3/(\ry)})node[above] {\small $r$} ;
+
+\clip[] (-2, -2) rectangle (8, 6);
+
+\foreach \p/\q in {1.5/10}   
+\draw[->, >=stealth', teal, samples=100, smooth, domain=\p:\q, variable=\t] 
+		plot ({\t}, {(\a)*(1-e^(-2*(\t)))/(1+e^(-2*(\t)))/(\t-1)});
+
+\foreach \x in {1}
+\draw (\x, {2pt/(\ry)}) -- (\x, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$\x$};
+
+\draw ({2pt/(\rx)}, {\a}) -- ({-2pt/(\rx)}, {\a}) node[anchor=east, scale=0.6] {$a$};
+
+\node[teal, fill=white, scale=0.7] at (5, {\a}) {$r=\dfrac{a \tanh \theta}{\theta - 1}$};
+
+\draw[dashed] (1, 0) -- (1, 6);
+
+\node[scale=0.7] at ({-0.3/(\rx)}, {-0.3/(\ry)}) {$O$};
+
+\end{tikzpicture}\hskip1cm\begin{tikzpicture}[>=latex,xscale=.5*0.5, yscale=.5*0.5][font=\sf\small] 
+    %Circles 
+   \foreach \r in {1, 1.5, 3, 5, 7, 9}
+      \draw[thin, color=gray!40] (0,0) circle (\r);
+    \foreach \r in {2, 4, 6, 8}
+      \draw[thick, color=gray!40] (0,0) circle (\r);   
+    %1° Rays
+    \foreach \a in {0, 1,...,359}
+      \draw[] (\a:9.7) -- (\a:10);
+    %5° Rays
+    \foreach \a in {0, 5,...,359}
+      \draw[] (\a:9.5) -- (\a:10);      
+    %15° Rays
+    \foreach \a in {0, 15,...,359}
+      \draw[thick, color=gray!40] (\a:1.5) -- (\a:10); 
+    %30° Rays
+    \foreach \a in {0, 30,...,359}
+      \draw[thick, color=gray!40] (0, 0) -- (\a:10);
+    %Radius labels (background filled white)
+    \foreach \r in {{5.25+2.75}}
+      \draw[] ({\r},0) node[inner sep=1pt,above=1pt,rectangle,fill=white, xshift=2, scale=0.5] {$a$};
+    %Main rays
+    \foreach \a in {0, 90,...,359}
+      \draw[very thick, color=gray!40] (0, 0) -- (\a:10);
+    %Angle labels  
+    \foreach \a in {0, 15,...,359}
+      \draw (\a: 10.75) node[scale=0.5] {$\a^\circ$};
+    %Central point
+    \draw[fill=red] (0,0) circle(0.7mm/0.5);
+
+\clip (0, 0) circle (10);
+
+\foreach \p/\q in {1.1/25}    		
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\t] 
+		plot ({(\a)*(1-e^(-2*(\t)))/(1+e^(-2*(\t)))/(\t-1)*cos(\t r)}, {(\a)*(1-e^(-2*(\t)))/(1+e^(-2*(\t)))/(\t-1)*sin(\t r)});
+
+\draw[dashed, samples=100, smooth, domain={-(\a)*tanh(1)/sin(1 r)}:10, variable=\x] 
+		plot ({\x}, {tan(1 r)*(\x)+ (\a)*tanh(1)/cos(1 r)});
+
+\end{tikzpicture}
+\end{document}

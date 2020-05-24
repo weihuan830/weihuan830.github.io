@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\rx{1.25}
+\def\ry{0.5}
+\def\a{4}
+\def\b{4}
+
+\begin{tikzpicture}[>=latex,xscale=.5*(\rx), yscale=.5*(\ry)]
+
+\draw[->] (-1, 0) -- ({2*pi+1+0.3/(\rx)}, 0)node[right] {\small $\theta$} ;
+\draw[->] (0, {\a-\b-3}) -- (0, {\a+\b+2+0.3/(\ry)})node[above] {\small $r$} ;
+
+\foreach \p/\q in {0/2*pi}
+\draw[teal, samples=100, smooth, domain=\p:\q, variable=\t] 
+		plot ({\t}, {(\a)+(\b)*cos(\t r)});
+
+\draw ({pi},{2pt/(\ry)}) -- ({pi},{-2pt/(\ry)}) node[anchor=north, xshift=0, scale=0.7] {$\pi$};
+\draw ({2*pi},{2pt/(\ry)}) -- ({2*pi},{-2pt/(\ry)}) node[anchor=north, xshift=0, scale=0.7] {$2\pi$};
+
+\draw ({-2pt/(\rx)}, {\a+\b}) -- ({2pt/(\rx)}, {\a+\b}) node[anchor=east] {\tiny $2a$};
+
+\node[teal, scale=0.7] at ({pi}, {\a+\b-1}) {$r=a+a\cos \theta$};
+
+\node[scale=0.7] at ({-0.3/(\rx)}, {-0.3/(\ry)}) {$O$};
+
+\end{tikzpicture}\hskip1cm\begin{tikzpicture}[>=latex,xscale=.5*0.5, yscale=.5*0.5][font=\sf\small] 
+    %Circles 
+   \foreach \r in {1, 1.5, 3, 5, 7, 9}
+      \draw[thin, color=gray!40] (0,0) circle (\r);
+    \foreach \r in {2, 4, 6, 8}
+      \draw[thick, color=gray!40] (0,0) circle (\r);   
+    %1° Rays
+    \foreach \a in {0, 1,...,359}
+      \draw[] (\a:9.7) -- (\a:10);
+    %5° Rays
+    \foreach \a in {0, 5,...,359}
+      \draw[] (\a:9.5) -- (\a:10);      
+    %15° Rays
+    \foreach \a in {0, 15,...,359}
+      \draw[thick, color=gray!40] (\a:1.5) -- (\a:10); 
+    %30° Rays
+    \foreach \a in {0, 30,...,359}
+      \draw[thick, color=gray!40] (0, 0) -- (\a:10);
+    %Radius labels (background filled white)
+    \foreach \r in {{4+4}}
+      \draw[] ({\r},0) node[inner sep=1pt,above=1pt,rectangle,fill=white, xshift=3, scale=0.5] {$2a$};
+    %Main rays
+    \foreach \a in {0, 90,...,359}
+      \draw[very thick, color=gray!40] (0, 0) -- (\a:10);
+    %Angle labels  
+    \foreach \a in {0, 15,...,359}
+      \draw (\a: 10.75) node[scale=0.5] {$\a^\circ$};
+    %Central point
+    \draw[fill=red] (0,0) circle(0.7mm/0.5);
+
+\clip (0, 0) circle (10);
+
+\foreach \p/\q in {0/2*pi}    		
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\t] 
+		plot ({(4+4*cos(\t r))*cos(\t r)}, {(4+4*cos(\t r))*sin(\t r)});
+
+    \foreach \x in {{4+4}}
+	\draw (\x, {2pt/(\ry)}) -- (\x, {-2pt/(\ry)});
+    
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\rx{2.25}
+\def\ry{1}
+\def\a{3}
+
+\begin{tikzpicture}[>=latex,xscale=.5*(\rx), yscale=.5*(\ry)]
+
+\draw[->] ({-pi-0.15}, 0) -- ({pi+0.15+0.3/(\rx)}, 0)node[right] {\small $\theta$} ;
+\draw[->] (0, -2) -- (0, {\a+5+0.3/(\ry)})node[above] {\small $r$} ;
+
+\clip[] ({-pi-0.15}, -2) rectangle ({pi+0.15}, {\a+5});
+
+\foreach \p/\q in {{-5/6*pi+0.01}/{-5/6*pi+0.11}, {-5/6*pi+0.09}/{-1/2*pi-0.1}, {-1/2*pi-0.11}/{-1/2*pi-0.01}, {-1/6*pi+0.01}/{-1/6*pi+0.11}, {-1/6*pi+0.09}/{1/6*pi-0.1}, {1/6*pi-0.11}/{1/6*pi-0.01}, {1/2*pi+0.01}/{1/2*pi+0.11}, {1/2*pi+0.09}/{5/6*pi-0.1}, {5/6*pi-0.11}/{5/6*pi-0.01}}   
+\draw[->, >=stealth', teal, samples=100, smooth, domain=\p:\q, variable=\t] 
+		plot ({\t}, {(\a)/sqrt(cos(3*(\t) r))});
+
+\draw ({0-1/6*pi},{2pt/(\ry)}) -- ({0-1/6*pi},{-2pt/(\ry)}) node[anchor=north, xshift=0, scale=0.7] {$-\frac{1}{6}\pi$};
+\draw ({0+1/6*pi},{2pt/(\ry)}) -- ({0+1/6*pi},{-2pt/(\ry)}) node[anchor=north, xshift=0, scale=0.7] {$\frac{1}{6}\pi$};
+\draw ({2/3*pi-1/6*pi},{2pt/(\ry)}) -- ({2/3*pi-1/6*pi},{-2pt/(\ry)}) node[anchor=north, xshift=0, scale=0.7] {$\frac{1}{2}\pi$};
+\draw ({2/3*pi+1/6*pi},{2pt/(\ry)}) -- ({2/3*pi+1/6*pi},{-2pt/(\ry)}) node[anchor=north, xshift=0, scale=0.7] {$\frac{5}{6}\pi$};
+\draw ({-2/3*pi-1/6*pi},{2pt/(\ry)}) -- ({-2/3*pi-1/6*pi},{-2pt/(\ry)}) node[anchor=north, xshift=0, scale=0.7] {$-\frac{5}{6}\pi$};
+\draw ({-2/3*pi+1/6*pi},{2pt/(\ry)}) -- ({-2/3*pi+1/6*pi},{-2pt/(\ry)}) node[anchor=north, xshift=0, scale=0.7] {$-\frac{1}{2}\pi$};
+
+\draw ({-pi},{2pt/(\ry)}) -- ({-pi},{-2pt/(\ry)}) node[anchor=north, xshift=0, scale=0.7] {$-\pi$};
+\draw ({pi},{2pt/(\ry)}) -- ({pi},{-2pt/(\ry)}) node[anchor=north, xshift=0, scale=0.7] {$\pi$};
+
+\draw ({-2pt/(\rx)}, {\a}) -- ({2pt/(\rx)}, {\a}) node[anchor=east] {\tiny $a$};
+\draw ({-2pt/(\rx)}, {-\a}) -- ({2pt/(\rx)}, {-\a}) node[anchor=east] {\tiny $-a$};
+
+\foreach \p in {{-2/3*pi-pi/6}, {-2/3*pi+pi/6}, {2/3*pi-pi/6}, {2/3*pi+pi/6}, {-1/6*pi}, {1/6*pi}}
+\draw[dashed] ({\p}, 0) -- ({\p}, {\a+5});
+
+\node[teal, fill=white, scale=0.7] at ({-1.2}, {\a-1}) {$r=\dfrac{a}{\sqrt{\cos 3\theta}}$};
+
+\node at ({-5/6*pi+0.2}, 6) {\ding{194}};
+\node at ({-1/2*pi-0.2}, 6) {\ding{195}};
+\node at ({-1/6*pi+0.2}, 6) {\ding{192}};
+\node at ({1/6*pi-0.2}, 6) {\ding{193}};
+\node at ({1/2*pi+0.2}, 6) {\ding{196}};
+\node at ({5/6*pi-0.2}, 6) {\ding{197}};
+
+\node[scale=0.7] at ({-0.3/(\rx)}, {-0.3/(\ry)}) {$O$};
+
+\end{tikzpicture}\hskip1cm\begin{tikzpicture}[>=latex,xscale=.5*0.5, yscale=.5*0.5][font=\sf\small] 
+    %Circles 
+   \foreach \r in {1, 1.5, 3, 5, 7, 9}
+      \draw[thin, color=gray!40] (0,0) circle (\r);
+    \foreach \r in {2, 4, 6, 8}
+      \draw[thick, color=gray!40] (0,0) circle (\r);   
+    %1° Rays
+    \foreach \a in {0, 1,...,359}
+      \draw[] (\a:9.7) -- (\a:10);
+    %5° Rays
+    \foreach \a in {0, 5,...,359}
+      \draw[] (\a:9.5) -- (\a:10);      
+    %15° Rays
+    \foreach \a in {0, 15,...,359}
+      \draw[thick, color=gray!40] (\a:1.5) -- (\a:10); 
+    %30° Rays
+    \foreach \a in {0, 30,...,359}
+      \draw[thick, color=gray!40] (0, 0) -- (\a:10);
+    %Radius labels (background filled white)
+    \foreach \r in {{\a}}
+      \draw[] ({\r},0) node[inner sep=1pt,above=1pt,rectangle,fill=white, xshift=-2, scale=0.5] {$a$};
+    %Main rays
+    \foreach \a in {0, 90,...,359}
+      \draw[very thick, color=gray!40] (0, 0) -- (\a:10);
+    %Angle labels  
+    \foreach \a in {0, 15,...,359}
+      \draw (\a: 10.75) node[scale=0.5] {$\a^\circ$};
+    %Central point
+    \draw[fill=red] (0,0) circle(0.7mm/0.5);
+
+\clip (0, 0) circle (10);
+
+\foreach \p/\q in {{0-pi/6+0.01}/{0+pi/6-0.01}, {2/3*pi-pi/6+0.01}/{2/3*pi+pi/6-0.01}, {-2/3*pi-pi/6+0.01}/{-2/3*pi+pi/6-0.01}}    		
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\t] 
+		plot ({(\a)/sqrt(cos(3*(\t) r))*cos(\t r)}, {(\a)/sqrt(cos(3*(\t) r))*sin(\t r)});
+
+\node at ({7*cos((-5/6*pi-0.05) r)}, {7*sin((-5/6*pi-0.05) r)}) {\ding{194}};
+\node at ({7*cos((-1/2*pi+0.05) r)}, {7*sin((-1/2*pi+0.05) r)}) {\ding{195}};
+\node at ({7*cos((-1/6*pi-0.05) r)}, {7*sin((-1/6*pi-0.05) r)}) {\ding{192}};
+\node at ({7*cos(( 1/6*pi+0.05) r)}, {7*sin(( 1/6*pi+0.05) r)}) {\ding{193}};
+\node at ({7*cos(( 1/2*pi-0.05) r)}, {7*sin(( 1/2*pi-0.05) r)}) {\ding{196}};
+\node at ({7*cos(( 5/6*pi+0.05) r)}, {7*sin(( 5/6*pi+0.05) r)}) {\ding{197}};
+\end{tikzpicture}
+\end{document}

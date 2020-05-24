@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\rx{2}
+\def\ry{2}
+\def\a{1}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\rx), yscale=.5*(\ry)] 
+
+\draw[xstep=1cm,ystep=1cm,color=gray!20] ({-2*(\a)-0.01}, {-2*(\a)}) grid ({2*(\a)}, {2*(\a)});
+
+\draw[->] ({-2*(\a)}, 0) -- ({2*(\a)+0.3/(\rx)},0) node[right] {\small$x$};
+\draw[->] (0,{-2*(\a)}) -- (0, {2*(\a)+0.3/(\ry)}) node[above] {\small$y$};
+
+\clip[] ({-2*(\a)}, {-2*(\a)}) rectangle ({2*(\a)}, {2*(\a)});
+
+\foreach \p/\q in {{-\a}/0, {\a}/-0.1}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {(\a)*rad(asin((\x)/(\a))) - sqrt((\a)^2-(\x)^2)});
+
+\draw ({-\a}, {2pt/(\ry)}) -- ({-\a}, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$-a$};
+\draw ({\a}, {2pt/(\ry)}) -- ({\a}, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$a$};
+
+\draw ({2pt/(\rx)}, {\a}) -- ({-2pt/(\rx)}, {\a}) node[anchor=east, scale=0.6] {$a$};
+\draw ({2pt/(\rx)}, {-\a}) -- ({-2pt/(\rx)}, {-\a}) node[anchor=east, scale=0.6] {$-a$};
+
+\foreach \p/\q in {{-\a}/{-pi/2*(\a)}, {\a}/{pi/2*(\a)}}
+\draw[purple, fill, xscale=1/\rx, yscale=1/\ry]  ({(\p)*(\rx)}, {(\q)*(\ry)}) circle({0.05});	
+
+\node[scale=0.8] at ({-0.3/(\rx)}, {-0.3/(\ry)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

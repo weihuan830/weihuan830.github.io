@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\r{1}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\r), yscale=.5*(\r)] 
+
+\draw[xstep=1cm,ystep=1cm,color=gray!20] (-10, -5) grid (6, 7);
+
+\draw[->] (-10, 0) -- ({6+0.3/(\r)},0) node[right] {\small$x$};
+\draw[->] (0,-5) -- (0, {7+0.3/(\r)}) node[above] {\small$y$};
+
+\clip[] (-10, -5) rectangle (6, 7);
+
+\foreach \a in {0.5, 1}
+{
+\foreach \p/\q in {-5/6}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {(\x)/2 + e^(-(\a)*(\x))});
+}
+
+\foreach \a in {-1, -0.5, 0, 0.25, {0.5/e}, 0.165, 0.125}
+{
+\foreach \p/\q in {-10/6}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {(\x)/2 + e^(-(\a)*(\x))});
+}
+
+\node[fill=white, scale=0.4] at ({-7}, {(-7)/2 + e^(-(0.25)*(-7))}) {$a=0.25$};
+\node[fill=white, scale=0.4] at ({-8.5}, {(-8.5)/2 + e^(-(0.5/e)*(-8.5))}) {$a=\frac{1}{2e}$};
+\node[fill=white, scale=0.4] at ({-8}, {(-8)/2 + e^(-(0.165)*(-8))}) {$a=0.165$};
+\node[fill=white, scale=0.4] at ({-7.5}, {(-7.5)/2 + e^(-(0.125)*(-7.5))}) {$a=0.125$};
+\node[fill=white, scale=0.4] at ({-7}, {(-7)/2 + e^(-(0)*(-7))}) {$a=0$};
+\node[fill=white, scale=0.4] at ({-3.5}, {(-3.5)/2 + e^(-(0.5)*(-3.5))}) {$a=0.5$};
+\node[fill=white, scale=0.4] at ({-1.75}, {(-1.75)/2 + e^(-(1)*(-1.75))}) {$a=1$};
+\node[fill=white, scale=0.4] at ({3}, {(3)/2 + e^(-(-0.5)*(3))}) {$a=-0.5$};
+\node[fill=white, scale=0.4] at ({1.6}, {(1.6)/2 + e^(-(-1)*(1.6))}) {$a=-1$};
+	
+\foreach \a in {0.5, 1, 0.25, {0.5/e}, 0.165, 0.125}
+{
+\draw[purple, fill]  ({(ln(2*(\a))/(\a))}, {(1+ln(2*(\a)))/2/(\a)}) circle({0.05/(\r)});	
+}
+
+\foreach \x in {1}
+\draw (\x, {2pt/(\r)}) -- (\x, {-2pt/(\r)}) node[anchor=north, scale=0.6] {$\x$};
+
+\foreach \y in {-1}
+\draw ({-2pt/(\r)}, \y) -- ({2pt/(\r)}, \y) node[anchor=west, scale=0.6] {$\y$};
+
+\foreach \p/\q in {-12/6}
+\draw[dashed, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {(\x)/2});
+
+\node[below, scale=0.7, rotate=26.5651, opacity=0.5] at (2, {2/2}) {$y=\frac{1}{2}x$};
+
+\node[scale=0.8] at ({0.3/(\r)}, {-0.3/(\r)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\r{1.5}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\r), yscale=.5*(\r)] 
+
+\draw[xstep=1cm,ystep=1cm,color=gray!20] (-2, -1) grid (4, 4);
+
+\draw[->] (-2, 0) -- ({4+0.3/(\r)},0) node[right] {\small$x$};
+\draw[->] (0,-1) -- (0, {4+0.3/(\r)}) node[above] {\small$y$};
+
+\clip[] (-2, -3) rectangle (4, 3);
+
+\foreach \p/\q in {-2/4}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {e^(2*(\x)-(\x)^2)});
+	
+\foreach \x in {1}
+\draw (\x, {2pt/(\r)}) -- (\x, {-2pt/(\r)}) node[anchor=north, scale=0.6] {$\x$};
+
+\foreach \y in {1}
+\draw ({2pt/(\r)}, \y) -- ({-2pt/(\r)}, \y) node[anchor=east, scale=0.6] {$\y$};
+
+\foreach \p/\q in {1/{e}, {1-1/sqrt(2)}/{sqrt(e)}, {1+1/sqrt(2)}/{sqrt(e)}}
+\draw[purple, fill]  ({(\p)}, {(\q))}) circle({0.05/(\r)});	
+
+\node[scale=0.8] at ({-0.3/(\r)}, {-0.3/(\r)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

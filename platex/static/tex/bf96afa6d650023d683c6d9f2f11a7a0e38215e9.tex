@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\rx{0.75}
+\def\ry{0.5}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\rx), yscale=.5*(\ry)] 
+
+\draw[gray!20, fill=green!5] (0, -8) --++ ({1*pi}, 0) --++ (0, 16) --++ ({-1*pi}, 0) -- cycle;
+\draw[gray!20, fill=purple!5] (0, -8) --++ ({-1*pi}, 0) --++ (0, 16) --++ ({1*pi}, 0) -- cycle;
+
+\draw[xstep=1.5708cm,ystep=1cm,color=gray!20] ({-3*pi}, -8) grid ({3*pi}, 8);
+
+\draw[->] ({-3*pi}, 0) -- ({3*pi+0.3/(\rx)},0) node[right] {\small$x$};
+\draw[->] (0, -8) -- (0, {8+0.3/(\ry)}) node[above] {\small$y$};
+
+\clip[] ({-3*pi}, -8) rectangle ({3*pi}, 8);
+
+\foreach \p/\q in {-3*pi/3*pi}
+\draw[purple, thick, samples=300, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {(7+2*cos(\x r))*sin(\x r)});
+
+\foreach \p/\q in {{-0.419569*pi}/{-7.26184}, {0.419569*pi}/{7.26184}, 0/0, {-pi}/0, {pi}/0, {-0.839139*pi}/-2.54025, {0.839139*pi}/2.54025}
+\draw[purple, fill, xscale=1/\rx, yscale=1/\ry]  ({(\p)*(\rx)}, {(\q)*(\ry)}) circle({0.05});
+
+\draw ({1*pi}, {2pt/(\ry)}) -- ({1*pi}, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$\pi$};
+\draw ({2*pi}, {2pt/(\ry)}) -- ({2*pi}, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$2\pi$};
+\draw ({-1*pi}, {2pt/(\ry)}) -- ({-1*pi}, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$-\pi$};
+\draw ({-2*pi}, {2pt/(\ry)}) -- ({-2*pi}, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$-2\pi$};
+
+\foreach \y in {1, 7}
+\draw ({2pt/(\rx)}, \y) -- ({-2pt/(\rx)}, \y) node[anchor=east, scale=0.6] {$\y$};
+\foreach \y in {-7}
+\draw ({-2pt/(\rx)}, \y) -- ({2pt/(\rx)}, \y) node[anchor=west, scale=0.6] {$\y$};
+
+\node[scale=0.8] at ({-0.3/(\rx)}, {-0.3/(\ry)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

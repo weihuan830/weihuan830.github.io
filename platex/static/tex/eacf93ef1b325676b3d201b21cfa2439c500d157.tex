@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\rx{1.5}
+\def\ry{1.5}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\rx), yscale=.5*(\ry)] 
+
+\draw[gray!20, fill=green!5] (0, -2) --++ ({1*pi}, 0) --++ (0, 5) --++ ({-1*pi}, 0) -- cycle;
+
+\draw[xstep=0.785398cm,ystep=0.5cm,color=gray!20] ({-2*pi-0.01}, -2) grid ({2*pi}, 3);
+
+\draw[->] ({-2*pi}, 0) -- ({2*pi+0.3/(\rx)},0) node[right] {\small$x$};
+\draw[->] (0, -2) -- (0, {3+0.3/(\ry)}) node[above] {\small$y$};
+
+\clip[] ({-2*pi}, -2) rectangle ({2*pi}, 3);
+
+\foreach \k in {-2, -1, 0, 1}
+{
+\foreach \p/\q in {{(\k)*pi}/{(\k)*pi+3/4*pi-0.1}, {pi+(\k)*pi}/{(\k)*pi+3/4*pi+0.1}}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {sin(\x r)/sin(((\x)+pi/4) r)});
+}
+
+\foreach \p/\q in {{pi/4}/{sqrt(2)/2}}
+\draw[purple, fill, xscale=1/\rx, yscale=1/\ry]  ({(\p)*(\rx)}, {(\q))*(\ry)}) circle({0.05});	
+
+\draw ({0.25*pi}, {2pt/(\ry)}) -- ({0.25*pi}, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$\frac{1}{4}\pi$};
+\draw ({0.5*pi}, {2pt/(\ry)}) -- ({0.5*pi}, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$\frac{1}{2}\pi$};
+\draw ({1*pi}, {2pt/(\ry)}) -- ({1*pi}, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$\pi$};
+
+\foreach \k in {-2, -1, 0, 1}
+\draw[densely dotted] ({3/4*pi+(\k)*pi}, -2) -- ({3/4*pi+(\k)*pi}, 6);
+
+\foreach \y in {1}
+\draw ({2pt/(\rx)}, \y) -- ({-2pt/(\rx)}, \y) node[anchor=east, yshift=3, scale=0.6] {$\y$};
+
+\node[scale=0.8] at ({-0.3/(\rx)}, {0.3/(\ry)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

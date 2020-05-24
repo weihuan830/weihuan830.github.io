@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\rx{0.75}
+\def\ry{0.75}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\rx), yscale=.5*(\ry)] 
+
+\draw[xstep=1cm,ystep=1cm,color=gray!20] ({-8-0.01}, -3) grid (8, 6);
+
+\draw[->] (-8, 0) -- ({8+0.3/(\rx)},0) node[right] {\small$x$};
+\draw[->] (0,-3) -- (0, {6+0.3/(\ry)}) node[above] {\small$y$};
+
+\clip[] (-8, -3) rectangle (8, 6);
+
+\foreach \p/\q in {-8/8}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {(\x)/2 + pi/2 - rad(atan(\x))});
+
+\foreach \p/\q in {-8/8}
+\draw[densely dotted, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {\x/2+pi});
+\node[above, opacity=0.5, scale=0.6, rotate=26.5651] at (-5, {-5/2+pi}) {$y=\frac{1}{2}x+\pi$};
+
+\foreach \p/\q in {0/8}
+\draw[densely dotted, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {\x/2});
+\node[below, opacity=0.5, scale=0.6, rotate=26.5651] at (5, {5/2}) {$y=\frac{1}{2}x$};
+
+\foreach \x in {1}
+\draw (\x, {2pt/(\ry)}) -- (\x, {-2pt/(\ry)}) node[anchor=north, scale=0.6] {$\x$};
+
+\foreach \y in {1}
+\draw ({2pt/(\rx)}, \y) -- ({-2pt/(\rx)}, \y) node[anchor=east, scale=0.6] {$\y$};
+
+\foreach \p/\q in {-1/{-1/2+3*pi/4}, 0/{pi/2}, 1/{1/2+pi/4}}
+\draw[purple, fill, xscale=1/\rx, yscale=1/\ry]  ({(\p)*(\rx)}, {(\q)*(\ry)}) circle({0.05});	
+
+\node[scale=0.8] at ({-0.3/(\rx)}, {-0.3/(\ry)}) {$O$};
+
+\end{tikzpicture}
+\end{document}

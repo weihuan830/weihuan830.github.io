@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{tikz, comment}
+\usepackage{pifont}
+\usepackage{fontspec}
+\usetikzlibrary{arrows, decorations.markings, decorations.pathreplacing}
+\begin{comment}
+:Title: Not defined yet
+:Slug: No name yet
+
+Description Here.........
+\end{comment}
+\begin{document}\centering
+
+\def\r{0.4}
+
+\begin{tikzpicture}[>=latex, xscale=.5*(\r), yscale=.5*(\r)] 
+
+\draw[xstep=1cm,ystep=1cm,color=gray!20] (-10, -4) grid (10, 18);
+
+\draw[->] (-10, 0) -- ({10+0.3/(\r)},0) node[right] {\small$x$};
+\draw[->] (0, -4) -- (0, {18+0.3/(\r)}) node[above] {\small$y$};
+
+\clip[] (-10, -4) rectangle (10, 18);
+
+\foreach \x in {-4, 4}
+\draw (\x, {2pt/(\r)}) -- (\x, {-2pt/(\r)}) node[anchor=north, scale=0.6] {$\x$};
+
+\foreach \y in {1, 13}
+\draw ({2pt/(\r)}, \y) -- ({-2pt/(\r)}, \y) node[anchor=east, scale=0.6] {$\y$};
+
+\foreach \p/\q in {-10/-3.1, 0/10}
+\draw[purple, thick, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {1-(\x)+sqrt((\x)^3/(3+\x))});
+
+\draw[densely dotted, opacity=0.5] (-10, -0.5) -- (10, -0.5);
+\node[below, opacity=0.5, scale=0.6] at (-7, -0.5) {$y=-\frac{1}{2}$};
+
+\draw[densely dotted, opacity=0.5] (-3, -4) -- (-3, 18);
+\node[right, opacity=0.5, scale=0.6] at (-3, 15) {$x=-3$};
+
+\foreach \p/\q in {-10/0}
+\draw[densely dotted, samples=100, smooth, domain=\p:\q, variable=\x] 
+	plot ({\x}, {-2*(\x)+5/2});
+\node[below, opacity=0.5, scale=0.6, rotate=-63.4349] at (-4, {-2*(-4)+5/2}) {$y=-2x+\frac{5}{2}$};
+
+\foreach \p/\q in {-4/13}
+\draw[purple, fill]  ({(\p)}, {(\q))}) circle({0.05/(\r)});	
+
+\node[scale=0.8] at ({-0.3/(\r)}, {-0.3/(\r)}) {$O$};
+
+\end{tikzpicture}
+\end{document}
