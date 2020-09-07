@@ -1,0 +1,9 @@
+[
+    { "date": "2018-08-01 00:00:00", "name": "YTK.WY", "openid": "2E7A80158C4AAADDF934F44B4C5FA09E", "type": "转入" },
+    { "date": "2018-08-01 00:00:00", "name": "YTK.FAI", "openid": "6D59B2C1C9E23DDEFC26C50FD5DF4FC5", "type": "转入" },
+    { "date": "2018-08-01 00:00:00", "name": "YTK.RG", "openid": "7F9B61EAB5804A7A8EB45183200A285E", "type": "转入" },
+    { "date": "2018-08-01 00:00:00", "name": "YTK.KIK", "openid": "83A072CA53A5208E8656338D677B8F05", "type": "转入" },
+    { "date": "2018-08-01 00:00:00", "name": "YTK.KC", "openid": "A71DD0F7E0AA5DFFAA7E763A95577B29", "type": "转入" },
+    { "date": "2018-08-01 00:00:00", "name": "YTK.BEE", "openid": "D7955F203A25E3B38AB9803DCC6B2E1C", "type": "转入" },
+    { "date": "2018-08-01 00:00:00", "name": "YTK.HIM", "openid": "F67FE130BAF88BD6F1D91A49AD1BD654", "type": "转入" }
+]

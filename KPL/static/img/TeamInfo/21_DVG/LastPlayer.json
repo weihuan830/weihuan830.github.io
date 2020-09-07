@@ -1,0 +1,18 @@
+[
+    { "join_time": "2017-09-18 00:00:00", "name": "DVG.天明", "openid": "058506C735A0DBD8A03F11380393C811", "pos": "中路", "real_name": "肖量", "role": "" },
+    { "join_time": "2018-03-20 00:00:00", "name": "DVG.兰博", "openid": "0F2A0F2AA49BB736011577700791E3BA", "pos": "中单", "real_name": "冯喆扬", "role": "" },
+    { "join_time": "", "name": "DVG.云凡", "openid": "2E56560654855EAD79D4D726749D3BBB", "pos": "打野", "real_name": "于凯悦", "role": "" },
+    { "join_time": "2016-09-16 00:00:00", "name": "DVG.夏末", "openid": "3A62374ADF95874E0665E0CD5C20F3B1", "pos": "边路", "real_name": "夏天宇", "role": "" },
+    { "join_time": "2017-03-09 00:00:00", "name": "DVG.超神哥", "openid": "4181EBAF0FDF49A77E2BD395D17E0D33", "pos": "游走", "real_name": "张诚", "role": "" },
+    { "join_time": "", "name": "DVG.宋孤", "openid": "6072B7D215B4744EE70BF84AF68DDED3", "pos": "边路", "real_name": "周鑫", "role": "" },
+    { "join_time": "", "name": "DVG.阿灿 ", "openid": "61FB4978731530DB27226AB575EA1129", "pos": "辅助", "real_name": "林夏灿", "role": "" },
+    { "join_time": "", "name": "DVG.成彦 ", "openid": "7DCABA86362CF01CDDE5B58D645F7C74", "pos": "发育路", "real_name": "姚强", "role": "" },
+    { "join_time": "2017-09-18 00:00:00", "name": "DVG.Tattoo", "openid": "83B60300EB3FC2C163EA3A29611C139C", "pos": "辅助", "real_name": "陈红强", "role": "" },
+    { "join_time": "", "name": "DVG.白鹤", "openid": "B7DAEE6FA361E26DC33BE308277C1814", "pos": "边路", "real_name": "郭塘辉", "role": "" },
+    { "join_time": "", "name": "DVG.小千 ", "openid": "BB498D0D35CDDBE9137CC8920E86F056", "pos": "中路", "real_name": "王致远", "role": "" },
+    { "join_time": "2018-03-20 00:00:00", "name": "DVG.笑煮 ", "openid": "BF9DFCA9A5F4DECD44E62AF037E1E527", "pos": "对抗路", "real_name": "朱权锋", "role": "" },
+    { "join_time": "2016-09-16 00:00:00", "name": "DVG.Shadow", "openid": "D4918DFE4F982F2FB6DA621E11DF3A67", "pos": "中单", "real_name": "熊天豪", "role": "" },
+    { "join_time": "2018-03-20 00:00:00", "name": "DVG.余生", "openid": "EA554825F3FA2A7D6D89AC91A3FCEA31", "pos": "打野", "real_name": "张方虎", "role": "" },
+    { "join_time": "2016-09-16 00:00:00", "name": "DVG.DTG", "openid": "F3E7DDFACDCF4D6D7F2B54A1230D0F2D", "pos": "无", "real_name": "李桃", "role": "" },
+    { "join_time": "", "name": "DVG.涛涛 ", "openid": "FD8A3C52B3CF02E26D6675C8D1E0964B", "pos": "对抗路", "real_name": "姜涛", "role": "" }
+]

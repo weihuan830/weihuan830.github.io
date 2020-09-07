@@ -1,0 +1,8 @@
+[
+    { "date": "2018-08-01 00:00:00", "name": "KZ.Tong", "openid": "10041DF51AE29A6A07CFA6FC45A63A2E", "type": "转入" },
+    { "date": "2018-08-01 00:00:00", "name": "KZ.Horror", "openid": "4D1E8F923CF18EDFC72C55DCFF39C8BF", "type": "转入" },
+    { "date": "2018-08-01 00:00:00", "name": "KZ.Sweet", "openid": "66162CCD4B00DA1999387744A4107B40", "type": "转入" },
+    { "date": "2018-08-01 00:00:00", "name": "KZ.Core", "openid": "AA3FC7453FC07BCC59BDBD9F6D54DD4A", "type": "转入" },
+    { "date": "2018-08-01 00:00:00", "name": "KZ.YK", "openid": "B95243035DBBE1AD9CD3417597199D3B", "type": "转入" },
+    { "date": "2018-08-01 00:00:00", "name": "KZ.JY", "openid": "FF2B4D394ECA810037C5B7C2CEF83E0D", "type": "转入" }
+]

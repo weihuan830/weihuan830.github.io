@@ -1,0 +1,17 @@
+[
+    { "date": "2018-09-11 00:00:00", "name": "RNGM.OoZ", "openid": "80C8A576D7AF6A697FD29087E60398F1", "type": "转入" },
+    { "date": "2018-09-11 00:00:00", "name": "RNGM.星宇", "openid": "8B242820C3F35C0DEFB9F257D4020BC4", "type": "转入" },
+    { "date": "2018-09-11 00:00:00", "name": "RNGM.雨雨", "openid": "F87C373893FEE91FC263955B00CA3D0B", "type": "转入" },
+    { "date": "2018-09-11 00:00:00", "name": "RNGM.Summer", "openid": "1401F3A9B627220039141B6588C8DFE1", "type": "转出" },
+    { "date": "2018-09-11 00:00:00", "name": "YTG.一天 ", "openid": "2B22DF37705868ED5752EFE472790D8C", "type": "转入" },
+    { "date": "2018-09-11 00:00:00", "name": "RNGM.阿斗", "openid": "7503ED3251B5BC34300A633DA95F7070", "type": "转入" },
+    { "date": "2018-03-20 00:00:00", "name": "RNGM.Zero", "openid": "558B8536033B16FEC1FF02F3E02FC1D1", "type": "转入" },
+    { "date": "2018-03-20 00:00:00", "name": "RNGM.冷月", "openid": "CA381D05E83F5C6E8276C15439056530", "type": "转入" },
+    { "date": "2017-09-18 00:00:00", "name": "RNGM.晚风", "openid": "3E5A9A8B11E21DEDDA4915623689704E", "type": "转入" },
+    { "date": "2017-06-18 00:00:00", "name": "RNGM.伊恩", "openid": "1ADE7C65DFA7373C8DEC4B7477E636A1", "type": "转入" },
+    { "date": "2017-06-18 00:00:00", "name": "RNGM.凉晨", "openid": "5BD6D8E9DEB9362CC60A568244A18625", "type": "转入" },
+    { "date": "2017-06-18 00:00:00", "name": "RNGM.一笑", "openid": "994A5DE11D0CE4FA9E698DECE3DC22D2", "type": "转入" },
+    { "date": "2017-06-18 00:00:00", "name": "RNGM.阿杰", "openid": "BBB9B79E349F28B481CB9C9D2583CE91", "type": "转入" },
+    { "date": "2017-06-18 00:00:00", "name": "RNGM.暴风锐", "openid": "C33F4D32C03321DF09F884E61C01394E", "type": "转入" },
+    { "date": "2017-06-18 00:00:00", "name": "RNGM.虔诚", "openid": "F1BCCA006C3701F765FD5D8AE9DC349F", "type": "转入" }
+]

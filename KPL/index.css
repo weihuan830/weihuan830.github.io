@@ -1,0 +1,136 @@
+p {
+    margin-bottom: 0px;
+    font-size: 12px
+}
+
+.selectBox {
+    height: 50px;
+    width: inherit;
+    font-family: monospace;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #faf8f8;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
+    margin-bottom: 5px;
+}
+
+.tab button {
+    width: -webkit-fill-available;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 14px;
+    transition: 0.3s;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tabcontent {
+    border: #ccc;
+    border-width: 1px;
+    border-style: hidden solid solid solid;
+    height: 650px;
+    overflow-y: scroll;
+    background-color: #f3f3f3;
+}
+
+.panelTitle {
+    border-bottom: 2px #ccc ridge;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #595959;
+}
+
+.heroList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.non_chosen {
+    border: 2px #f2eee5 solid;
+    background-color: none;
+}
+
+.chosen {
+    border: 2px #ca5116 solid;
+    background-color: #efcab9;
+}
+
+
+/* Main View */
+
+.heroBlock {
+    border: 3px #8f4426 ridge;
+    margin-left: 2px;
+    overflow-y: scroll;
+    background-color: #e5e9f2;
+}
+
+.teamBlock {
+    border: 3px #8f4426 ridge;
+    margin-left: 2px;
+    overflow-y: scroll;
+    background-color: #f2eee5;
+}
+
+.teamMatch {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.teamMatchCard {
+    margin-right: 3px;
+    margin-top: 4px;
+    margin-left: 3px;
+    margin-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teamMatchText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardTips {
+    font-size: 8px;
+    margin: 0px;
+}
+
+.contentLabel {
+    font-size: 10px;
+    color: #283148;
+}
+
+.delButton {
+    background: #e3c4a8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 2px;
+    height: 25px;
+}

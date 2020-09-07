@@ -1,0 +1,16 @@
+[
+    { "join_time": "", "name": "EMC.ORANGE", "openid": "0821DA9D795FCD36B7EDA6E78EAAC2B0", "pos": "中路", "real_name": "黃仕雨", "role": "" },
+    { "join_time": "2018-08-01 00:00:00", "name": "EMC.AOLIN", "openid": "0AA7F781C7D181A9072C32A3CD5B2F80", "pos": "边路", "real_name": "李君达 (LEI KUAN TAT)", "role": "" },
+    { "join_time": "", "name": "EMC.ROY", "openid": "15C5D2DC52AA40A9DB766FB04D2EFE42", "pos": "下单", "real_name": "ROGERIO WONG", "role": "" },
+    { "join_time": "2018-08-01 00:00:00", "name": "EMC.Kong", "openid": "250D3F1639183AF5C7375386C5195C23", "pos": "上路", "real_name": "司徒志", "role": "" },
+    { "join_time": "", "name": "EMC.ACE", "openid": "4C104860FEADB3B27F3E201AFBADEFED", "pos": "中路", "real_name": "许俊杰XU HOI CHON KIT", "role": "" },
+    { "join_time": "", "name": "EMC.AJIU", "openid": "5B49C57B2CB153A62A1914D2598E7987", "pos": "打野", "real_name": "彭于庚 PENG YU GENG", "role": "" },
+    { "join_time": "", "name": "EMC.MOON", "openid": "5D17C73BAE12C3FE940306D9BD8FBF68", "pos": "辅助", "real_name": "XIA ZHAO FENG", "role": "" },
+    { "join_time": "2018-08-01 00:00:00", "name": "EMC.CHU", "openid": "8D594C38125641BF2C455BB7C7A437E7", "pos": "中路", "real_name": "LAM KA CHU", "role": "" },
+    { "join_time": "", "name": "EMC.COLA", "openid": "BC0AA2741852ACAF9F90EBBD24569343", "pos": "辅助", "real_name": "LI YONG ZHAO", "role": "" },
+    { "join_time": "2018-08-01 00:00:00", "name": "EMC.LUIS", "openid": "BE7D85D56717EB986621A2DC1C023D92", "pos": "边路", "real_name": "鄭路易", "role": "" },
+    { "join_time": "", "name": "EMC.TIME", "openid": "C13F721CC4A9B5C451C9D73E47FCCC62", "pos": "打野", "real_name": "何宇豪", "role": "" },
+    { "join_time": "2018-08-01 00:00:00", "name": "EMC.ROY", "openid": "DD560E31A169A990E06324ACD5BDCEE3", "pos": "中单", "real_name": "黃善樂", "role": "" },
+    { "join_time": "", "name": "EMC.SUN", "openid": "E698DF3997CAD21B35671E731AEFF16F", "pos": "对抗路", "real_name": "郑长南CHEANG CHEONG NAM", "role": "" },
+    { "join_time": "2018-08-01 00:00:00", "name": "EMC.Lan9", "openid": "F832459C90A7D25A78122DEBC2033FF5", "pos": "下路", "real_name": "罗誉铭", "role": "" }
+]

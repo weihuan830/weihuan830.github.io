@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<meta charset='utf-8'>
+
+<html>
+
+<head>
+    <title>KPL Data Analytics</title>
+    <script src="KPL/vendor/jquery.min.js"></script>
+    <script src="KPL/vendor/Sortable-master/Sortable.js"></script>
+    <script src="KPL/vendor/jquery-sortablejs-master/jquery-sortable.js"></script>
+    <script src="KPL/vendor/d3.v5.min.js"></script>
+    <link rel='stylesheet' href='KPL/vendor/bootstrap-4.5.2/dist/css/bootstrap.css'>
+    <link rel='stylesheet' href='KPL/index.css'>
+
+    <script src="KPL/heroView.js">
+    </script>
+    <script src="KPL/teamBlock.js"></script>
+</head>
+
+<body>
+    <div style='display: flex; flex-direction: row'>
+        <div class='leftPanel col-sm-3'>
+            <div style="width:inherit;">
+                <select class='selectBox' id='chooseSeason' onchange="chooseSeasonChange(value)">
+                        <option value="season_31" selected='selected'>2020世界冠军杯</option>
+                        <option value="season_30">2020KPL职业联赛春季赛</option>
+                        <option value="season_29">2019冬季冠军杯</option>
+                    </select>
+            </div>
+
+            <div>
+                <div class='tab'>
+                    <button class="tablinks" id='defaultTab' onclick="openTab(event, 'hero_tab')">Hero</button>
+                    <button class="tablinks" onclick="openTab(event, 'team_tab')">Team</button>
+                </div>
+                <div id="hero_tab" class="tabcontent">
+                    <div style='display: flex;flex-direction: column'>
+                        <div style='width:inherit;display:flex;flex-direction: row; justify-content: space-around;'>
+                            <input style='width: 75%' type='text' id='heroTab_input' onkeydown="enterPress()">
+                            <button id='heroTab_button' style='width: 25%'>确认</button>
+                        </div>
+                        <div id='heroTab_remind'></div>
+
+                        <div id='heroTab_1'>
+                            <h5 class='panelTitle'>刺客</h5>
+                            <div class='heroList'></div>
+                        </div>
+                        <div id='heroTab_2'>
+                            <h5 class='panelTitle'>法师</h5>
+                            <div class='heroList'></div>
+                        </div>
+                        <div id='heroTab_3'>
+                            <h5 class='panelTitle'>射手</h5>
+                            <div class='heroList'></div>
+                        </div>
+                        <div id='heroTab_4'>
+                            <h5 class='panelTitle'>坦克</h5>
+                            <div class='heroList'></div>
+                        </div>
+                        <div id='heroTab_5'>
+                            <h5 class='panelTitle'>战士</h5>
+                            <div class='heroList'></div>
+                        </div>
+                        <div id='heroTab_6'>
+                            <h5 class='panelTitle'>辅助</h5>
+                            <div class='heroList'></div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="team_tab" class="tabcontent">
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-9' style='display: flex; flex-direction: row; overflow-x: scroll'>
+            <div class='mainView' style='display: flex; flex-direction: row;'></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("defaultTab").click();
+        $('.mainView').sortable()
+
+        // Hero Tab Content
+        var gameRec, heroIDResp = {}
+        selectedResp = {
+                'season_31': {
+                    hero: [],
+                    team: []
+                },
+                'season_30': {
+                    hero: [],
+                    team: []
+                },
+                'season_29': {
+                    hero: [],
+                    team: []
+                }
+            },
+            chosenSeason = 'season_31';
+
+        d3.json('KPL/static/rawData/GameRecord.json').then(function(gameData) {
+            gameRec = gameData
+        })
+
+        _drawTeamTab(chosenSeason)
+        _drawHeroTab(chosenSeason)
+
+        document.getElementById('heroTab_button').addEventListener('click', enterName);
+
+        function _drawHeroTab(season) {
+            d3.selectAll('.heroList').selectAll('*').remove()
+
+            d3.json('KPL/static/rawData/HeroType.json').then(function(herolist) {
+                for (let i in herolist) {
+                    heroIDResp[herolist[i].hero_name] = herolist[i].hero_id
+                    let heroBlock = d3.select('#heroTab_' + herolist[i].hero_type)
+                        .select('.heroList')
+                        .append('div')
+                        .attr('id', 'heroTab_' + herolist[i].hero_id + '_' + season)
+                        .attr('class', function() {
+                            if (selectedResp[season].hero.includes(herolist[i].hero_name)) {
+                                return 'chosen'
+                            } else {
+                                return 'non_chosen'
+                            }
+                        })
+                        .style('display', 'flex')
+                        .style('flex-direction', 'column')
+                        .style('align-items', 'center')
+
+
+                    heroBlock.append('img')
+                        .attr('src', 'KPL/static/img/Hero_Pic/' + herolist[i].hero_id + '.jpg')
+                        .attr('width', 50)
+                        .attr('height', 50)
+
+                    heroBlock.append('p')
+                        .text(herolist[i].hero_name)
+
+                    heroBlock.on('click', function() {
+                        let chosenFlag = 0
+                        for (let j in selectedResp[season].hero) {
+                            if (selectedResp[season].hero[j] == herolist[i].hero_name) {
+                                chosenFlag = 1
+                                d3.select('#heroTab_' + herolist[i].hero_id + '_' + season)
+                                    .attr('class', 'non_chosen')
+                                d3.select('#heroView_' + herolist[i].hero_id + '_' + season).remove()
+                            }
+                        }
+
+                        if (chosenFlag) {
+                            for (let j in selectedResp[season].hero) {
+                                if (selectedResp[season].hero[j] == herolist[i].hero_name) {
+                                    selectedResp[season].hero.splice(j, 1)
+                                }
+                            }
+                        } else {
+                            selectedResp[season].hero.push(herolist[i].hero_name)
+                            d3.select('#heroTab_' + herolist[i].hero_id + '_' + season)
+                                .attr('class', 'chosen')
+
+                            let tempBlock = d3.select('.mainView').append('div')
+                                .attr('id', 'heroView_' + herolist[i].hero_id + '_' + season)
+
+                            _drawHeroView(herolist[i].hero_id, herolist[i].hero_name, season, tempBlock, herolist, gameRec, selectedResp)
+                        }
+                    })
+                }
+            })
+        }
+
+
+        function enterPress(e) {
+            var e = e || window.event
+            if (e.keyCode == 13) {
+                enterName()
+            }
+        }
+
+        function enterName() {
+            let hero_name = document.getElementById('heroTab_input').value
+            d3.json('KPL/static/rawData/HeroType.json').then(function(herolist) {
+                let match_flag = 0
+                for (let i in herolist) {
+                    if (herolist[i].hero_name == hero_name) {
+                        d3.select('#heroTab_remind').selectAll('*').remove()
+                        match_flag = 1
+
+                        // judge if have chosen the hero
+                        let exist_flag = 0
+                        for (let j in selectedResp[chosenSeason].hero) {
+                            if (selectedResp[chosenSeason].hero[j] == hero_name) {
+                                exist_flag = 1
+                                d3.select('#heroTab_' + herolist[i].hero_id + '_' + chosenSeason)
+                                    .attr('class', 'non_chosen')
+                                d3.select('#heroView_' + herolist[i].hero_id + '_' + chosenSeason).remove()
+                                break;
+                            }
+                        }
+                        if (exist_flag) {
+                            for (let j in selectedResp[chosenSeason].hero) {
+                                if (selectedResp[chosenSeason].hero[j] == hero_name) {
+                                    selectedResp[chosenSeason].hero.splice(j, 1)
+                                }
+                            }
+
+                        } else {
+                            selectedResp[chosenSeason].hero.push(hero_name)
+                            d3.select('#heroTab_' + herolist[i].hero_id + '_' + chosenSeason)
+                                .attr('class', 'chosen')
+                            let tempBlock = d3.select('.mainView').append('div')
+                                .attr('id', 'heroView_' + herolist[i].hero_id + '_' + chosenSeason)
+
+                            _drawHeroView(herolist[i].hero_id, herolist[i].hero_name, chosenSeason, tempBlock, herolist, gameRec, selectedResp)
+                        }
+                        break
+                    }
+                }
+                if (match_flag == 0) {
+                    d3.select('#heroTab_remind').selectAll('*').remove()
+                    d3.select('#heroTab_remind').append('p')
+                        .text('请输入正确的英雄名称')
+                        .style('color', '#C04852')
+                }
+            })
+        }
+
+        function chooseTeamChange(value) {
+
+        }
+
+        function chooseSeasonChange(value) {
+            chosenSeason = value
+
+            _drawHeroTab(chosenSeason)
+
+            for (let i in selectedResp[chosenSeason].hero) {
+                d3.select('#heroTab_' + heroIDResp[selectedResp[chosenSeason].hero[i]] + +'_' + chosenSeason).attr('class', 'chosen')
+            }
+
+            _drawTeamTab(chosenSeason)
+        }
+
+        function openTab(evt, tagName) {
+
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tagName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function _drawTeamTab(season) {
+            d3.select('#team_tab').selectAll('*').remove()
+
+            d3.json('KPL/static/rawData/' + season + '/' + season.split('_')[1] + '_Team.json').then(function(teamData) {
+                for (let team in teamData) {
+                    let teamCard = d3.select('#team_tab').append('div')
+                        .attr('class', function() {
+                            if (selectedResp[season].team.includes(teamData[team].team_id)) {
+                                return 'chosen'
+                            } else {
+                                return 'non_chosen'
+                            }
+                        })
+                        .attr('id', 'teamTab_' + teamData[team].team_id + '_' + season)
+                        .style('width', 'inherit')
+                        .style('display', 'flex')
+                        .style('flex-direction', 'row')
+                        .style('justify-content', 'space-around')
+                        .style('background-color', function() {
+                            if (team % 2 == 0) {
+                                return '#f3f3f3'
+                            } else {
+                                return '#ddd'
+                            }
+                        })
+                        .style('margin', '2px')
+                        .on('click', function() {
+                            let chosenFlag = 0
+                            for (let i in selectedResp[chosenSeason].team) {
+                                if (selectedResp[chosenSeason].team[i] == teamData[team].team_id) {
+                                    chosenFlag = 1
+                                    d3.select('#teamTab_' + teamData[team].team_id + '_' + season)
+                                        .attr('class', 'non_chosen')
+                                    d3.select('#teamView_' + teamData[team].team_id + '_' + season).remove()
+                                }
+                            }
+                            if (chosenFlag) {
+                                for (let i in selectedResp[chosenSeason].team) {
+                                    if (selectedResp[chosenSeason].team[i] == teamData[team].team_id) {
+                                        selectedResp[chosenSeason].team.splice(i, 1)
+                                    }
+                                }
+                            } else {
+                                selectedResp[chosenSeason].team.push(teamData[team].team_id)
+                                d3.select('#teamTab_' + teamData[team].team_id + '_' + season)
+                                    .attr('class', 'chosen')
+
+                                let tempBlock = d3.select('.mainView').append('div')
+                                    .attr('id', 'teamView_' + teamData[team].team_id + '_' + season)
+
+                                _drawTeamBlock(teamData[team].team_id, season, tempBlock, teamData, gameRec, selectedResp)
+
+                            }
+                        })
+
+                    teamCard.append('img')
+                        .attr('src', 'KPL/static/img/Team_Pic/' + teamData[team].team_id + '.png')
+                        .attr('width', '50px')
+                        .attr('height', '50px')
+
+                    let teamCart_text = teamCard.append('div').style('display', 'flex')
+                        .style('flex-direction', 'column')
+                        .style('align-items', 'center')
+
+                    teamCart_text.append('div').append('text').text(teamData[team].team_name).style('font-weight', 'bolder')
+                    teamCart_text.append('div').append('p')
+                        .text(teamData[team].played + '局/胜率' + (Number(teamData[team].win_rate) * 100).toFixed(1) + '%')
+                }
+            })
+
+        }
+    </script>
+
+</body>
+
+</html>
