@@ -45,7 +45,7 @@ function _drawTeamBlock(team_id, season, blockDiv, teamData, gameData, selected)
         blockContent = blockCard.append('div').style('width', blockWidth - 4);
 
     blockLogo.append('img')
-        .attr('src', 'KPL/static/img/Team_Pic/' + team_id + '.png')
+        .attr('src', 'static/img/Team_Pic/' + team_id + '.png')
         .style('width', '50px')
         .style('height', '50px')
 
@@ -61,7 +61,7 @@ function _drawTeamBlock(team_id, season, blockDiv, teamData, gameData, selected)
         .style('font-weight', 'bolder')
         .style('color', '#000')
 
-    d3.json('KPL/static/rawData/' + season + '/' + season.split('_')[1] + '_Set.json').then(function(setData) {
+    d3.json('static/rawData/' + season + '/' + season.split('_')[1] + '_Set.json').then(function(setData) {
         let setResp = [];
         for (let set in setData) {
             if (setData[set]['team_id'] == team_id) {
@@ -106,7 +106,7 @@ function _drawTeamHero(div, team_id, season, played) {
         .domain([0, 0.5, 1])
         .range(["#b64343", '#f2eee5', "#43b643"]);
 
-    d3.json('KPL/static/rawData/' + season + '/' + season.split('_')[1] + '_Team/' + season.split('_')[1] + '_' + team_id + '_fpgrowth.json').then(function(teamP) {
+    d3.json('static/rawData/' + season + '/' + season.split('_')[1] + '_Team/' + season.split('_')[1] + '_' + team_id + '_fpgrowth.json').then(function(teamP) {
         let single_div = div.append('div').attr('class', 'teamMatch'),
             double_div = div.append('div').attr('class', 'teamMatch'),
             tripple_div = div.append('div').attr('class', 'teamMatch'),
@@ -162,7 +162,7 @@ function _drawTeamHero(div, team_id, season, played) {
         for (let i = 0; i < teamP['sup_resp']['1'].length; i++) {
             let temp_div = single_div.append('div').attr('class', 'teamMatchCard')
             temp_div.append('img')
-                .attr('src', 'KPL/static/img/Hero_Pic/' + teamP['sup_resp']['1'][i][0][0] + '.jpg')
+                .attr('src', 'static/img/Hero_Pic/' + teamP['sup_resp']['1'][i][0][0] + '.jpg')
                 .style('width', imgSize + 'px')
                 .style('height', imgSize + 'px')
             let textCard = temp_div.append('div').style('width', imgSize + 'px').style('background-color', function() {
@@ -219,7 +219,7 @@ function _drawTeamHero(div, team_id, season, played) {
             let temp_div = double_div.append('div').attr('class', 'teamMatchCard')
             for (let hero = 0; hero < 2; hero++) {
                 temp_div.append('img')
-                    .attr('src', 'KPL/static/img/Hero_Pic/' + teamP['sup_resp']['2'][i][0][hero] + '.jpg')
+                    .attr('src', 'static/img/Hero_Pic/' + teamP['sup_resp']['2'][i][0][hero] + '.jpg')
                     .style('width', imgSize + 'px')
                     .style('height', imgSize + 'px');
             }
@@ -272,7 +272,7 @@ function _drawTeamHero(div, team_id, season, played) {
                 let temp_div = tripple_div.append('div').attr('class', 'teamMatchCard')
                 for (let hero = 0; hero < 3; hero++) {
                     temp_div.append('img')
-                        .attr('src', 'KPL/static/img/Hero_Pic/' + teamP['sup_resp']['3'][i][0][hero] + '.jpg')
+                        .attr('src', 'static/img/Hero_Pic/' + teamP['sup_resp']['3'][i][0][hero] + '.jpg')
                         .style('width', imgSize + 'px')
                         .style('height', imgSize + 'px');
                 }
@@ -352,7 +352,7 @@ function _drawTeamHero(div, team_id, season, played) {
 
             for (let hr in teamP['rule'][grp][0]) {
                 first_layer.append('img')
-                    .attr('src', 'KPL/static/img/Hero_Pic/' + teamP['rule'][grp][0][hr] + '.jpg')
+                    .attr('src', 'static/img/Hero_Pic/' + teamP['rule'][grp][0][hr] + '.jpg')
                     .style('width', imgSize + 'px')
                     .style('height', imgSize + 'px')
             }
@@ -364,7 +364,7 @@ function _drawTeamHero(div, team_id, season, played) {
 
             for (let hr in teamP['rule'][grp][1]) {
                 second_layer.append('img')
-                    .attr('src', 'KPL/static/img/Hero_Pic/' + teamP['rule'][grp][1][hr] + '.jpg')
+                    .attr('src', 'static/img/Hero_Pic/' + teamP['rule'][grp][1][hr] + '.jpg')
                     .style('width', imgSize + 'px')
                     .style('height', imgSize + 'px')
             }

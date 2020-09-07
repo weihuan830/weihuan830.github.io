@@ -37,7 +37,7 @@ function _drawHeroView(hero_id, hero_name, season, blockDiv, heroInfo, gameData,
 
     let setNum = 0,
         matchNum = 0;
-    d3.json('KPL/static/rawData/' + season + '/' + season.split('_')[1] + '_Set.json').then(function(setData) {
+    d3.json('static/rawData/' + season + '/' + season.split('_')[1] + '_Set.json').then(function(setData) {
         let setResp = [],
             setList = 0;
         for (let set in setData) {
@@ -53,7 +53,7 @@ function _drawHeroView(hero_id, hero_name, season, blockDiv, heroInfo, gameData,
 
 
 
-        d3.json('KPL/static/rawData/' + season + '/' + season.split('_')[1] + '_Hero.json').then(function(heroData) {
+        d3.json('static/rawData/' + season + '/' + season.split('_')[1] + '_Hero.json').then(function(heroData) {
 
             let hero_basic = blockContent.append('div').attr('class', 'panelTitle')
                 .style('display', 'flex')
@@ -66,7 +66,7 @@ function _drawHeroView(hero_id, hero_name, season, blockDiv, heroInfo, gameData,
 
             // Block 1: Hero Basic Information
             hero_basic.append('img')
-                .attr('src', 'KPL/static/img/Hero_Pic/' + hero_id + '.jpg')
+                .attr('src', 'static/img/Hero_Pic/' + hero_id + '.jpg')
                 .attr('width', '50px')
                 .attr('height', '50px')
             hero_basic.append('p').text(hero_name).style('font-weight', 'bolder')
@@ -85,7 +85,7 @@ function _drawHeroView(hero_id, hero_name, season, blockDiv, heroInfo, gameData,
             }
 
             // Block 2: General Match
-            d3.json('KPL/static/rawData/' + season + '/' + season.split('_')[1] + '_Group.json').then(function(groupData) {
+            d3.json('static/rawData/' + season + '/' + season.split('_')[1] + '_Group.json').then(function(groupData) {
                 hero_match.append('h5').attr('class', 'panelTitle').text('常见搭配')
 
                 // store the matches in 'matchResp'
@@ -142,7 +142,7 @@ function _drawHeroView(hero_id, hero_name, season, blockDiv, heroInfo, gameData,
                                         }
                                     })
                                 heroDiv.append('img')
-                                    .attr('src', 'KPL/static/img/Hero_Pic/' + matchResp[key][hero][0] + '.jpg')
+                                    .attr('src', 'static/img/Hero_Pic/' + matchResp[key][hero][0] + '.jpg')
                                     .attr('width', '45px')
                                     .attr('height', '45px')
 
@@ -206,7 +206,7 @@ function drawHeroWinDef(heroName, heroID, svg) {
 
     let relation_g = svg.append('g').attr('transform', 'translate(' + margin.left + ',' + (margin.top * 2.2) + ')')
 
-    d3.json('KPL/static/rawData/HeroWinDef/heroFight_10_31.json').then(function(heroRelation) {
+    d3.json('static/rawData/HeroWinDef/heroFight_10_31.json').then(function(heroRelation) {
 
         let heroSep = heroRelation[heroID],
             winM = [],
@@ -298,7 +298,7 @@ function drawHeroWinDef(heroName, heroID, svg) {
             .enter()
             .append('svg:image')
             .attr('class', 'winMore_img')
-            .attr('xlink:href', d => 'KPL/static/img/Hero_Pic/' + d[0] + '.jpg')
+            .attr('xlink:href', d => 'static/img/Hero_Pic/' + d[0] + '.jpg')
             .attr('width', Yscale.bandwidth())
             .attr('height', Yscale.bandwidth())
             .attr('transform', function(d, i) {
@@ -355,7 +355,7 @@ function drawHeroWinDef(heroName, heroID, svg) {
             .enter()
             .append('svg:image')
             .attr('class', 'defMore_img')
-            .attr('xlink:href', d => 'KPL/static/img/Hero_Pic/' + d[0] + '.jpg')
+            .attr('xlink:href', d => 'static/img/Hero_Pic/' + d[0] + '.jpg')
             .attr('width', Yscale.bandwidth())
             .attr('height', Yscale.bandwidth())
             .attr('transform', function(d, i) {
