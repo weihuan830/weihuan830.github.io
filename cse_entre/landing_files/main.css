@@ -1435,9 +1435,9 @@ header .navbar-expand .navbar-brand img {
 
 .full-slider .slide-content .left .description,
 .no-slider .slide-content .left .description {
-    max-width: 500px;
+    max-width: 700px;
     margin-bottom: 2rem;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .full-slider .swiper-button-next {
