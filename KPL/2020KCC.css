@@ -1,0 +1,68 @@
+#teamInfo_View {
+    height: 800px;
+}
+
+.teamBlock {
+    display: flex;
+    flex-direction: row;
+}
+
+.teamBlock_title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 2px #8f4426 ridge;
+    border-top: 2px #8f4426 ridge;
+}
+
+.teamBlock_titleName {
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.teamBlock_side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 2px #8f4426 ridge;
+    border-left: 0px;
+}
+
+.sideBlock {
+    margin: 0px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.rowFlex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.colFlex {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.content_title {
+    font-weight: bolder;
+    margin-bottom: 0%;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.content_text {
+    font-size: 12px;
+    margin-top: 0%;
+}
+
+.label_text {
+    font-size: 10px
+}
+
+.ratioBox {
+    border: 1.5px #cccccc ridge;
+    justify-content: center;
+}

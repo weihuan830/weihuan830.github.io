@@ -8,7 +8,6 @@ p {
     width: inherit;
     font-family: monospace;
     font-size: 16px;
-    margin-bottom: 5px;
 }
 
 .tab {
@@ -17,8 +16,7 @@ p {
     background-color: #faf8f8;
     display: flex;
     flex-grow: 1;
-    justify-content: space-around;
-    margin-bottom: 5px;
+    justify-content: space-around
 }
 
 .tab button {

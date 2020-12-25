@@ -1,8 +1,10 @@
 [
+    { "hero_id": "536", "hero_name": "夏洛特", "hero_type": "5", "hero_type_name": "战士" },
     { "hero_id": "533", "hero_name": "阿古朵", "hero_type": "4", "hero_type_name": "坦克" },
     { "hero_id": "527", "hero_name": "蒙恬", "hero_type": "5", "hero_type_name": "战士" },
     { "hero_id": "531", "hero_name": "镜", "hero_type": "1", "hero_type_name": "刺客" },
     { "hero_id": "529", "hero_name": "盘古", "hero_type": "5", "hero_type_name": "战士" },
+    { "hero_id": "528", "hero_name": "澜", "hero_type": "1", "hero_type_name": "" },
     { "hero_id": "525", "hero_name": "鲁班大师", "hero_type": "6", "hero_type_name": "辅助" },
     { "hero_id": "524", "hero_name": "蒙犽", "hero_type": "3", "hero_type_name": "射手" },
     { "hero_id": "523", "hero_name": "西施", "hero_type": "2", "hero_type_name": "法师" },

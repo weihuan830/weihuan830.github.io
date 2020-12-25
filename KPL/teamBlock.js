@@ -1,7 +1,7 @@
 function _drawTeamBlock(team_id, season, blockDiv, teamData, gameData, selected) {
     let blockWidth = 250,
         blockHeight = document.getElementsByClassName('leftPanel')[0].clientHeight - 25;
-    var played = 0;
+    let played = 0;
 
     let blockCard = blockDiv.append('div').attr('class', 'teamBlock')
         .style('width', blockWidth + 'px')
@@ -52,7 +52,6 @@ function _drawTeamBlock(team_id, season, blockDiv, teamData, gameData, selected)
     blockLogo.append('text').text(function() {
             for (let i in teamData) {
                 if (teamData[i]['team_id'] == String(team_id)) {
-                    played = parseInt(teamData[i]['played'])
                     return teamData[i]['team_name']
                 }
             }
@@ -79,19 +78,16 @@ function _drawTeamBlock(team_id, season, blockDiv, teamData, gameData, selected)
             }
         }
         played = setResp.length;
+        _drawTeamHero(blockContent, team_id, season, played)
     })
-
-
-    _drawTeamHero(blockContent, team_id, season, played)
-
-
 }
 
 function _drawTeamHero(div, team_id, season, played) {
+    console.log('team match:', played)
     let width = div._groups[0][0].clientWidth,
         thershold = {
-            percent: [0.1, 0.1, 0.05],
-            num: [4, 2, 2]
+            percent: [played * 0.32, played * 0.16, played * 0.08],
+            num: [4, 3, 2]
         };
 
     let colorScheme = {
@@ -119,13 +115,14 @@ function _drawTeamHero(div, team_id, season, played) {
 
         for (let ind in teamP['sup_resp']) {
             for (let i in teamP['sup_resp'][ind]) {
-                let minTh = d3.max([thershold.num[Number(ind) - 1], played * thershold.percent[Number(ind) - 1]])
+                let minTh = d3.max([thershold.num[Number(ind) - 1], thershold.percent[Number(ind) - 1]])
                 if (teamP['sup_resp'][ind][i][1][0] <= minTh) {
                     teamP['sup_resp'][ind].splice(i, teamP['sup_resp'][ind].length - i)
                     break
                 }
             }
         }
+
 
         let single_title = single_div.append('div').attr('class', 'teamMatchCard'),
             double_title = double_div.append('div').attr('class', 'teamMatchCard');

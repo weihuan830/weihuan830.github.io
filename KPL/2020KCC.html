@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<meta charset='utf-8'>
+
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="sideContent.js"></script>
+    <link rel='stylesheet' href='vendor/bootstrap-4.5.2/dist/css/bootstrap.css'>
+    <link rel='stylesheet' href='2020KCC.css'>
+    <title>KCC Data Analysis</title>
+</head>
+
+<body>
+    <div class='col-sm-12' id='teamInfo_View'>
+    </div>
+
+
+    <script>
+        var teamName = ['TS', 'Hero'],
+            heroTable = {}
+        d3.json('static/rawData/2020AutumData.json').then(function(computedData) {
+            d3.json('static/rawData/HeroType.json').then(function(herolist) {
+                for (let i in herolist) {
+                    heroTable[herolist[i]['hero_name']] = herolist[i]['hero_id']
+                }
+
+                for (let i in teamName) {
+                    let teamDiv = d3.select('#teamInfo_View').append('div')
+                        .attr('class', 'teamBlock')
+                        .attr('id', teamName[i] + '_div')
+                        .style('width', 'inherit')
+                        .style('height', '620px')
+
+                    drawTeamInfo(teamName[i], computedData[teamName[i]], teamDiv, heroTable)
+                }
+            })
+        })
+
+        function drawTeamInfo(teamName, teamInfo, attrDiv, heroTable) {
+            console.log(teamInfo)
+            let sideType = ['blue', 'red'],
+                CWinDef = {
+                    // win: '#62d540',
+                    // def: '#d54062',
+                    // blue: '#0539d8',
+                    // red: '#d80539',
+                    // more: '#07689f',
+                    // less: '#efac00',
+                    // line: 'grey',
+                    // yellow: '#fadcac'
+                    win: '#33a02c',
+                    def: '#ff7f00',
+                    blue: '#1f78b4',
+                    red: '#e31a1c',
+                    more: '#8da0cb',
+                    less: '#e5c494',
+                    line: 'grey',
+                    yellow: '#f1e3d3'
+                },
+                blockHeight = attrDiv._groups[0][0].clientHeight;
+
+
+            // part 1: title
+            let titleDiv = attrDiv.append('div')
+                .attr('class', 'teamBlock_title col-sm-2')
+                .style('background-color', CWinDef['yellow'] + '5f'),
+                sideDiv = attrDiv.append('div')
+                .attr('class', 'teamBlock_side col-sm-10'),
+                blueDiv = sideDiv.append('div')
+                .attr('class', 'sideBlock rowFlex')
+                .style('width', 'inherit')
+                .style('height', (blockHeight / 3 - 4) + 'px')
+                .style('margin', '1px')
+                .style('background-color', CWinDef['blue'] + '1f'),
+                redDiv = sideDiv.append('div')
+                .attr('class', 'sideBlock rowFlex')
+                .style('width', 'inherit')
+                .style('height', (blockHeight / 3 - 4) + 'px')
+                .style('margin', '1px')
+                .style('background-color', CWinDef['red'] + '1f'),
+                playerDiv = sideDiv.append('div')
+                .attr('class', 'sideBlock rowFlex')
+                .style('width', 'inherit')
+                .style('height', (blockHeight / 3 - 4) + 'px')
+                .style('margin', '1px')
+                .style('background-color', CWinDef['yellow'] + '5f');
+
+
+            titleDiv.append('text').text(teamName).attr('class', 'teamBlock_titleName')
+            titleDiv.append('text').text(teamInfo.totalMatch + '场 --- ' + teamInfo.totalSet + '局')
+
+            let titleDiv_winRate = titleDiv.append('div').style('width', 'inherit').style('display', 'flex')
+                .style('flex-direction', 'column').style('align-items', 'center').style('border-bottom', '4px grey solid'),
+                titleDiv_winRate_1 = titleDiv.append('div').style('display', 'flex')
+                .style('flex-direction', 'row').style('align-items', 'center'),
+                titleDiv_stat = titleDiv.append('div').attr('class', 'rowFlex').style('justify-content', 'space-between'),
+                titleDiv_firstPick = titleDiv.append('div').attr('class', 'rowFlex').style('justify-content', 'space-between').style('align-items', 'flex-start');
+
+
+            let maxSet = 5,
+                winRectW = titleDiv._groups[0][0].clientWidth / 3,
+                winRectH = 12,
+                titleDiv_winRate_svg = titleDiv_winRate.append('svg').attr('width', winRectW)
+                .attr('height', winRectH * maxSet),
+                titleDiv_winRate_1_L = titleDiv_winRate_1.append('div').style('margin-left', '2px').append('svg').attr('width', winRectW).attr('height', winRectH * (maxSet + 3)),
+                titleDiv_winRate_1_M = titleDiv_winRate_1.append('div').append('svg').attr('width', winRectW - 6).attr('height', winRectH * (maxSet + 3)),
+                titleDiv_winRate_1_R = titleDiv_winRate_1.append('div').append('svg').attr('width', winRectW).attr('height', winRectH * (maxSet + 3)),
+                titleDiv_statBlue = titleDiv_stat.append('div').style('width', winRectW * 3 / 2 + 'px').attr('class', 'colFlex'),
+                titleDiv_statRed = titleDiv_stat.append('div').style('width', winRectW * 3 / 2 + 'px').attr('class', 'colFlex');
+
+
+            // part 2: win rate
+            titleDiv_winRate_1_L.append('text').text('Blue').style('font-size', winRectH * 1.8)
+                .style('text-anchor', 'middle').attr('transform', 'translate(' + winRectW / 2 + ',' + winRectH / 0.6 + ')')
+                .style('fill', CWinDef['blue']);
+            titleDiv_winRate_1_R.append('text').text('Red').style('font-size', winRectH * 1.8)
+                .style('text-anchor', 'middle').attr('transform', 'translate(' + winRectW / 2 + ',' + winRectH / 0.6 + ')')
+                .style('fill', CWinDef['red']);
+
+            for (let i = 0; i < maxSet; i++) {
+                if (teamInfo.recSet[sideType[0]][i][1] + teamInfo.recSet[sideType[1]][i][1] > 0) {
+                    let winRatio = (teamInfo.recSet[sideType[0]][i][0] + teamInfo.recSet[sideType[1]][i][0]) / (teamInfo.recSet[sideType[0]][i][1] + teamInfo.recSet[sideType[1]][i][1])
+                    drawWinRatioRect(titleDiv_winRate_svg, Number(i), winRatio, winRectW, winRectH, CWinDef)
+                } else {
+                    drawEmptyRect(titleDiv_winRate_svg, Number(i), winRectW, winRectH)
+                }
+
+                if (teamInfo.recSet[sideType[0]][i][1] > 0) {
+                    let winRatio = teamInfo.recSet[sideType[0]][i][0] / teamInfo.recSet[sideType[0]][i][1]
+                    drawWinRatioRect(titleDiv_winRate_1_L, Number(i) + 2, winRatio, winRectW, winRectH, CWinDef)
+                } else {
+                    drawEmptyRect(titleDiv_winRate_1_L, Number(i) + 2, winRectW, winRectH)
+                }
+
+                if (teamInfo.recSet[sideType[1]][i][1] > 0) {
+                    let winRatio = teamInfo.recSet[sideType[1]][i][0] / teamInfo.recSet[sideType[1]][i][1]
+                    drawWinRatioRect(titleDiv_winRate_1_R, Number(i) + 2, winRatio, winRectW, winRectH, CWinDef)
+                } else {
+                    drawEmptyRect(titleDiv_winRate_1_R, Number(i) + 2, winRectW, winRectH)
+                }
+                titleDiv_winRate_1_M.append('text')
+                    .text('Set ' + String(Number(i) + 1))
+                    .attr('transform', 'translate(' + (winRectW / 2 - 3) + ',' + ((Number(i) + 3) * winRectH) + ')')
+                    .style('text-anchor', 'middle')
+                    .style('font-size', winRectH)
+            }
+            drawOutLine(titleDiv_winRate_svg, winRectW, winRectH * maxSet, CWinDef, 0)
+            drawOutLine(titleDiv_winRate_1_L, winRectW, winRectH * maxSet, CWinDef, winRectH * 2)
+            drawOutLine(titleDiv_winRate_1_R, winRectW, winRectH * maxSet, CWinDef, winRectH * 2)
+
+
+            // part 3: statistic info
+            drawStat(titleDiv_statBlue, 'blue', teamInfo, winRectW, CWinDef, teamInfo)
+            drawStat(titleDiv_statRed, 'red', teamInfo, winRectW, CWinDef, teamInfo)
+
+            // part 6: side details
+            drawSideContent(blueDiv, 'blue', teamInfo, CWinDef, heroTable)
+            drawSideContent(redDiv, 'red', teamInfo, CWinDef, heroTable)
+
+            // part 7: player info
+            drawPlayerInfo(playerDiv, teamInfo.playerInfo, CWinDef, heroTable)
+        }
+
+        function drawFirstPick(div, fpDict, heroTable, cScale) {
+            let imgSize = 35;
+            let cntHeroArray = Object.keys(fpDict).map(function(key) {
+                return [key, fpDict[key]];
+            });
+            cntHeroArray.sort(function(a, b) {
+                return b[1] - a[1]
+            })
+
+            for (let hero = 0; hero < cntHeroArray.length; hero++) {
+                div.append('img')
+                    .attr('src', '/static/img/Hero_Pic/' + heroTable[cntHeroArray[hero][0]] + '.jpg')
+                    .attr('width', imgSize / cntHeroArray[0][1] * cntHeroArray[hero][1] + 'px')
+                    .attr('height', imgSize / cntHeroArray[0][1] * cntHeroArray[hero][1] + 'px')
+            }
+        }
+
+        function drawFirstBan(div, fbDict, heroTable, cScale) {
+            let imgSize = 35;
+            let cntHeroArray = Object.keys(fbDict).map(function(key) {
+                return [key, fbDict[key]];
+            });
+            cntHeroArray.sort(function(a, b) {
+                return b[1] - a[1]
+            })
+            for (let hero = 0; hero < cntHeroArray.length; hero++) {
+                div.append('img')
+                    .attr('src', '/static/img/Hero_Pic/' + heroTable[cntHeroArray[hero][0]] + '.jpg')
+                    .attr('width', imgSize / cntHeroArray[0][1] * cntHeroArray[hero][1] + 'px')
+                    .attr('height', imgSize / cntHeroArray[0][1] * cntHeroArray[hero][1] + 'px')
+            }
+        }
+
+        function drawStat(div, side, data, maxW, cScale, teamInfo) {
+            let winNum = 0,
+                setNum = 0,
+                winRatio;
+            for (let i in data['recSet'][side]) {
+                winNum = winNum + data['recSet'][side][i][0]
+                setNum = setNum + data['recSet'][side][i][1]
+            }
+            winRatio = winNum / setNum;
+
+            div.append('text').text('平均胜率').attr('class', 'content_title')
+            div.append('text').text((winRatio * 100).toFixed(2) + '%').attr('class', 'content_text')
+            div.append('text').text('平均经济').attr('class', 'content_title')
+            div.append('text').text(data.avgEco[side].toFixed(1) + 'k').attr('class', 'content_text')
+            div.append('text').text('平均时长').attr('class', 'content_title')
+            div.append('text').text(Math.floor(data.avgTime[side] / 60) + 'm' + (data.avgTime[side] % 60).toFixed(0) + 's').attr('class', 'content_text')
+            div.append('text').text('时长分布').attr('class', 'content_title')
+            let timeDisDiv = div.append('div').style('width', maxW + 20 + 'px').append('svg').attr('class', 'timeDisDiv').attr('width', maxW + 24).attr('height', 30)
+            drawTimeDis(timeDisDiv, data['timeRec'][side], data['timeRec'][side + '_r'], maxW, 20, 24 / 2, cScale)
+            div.append('text').text('第一局常选').attr('class', 'content_title')
+
+            let titleDiv_fp = div.append('div').style('width', maxW * 3 / 2 + 'px')
+                .style('height', '75px').style('overflow-y', 'scroll').style('border', '1px ' + cScale['line'] + ' solid')
+                .attr('class', 'rowFlex').style('flex-wrap', 'wrap').style('align-items', 'center')
+                .style("justify-content", 'space-around');
+
+            div.append('text').text('第一局常禁').attr('class', 'content_title')
+
+            let titleDiv_fb = div.append('div').style('width', maxW * 3 / 2 + 'px')
+                .style('height', '75px').style('overflow-y', 'scroll').style('border', '1px ' + cScale['line'] + ' solid')
+                .attr('class', 'rowFlex').style('flex-wrap', 'wrap').style('align-items', 'center')
+                .style("justify-content", 'space-around');
+
+            // part 4: first pick
+            drawFirstPick(titleDiv_fp, teamInfo['firstPick'][side], heroTable)
+
+            // part 5: first ban
+            drawFirstBan(titleDiv_fb, teamInfo['firstBan'][side], heroTable)
+        }
+
+        function drawTimeDis(svg, data, data_r, timeW, timeH, axisTrans, cScale) {
+            svg.append('path')
+                .attr('d', 'M' + axisTrans + ',' + timeH / 2 + 'L' + (timeW + axisTrans) + ',' + timeH / 2)
+                .style('stroke', 'grey')
+                .style('stroke-width', 2)
+                .style('opacity', 0.6)
+
+            let xAxis = d3.scaleLinear()
+                .range([0, timeW])
+                .domain([600, 1500])
+
+            for (let i in data) {
+                svg.append('circle')
+                    .attr('cx', function() {
+                        if (data[i] <= 1500) {
+                            return axisTrans + xAxis(data[i])
+                        } else {
+                            return axisTrans + timeW
+                        }
+                    })
+                    .attr('cy', timeH / 2)
+                    .attr('r', 5)
+                    .style('fill', () => {
+                        if (data_r[i]) {
+                            return cScale['win']
+                        } else {
+                            return cScale['def']
+                        }
+                    })
+                    .style('opacity', 0.3)
+            }
+
+            svg.append('path')
+                .attr('d', 'M' + (axisTrans + xAxis(1200)) + ',0L' + (xAxis(1200) + axisTrans) + ',' + timeH)
+                .style('stroke', 'grey')
+                .style('stroke-width', 2)
+                .style('opacity', 0.6)
+
+            svg.append('text')
+                .style('text-anchor', 'middle')
+                .text('10min')
+                .style('font-size', 8)
+                .attr('transform', 'translate(' + axisTrans + ',' + timeH * 1.2 + ')')
+
+            svg.append('text')
+                .style('text-anchor', 'middle')
+                .text('25min')
+                .style('font-size', 8)
+                .attr('transform', 'translate(' + (axisTrans + timeW) + ',' + timeH * 1.2 + ')')
+        }
+
+        function drawOutLine(svg, W, H, cScale, transferY) {
+            svg.append('rect')
+                .attr('width', W)
+                .attr('height', H)
+                .attr('x', 0)
+                .attr('y', transferY)
+                .style('fill', 'none')
+                .style('stroke', cScale['line'])
+                .style('stroke-width', 1.5)
+        }
+
+        function drawWinRatioRect(svg, index, ratio, width, height, cScale) {
+            svg.append('rect')
+                .attr('width', d3.max([ratio * width, 1]))
+                .attr('height', height)
+                .attr('x', width * (1 - ratio) / 2)
+                .attr('y', index * height)
+                .style('fill', function() {
+                    if (ratio > 0.5) {
+                        return cScale['win']
+                    } else {
+                        return cScale['def']
+                    }
+                })
+                .style('opacity', function() {
+                    if (ratio > 0.5) {
+                        return ratio
+                    } else {
+                        return 1 - ratio
+                    }
+                })
+                .style('stroke-width', function() {
+                    if (ratio > 0) {
+                        return 0
+                    } else {
+                        return 1.5
+                    }
+                })
+                .style('stroke', cScale['def'])
+        }
+
+        function drawEmptyRect(svg, index, width, height) {
+            svg.append('rect')
+                .attr('width', width)
+                .attr('height', height)
+                .attr('x', 0)
+                .attr('y', index * height)
+                .style('fill', 'none')
+                .style('stroke', 'black')
+                .style('stroke-dasharray', "3,3")
+        }
+    </script>
+</body>
+
+</html>
