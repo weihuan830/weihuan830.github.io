@@ -132,3 +132,23 @@ p {
     margin-left: 2px;
     height: 25px;
 }
+
+.rowFlex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.colFlex {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.listMode {
+    margin-right: 15px;
+}
+
+.listText {
+    font-size: 11px;
+}
