@@ -12,10 +12,9 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <link rel='stylesheet' href='static/bootstrap/css/bootstrap.css'>
     <link rel='stylesheet' href='index.css'>
-
-    <script src="heroView.js">
-    </script>
+    <script src="heroView.js"></script>
     <script src="teamBlock.js"></script>
+    <script src="teamBlock_d.js"></script>
 </head>
 
 <body>
@@ -23,26 +22,6 @@
         <div class='leftPanel col-sm-2'>
             <!-- <div>
                 <button onclick="location.href = '2020KCC.html'">KCC Page</button>
-            </div> -->
-            <!-- <div style="width:inherit;">
-                <select class='selectBox' id='chooseOwnTeam' onchange="chooseTeamChange(value)">
-                        <option value="team_12" selected='selected'>成都AG超玩会</option>
-                        <option value="team_13">武汉eStarPro</option>
-                        <option value="team_15">广州TTG.XQ</option>
-                        <option value="team_23">VG</option>
-                        <option value="team_25">重庆QGhappy</option>
-                        <option value="team_26">上海EDG.M</option>
-                        <option value="team_27">GK</option>
-                        <option value="team_28">DYG</option>
-                        <option value="team_31">YTG</option>
-                        <option value="team_35">杭州LGD大鹅</option>
-                        <option value="team_38">RNG.M</option>
-                        <option value="team_44">TS</option>
-                        <option value="team_45">南京Hero久竞</option>
-                        <option value="team_51">TES</option>
-                        <option value="team_52">西安WE</option>
-                        <option value="team_60">RW侠</option>
-                    </select>
             </div> -->
             <div style="width:inherit;">
                 <select class='selectBox' id='chooseSeason' onchange="chooseSeasonChange(value)">
@@ -55,23 +34,6 @@
 
 
             <div>
-                <!-- Navs Tool in boostrap v4.5 cannot use -->
-                <!-- <ul class='nav nav-tabs nav-fill' role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="hero-tab" data-toggle="tab" href="#heroList" role="tab" aria-controls="heroList" aria-selected="true">Hero</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="team-tab" data-toggle="tab" href="#teamList" role="tab" aria-controls="teamList" aria-selected="false">Team</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="heroList" role="tabpanel" aria-labelledby="hero-tab">
-                            <p>hero tab</p>
-                        </div>
-                        <div class="tab-pane fade" id="teamList" role="tabpanel" aria-labelledby="team-tab">
-                            <p>team tab</p>
-                        </div>
-                    </div> -->
                 <div class='tab'>
                     <button class="tablinks" id='defaultTab' onclick="openTab(event, 'hero_tab')">Hero</button>
                     <button class="tablinks" onclick="openTab(event, 'team_tab')">Team</button>
@@ -121,13 +83,25 @@
         </div>
     </div>
 
+    <div style='display:flex; flex-direction:row; margin-top:20px; border-top: 5px solid grey'>
+        <div class='col-sm-2' style='display: flex; flex-direction: column;overflow-y: scroll'>
+            <div style="width:inherit;">
+                <select class='selectBox' id='chooseTeam' onchange="chooseTeamChange(value)">
+                </select>
+                <div id='teamBlock_s' style='display:flex; flex-direction: column;align-items: center'></div>
+            </div>
+        </div>
+        <div class='col-sm-10' id='detail_heroRelation' style='display: flex; flex-direction: column; overflow: scroll'>
+        </div>
+    </div>
+
     <script>
         document.getElementById("defaultTab").click();
         $('.mainView').sortable()
 
         // Hero Tab Content
-        var gameRec, heroIDResp = {}
-        selectedResp = {
+        var gameRec, heroIDResp = {},
+            selectedResp = {
                 'season_32': {
                     hero: [],
                     team: []
@@ -156,6 +130,35 @@
 
         document.getElementById('heroTab_button').addEventListener('click', enterName);
 
+        // detail hero relation part
+        var chosenSeason_d = 'season_32'
+
+        drawTeamChoose(chosenSeason_d)
+
+        function drawTeamChoose(season_id) {
+            d3.json('static/rawData/' + String(season_id) + '/' + String(season_id).split('_')[1] + '_Team.json').then(function(teamData) {
+                for (let team in teamData) {
+                    if (teamData[team]['team_id'] == "44") {
+                        d3.select('#chooseTeam').append('option')
+                            .attr('value', teamData[team]['team_id'])
+                            .attr('selected', "selected")
+                            .text(teamData[team]['team_name'])
+                        chooseTeamChange(teamData[team]['team_id'])
+                    } else {
+                        d3.select('#chooseTeam').append('option')
+                            .attr('value', teamData[team]['team_id'])
+                            .text(teamData[team]['team_name'])
+                    }
+                }
+            })
+        }
+
+        function chooseTeamChange(value) {
+            d3.select('#teamBlock_s').selectAll('*').remove()
+            d3.select('#detail_heroRelation').selectAll('*').remove()
+            _drawTeamBlock_d(value, chosenSeason_d, d3.select('#teamBlock_s'), gameRec)
+        }
+
         function _drawHeroTab(season) {
             d3.selectAll('.heroList').selectAll('*').remove()
 
@@ -179,7 +182,7 @@
 
 
                     heroBlock.append('img')
-                        .attr('src', '/KPL/static/img/Hero_Pic/' + herolist[i].hero_id + '.jpg')
+                        .attr('src', '/static/img/Hero_Pic/' + herolist[i].hero_id + '.jpg')
                         .attr('width', 50)
                         .attr('height', 50)
 
@@ -272,10 +275,6 @@
                         .style('color', '#C04852')
                 }
             })
-        }
-
-        function chooseTeamChange(value) {
-
         }
 
         function chooseSeasonChange(value) {
