@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/kaabiigoo/static/css/main.6de0f992.chunk.css",
+    "main.js": "/kaabiigoo/static/js/main.2cb2343a.chunk.js",
+    "main.js.map": "/kaabiigoo/static/js/main.2cb2343a.chunk.js.map",
+    "runtime-main.js": "/kaabiigoo/static/js/runtime-main.69ba0b9b.js",
+    "runtime-main.js.map": "/kaabiigoo/static/js/runtime-main.69ba0b9b.js.map",
+    "static/css/2.b26ad133.chunk.css": "/kaabiigoo/static/css/2.b26ad133.chunk.css",
+    "static/js/2.8499ffda.chunk.js": "/kaabiigoo/static/js/2.8499ffda.chunk.js",
+    "static/js/2.8499ffda.chunk.js.map": "/kaabiigoo/static/js/2.8499ffda.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.ee8490af1e1c33124af1408124727b12.js": "/precache-manifest.ee8490af1e1c33124af1408124727b12.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.b26ad133.chunk.css.map": "/kaabiigoo/static/css/2.b26ad133.chunk.css.map",
+    "static/css/main.6de0f992.chunk.css.map": "/kaabiigoo/static/css/main.6de0f992.chunk.css.map",
+    "static/js/2.8499ffda.chunk.js.LICENSE.txt": "/kaabiigoo/static/js/2.8499ffda.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.69ba0b9b.js",
+    "static/css/2.b26ad133.chunk.css",
+    "static/js/2.8499ffda.chunk.js",
+    "static/css/main.6de0f992.chunk.css",
+    "static/js/main.2cb2343a.chunk.js"
+  ]
+}
