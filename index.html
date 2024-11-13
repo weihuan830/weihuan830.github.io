@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huan's Website</title>
-    <link rel="stylesheet" href="https://github.com/weihuan830/weihuan830.github.io/blob/master/style.css">
+    <!-- <link rel="stylesheet" href="https://github.com/weihuan830/weihuan830.github.io/blob/master/style.css"> -->
     <style>
         :root {
             --grid-color: rgba(204, 85, 0, 0.3); /* More visible orange */
@@ -32,6 +32,1090 @@
             min-height: 100vh;
             width: 100%;
         }
+        :root {
+    --primary-blue: #000000;
+    --secondary-blue: #0a0a0a;
+    --accent-orange: #cc5500;
+    --text-primary: #b34700;
+    --text-secondary: #8b3600;
+    --highlight-orange: #ff6600;
+    --neon-glow: 0 0 10px rgba(204, 85, 0, 0.15);
+    --terminal-orange: #993d00;
+    --grid-color: #cc5500;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+    font-size: 16px;
+    color: var(--text-primary);
+    background: var(--primary-blue);
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Updated Circuit Board Background Effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.97), rgba(0, 0, 0, 0.97)),
+        url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMjIwMCIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+');
+    z-index: -1;
+    animation: scanline 8s linear infinite;
+}
+
+/* Add Scanline Effect */
+@keyframes scanline {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 100%;
+    }
+}
+
+/* Add Glitch Effect to Headers */
+h1, h2, h3 {
+    animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: 0.05em 0 0 #b34700, -0.05em -0.025em 0 #8b3600;
+    }
+    14% {
+        text-shadow: 0.05em 0 0 #b34700, -0.05em -0.025em 0 #8b3600;
+    }
+    15% {
+        text-shadow: -0.05em -0.025em 0 #b34700, 0.025em 0.025em 0 #8b3600;
+    }
+    49% {
+        text-shadow: -0.05em -0.025em 0 #b34700, 0.025em 0.025em 0 #8b3600;
+    }
+    50% {
+        text-shadow: 0.025em 0.05em 0 #b34700, 0.05em 0 0 #8b3600;
+    }
+    99% {
+        text-shadow: 0.025em 0.05em 0 #b34700, 0.05em 0 0 #8b3600;
+    }
+    100% {
+        text-shadow: -0.025em 0 0 #b34700, -0.025em -0.025em 0 #8b3600;
+    }
+}
+
+.page-wrapper {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: var(--secondary-blue);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Glowing Border Effect */
+.page-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--accent-orange), 
+        transparent
+    );
+    animation: borderGlow 4s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes borderGlow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Navigation */
+nav {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+nav ul li a {
+    color: var(--terminal-orange);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+    letter-spacing: 1px;
+    font-size: 1rem;
+}
+
+nav ul li a::before {
+    content: '~/>';
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-orange);
+    margin-right: 5px;
+    opacity: 0.8;
+}
+
+nav ul li a:hover::before {
+    opacity: 1;
+}
+
+nav ul li a:hover {
+    color: var(--highlight-orange);
+    text-shadow: var(--neon-glow);
+    background: rgba(204, 85, 0, 0.05);
+}
+
+/* Profile Section */
+#about {
+    text-align: center;
+    padding-top: 4rem;
+}
+
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    border: 3px solid var(--accent-orange);
+    box-shadow: var(--neon-glow);
+    object-fit: cover;
+}
+
+/* Cards */
+.experience-item, .education-item, .publication-item, .project-item {
+    background: rgba(10, 0, 0, 0.95);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(204, 85, 0, 0.3);
+    box-shadow: 0 0 15px rgba(204, 85, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.experience-item:hover, .education-item:hover, .publication-item:hover, .project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(204, 85, 0, 0.2);
+    border-color: var(--highlight-orange);
+    animation: flicker 0.5s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.95; }
+    100% { opacity: 1; }
+}
+
+/* Typography */
+h1 {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    color: var(--terminal-orange);
+    text-shadow: 0 0 5px rgba(204, 85, 0, 0.3);
+}
+
+h2 {
+    font-size: 2rem;
+    letter-spacing: 0.8px;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--terminal-orange);
+    box-shadow: 0 0 8px rgba(204, 85, 0, 0.2);
+}
+
+h2::before {
+    content: '[/]';
+    color: var(--accent-orange);
+    margin-right: 10px;
+    font-size: 0.8em;
+}
+
+h3 {
+    font-size: 1.3rem;
+    letter-spacing: 0.6px;
+    margin-bottom: 1rem;
+    color: var(--accent-orange);
+}
+
+/* Social Links */
+.social-links a {
+    display: inline-block;
+    margin: 0 0.5rem;
+    color: var(--accent-orange);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent-orange);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    opacity: 0.9;
+}
+
+.social-links a:hover {
+    background: rgba(204, 85, 0, 0.1);
+    box-shadow: 0 0 10px rgba(204, 85, 0, 0.2);
+    opacity: 1;
+}
+
+/* Add to HTML head */
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+/* Footer Styling */
+footer {
+    background: var(--secondary-blue);
+    padding: 2rem 0;
+    position: relative;
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-section {
+    text-align: center;
+}
+
+.footer-section h4 {
+    color: var(--accent-orange);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--accent-orange);
+    box-shadow: 0 0 10px rgba(204, 85, 0, 0.2);
+}
+
+.footer-section p, .footer-section a {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--accent-orange);
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.footer-social a {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: var(--accent-orange);
+    transform: translateY(-3px);
+}
+
+/* Decorative circuit lines */
+.footer-circuit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--accent-orange) 50%, 
+        transparent 100%);
+    opacity: 0.3;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Grid Background */
+.matrix-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: black;
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 50px 50px; /* Grid cell size */
+    opacity: 0.15; /* Adjust for subtlety */
+}
+
+/* Optional: Add subtle glow to the grid */
+.matrix-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, 
+        rgba(204, 85, 0, 0.1) 0%, 
+        rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
+}
+
+/* Ensure content remains readable */
+.page-wrapper {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.95);
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Update link styling */
+a {
+    color: var(--terminal-orange);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--highlight-orange);
+    text-shadow: 0 0 3px rgba(204, 85, 0, 0.3);
+}
+
+/* Add tech details to sections */
+section {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+/* Add tech details to cards */
+.experience-item::before, .education-item::before, 
+.publication-item::before, .project-item::before {
+    content: '> executing_process';
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.education-item {
+    margin-bottom: 2rem;
+    padding: 1.8rem;
+}
+
+.education-item h3 {
+    font-size: 1.2rem;
+    letter-spacing: 0.4px;
+    margin-bottom: 0.8rem;
+}
+
+.education-item .institution {
+    font-weight: bold;
+    color: var(--accent-orange);
+    font-size: 1.1rem;
+    letter-spacing: 0.3px;
+    margin-bottom: 0.4rem;
+}
+
+.education-item .location,
+.education-item .date {
+    font-size: 0.95rem;
+    letter-spacing: 0.4px;
+}
+
+.education-item ul {
+    list-style-type: none;
+    padding-left: 1rem;
+}
+
+.education-item ul li {
+    font-size: 1rem;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+    margin-bottom: 0.8rem;
+    position: relative;
+}
+
+.education-item ul li::before {
+    content: '>';
+    color: var(--accent-orange);
+    position: absolute;
+    left: -1rem;
+    opacity: 0.8;
+}
+
+/* Publications Section Styling */
+.publication-item {
+    margin-bottom: 2rem;
+    padding: 1.8rem;
+    border: 1px solid var(--text-secondary);
+    background: rgba(10, 0, 0, 0.95);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.publication-item::before {
+    content: '[paper]';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: var(--primary-blue);
+    padding: 0 10px;
+    color: var(--accent-orange);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8em;
+}
+
+.publication-item h3 {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    letter-spacing: 0.4px;
+    margin-bottom: 0.8rem;
+}
+
+.publication-item .venue {
+    color: var(--accent-orange);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    margin: 0.8rem 0;
+}
+
+.publication-item .award {
+    color: var(--highlight-orange);
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.pub-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.pub-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--text-secondary);
+    transition: all 0.3s ease;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.6px;
+}
+
+.pub-links a:hover {
+    border-color: var(--highlight-orange);
+    background: rgba(204, 85, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.pub-links i {
+    font-size: 1rem;
+}
+
+/* Hover effect for publication items */
+.publication-item:hover {
+    border-color: var(--accent-orange);
+    transform: translateX(5px);
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Add counter before each publication */
+.publication-item {
+    counter-increment: pub-counter;
+}
+
+.publication-item::after {
+    content: counter(pub-counter);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0.5;
+}
+
+/* Global Typography Updates */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+    font-size: 16px;
+}
+
+/* Headings Typography */
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 2rem;
+    letter-spacing: 0.8px;
+    margin-bottom: 1.5rem;
+}
+
+h3 {
+    font-size: 1.3rem;
+    letter-spacing: 0.6px;
+}
+
+/* Navigation Typography */
+nav ul li a {
+    letter-spacing: 1px;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+/* Publication Items Typography */
+.publication-item {
+    padding: 1.8rem;
+}
+
+.publication-item h3 {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    letter-spacing: 0.4px;
+    margin-bottom: 0.8rem;
+}
+
+.publication-item .venue {
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    margin: 0.8rem 0;
+}
+
+.pub-links a {
+    letter-spacing: 0.6px;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+}
+
+/* Education Items Typography */
+.education-item {
+    padding: 1.8rem;
+}
+
+.education-item h3 {
+    font-size: 1.2rem;
+    letter-spacing: 0.4px;
+    margin-bottom: 0.8rem;
+}
+
+.education-item .institution {
+    font-size: 1.1rem;
+    letter-spacing: 0.3px;
+    margin-bottom: 0.4rem;
+}
+
+.education-item .location,
+.education-item .date {
+    font-size: 0.95rem;
+    letter-spacing: 0.4px;
+}
+
+.education-item ul li {
+    font-size: 1rem;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+    margin-bottom: 0.8rem;
+    padding-left: 1rem;
+}
+
+/* Monospace Text Elements */
+.code-like-text {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    letter-spacing: 0.5px;
+}
+
+/* Add these font imports to your HTML head */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Container spacing */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* List item spacing */
+ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Link spacing */
+a {
+    padding: 0.2rem 0;
+}
+
+/* Section spacing */
+section {
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+}
+
+/* Card content spacing */
+.publication-item,
+.education-item {
+    margin-bottom: 2rem;
+}
+
+/* Experience Section Styling */
+.experience-item {
+    margin-bottom: 1.5rem;
+    padding: 1.8rem;
+    border: 1px solid var(--text-secondary);
+    background: rgba(10, 0, 0, 0.95);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.experience-item::before {
+    content: '> work_history';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: var(--primary-blue);
+    padding: 0 10px;
+    color: var(--accent-orange);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8em;
+}
+
+.experience-item h3 {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    letter-spacing: 0.4px;
+    margin-bottom: 0.8rem;
+}
+
+.experience-item .company {
+    color: var(--accent-orange);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.3px;
+    margin-bottom: 0.4rem;
+}
+
+.experience-item .location,
+.experience-item .date {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    letter-spacing: 0.4px;
+    margin-bottom: 0.4rem;
+}
+
+.experience-item ul {
+    list-style-type: none;
+    padding-left: 1rem;
+    margin-top: 1rem;
+}
+
+.experience-item ul li {
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+}
+
+.experience-item ul li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--accent-orange);
+    opacity: 0.8;
+}
+
+/* Hover Effects */
+.experience-item:hover {
+    border-color: var(--accent-orange);
+    transform: translateX(5px);
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Add counter for experience items */
+.experience-item {
+    counter-increment: exp-counter;
+}
+
+.experience-item::after {
+    content: counter(exp-counter);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0.5;
+}
+
+/* Tech Stack Tags (optional) */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tech-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(204, 85, 0, 0.1);
+    border: 1px solid var(--text-secondary);
+    border-radius: 3px;
+    color: var(--text-secondary);
+}
+
+/* Experience Item Header Layout */
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.8rem;
+    width: 100%;
+}
+
+.experience-title {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.experience-meta {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    min-width: 200px;
+}
+
+.experience-meta .location,
+.experience-meta .date,
+.experience-meta .venue {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    letter-spacing: 0.4px;
+}
+
+/* Apply the same style to education and publication items */
+.education-item,
+.publication-item {
+    margin-bottom: 2.5rem;
+    padding: 1.8rem;
+    border: 1px solid var(--text-secondary);
+    background: rgba(10, 0, 0, 0.95);
+    position: relative;
+}
+
+/* Common hover effect */
+.education-item:hover,
+.publication-item:hover,
+.experience-item:hover {
+    border-color: var(--accent-orange);
+    transform: translateX(5px);
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.company {
+    color: var(--accent-orange);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.3px;
+}
+
+.award {
+    color: var(--highlight-orange);
+    margin-top: 0.5rem;
+}
+
+/* Current Role Styling */
+.current-role {
+    border-color: var(--accent-orange);
+    border-width: 2px;
+    position: relative;
+}
+
+.current-role::before {
+    content: '> active_role';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: var(--primary-blue);
+    padding: 0 10px;
+    color: var(--highlight-orange);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8em;
+    font-weight: 500;
+}
+
+.current-role .date {
+    color: var(--highlight-orange) !important;
+    font-weight: 500;
+}
+
+/* Optional: Add a subtle glow effect to current role */
+.current-role {
+    box-shadow: 0 0 15px rgba(204, 85, 0, 0.1);
+}
+
+.current-role:hover {
+    box-shadow: 0 0 20px rgba(204, 85, 0, 0.2);
+}
+
+/* Project Item Styling */
+.project-item {
+    margin-bottom: 2.5rem;
+    padding: 1.8rem;
+    border: 1px solid var(--text-secondary);
+    background: rgba(10, 0, 0, 0.95);
+    position: relative;
+}
+
+.project-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.tech-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    background: rgba(204, 85, 0, 0.1);
+    border: 1px solid var(--text-secondary);
+    color: var(--accent-orange);
+}
+
+.project-item::before {
+    content: '> project_alpha';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: var(--primary-blue);
+    padding: 0 10px;
+    color: var(--highlight-orange);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8em;
+}
+
+/* Reduce section spacing */
+section {
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+}
+
+/* Adjust container spacing */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Profile section specific spacing */
+#about {
+    padding-bottom: 1rem;
+}
+
+#about .container {
+    margin-bottom: 1rem;
+}
+
+/* Experience section specific spacing */
+#experience {
+    padding-top: 1rem;
+}
+
+/* Navigation spacing */
+nav {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+}
+
+/* Profile photo size adjustment (if needed) */
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 1rem;
+}
+
+/* Social links spacing */
+.social-links {
+    margin: 1rem 0;
+}
+
+/* Section headers spacing */
+h2 {
+    margin-bottom: 1.5rem;
+}
+
+/* Experience items spacing */
+.experience-item {
+    margin-bottom: 1.5rem;
+}
+
+.professional-summary {
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+    color: var(--text-primary);
+    margin: 1rem 0;
+    padding: 1rem;
+    border-left: 2px solid var(--accent-orange);
+    background: rgba(204, 85, 0, 0.05);
+}
+
+/* Matrix Digital Rain Background */
+.matrix-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: black;
+    overflow: hidden;
+}
+
+.matrix-drop {
+    position: absolute;
+    color: var(--accent-orange);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    line-height: 1;
+    text-shadow: 0 0 8px var(--accent-orange);
+    pointer-events: none;
+    animation: floating ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes floating {
+    0% {
+        transform: translate(-5px, -5vh) rotate(var(--rotate-start));
+    }
+    25% {
+        transform: translate(20px, 25vh) rotate(calc(var(--rotate-start) + 180deg));
+    }
+    50% {
+        transform: translate(-20px, 50vh) rotate(var(--rotate-end));
+    }
+    75% {
+        transform: translate(10px, 75vh) rotate(calc(var(--rotate-end) - 180deg));
+    }
+    100% {
+        transform: translate(-5px, 105vh) rotate(var(--rotate-start));
+    }
+}
+
+/* Ensure content remains readable */
+.page-wrapper {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.95);
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Root variables if not already defined */
+:root {
+    --accent-orange: #cc5500;
+}
+
+/* Performance optimization for animations */
+@media (prefers-reduced-motion: no-preference) {
+    .matrix-drop {
+        transition: transform 0.1s linear;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -364,6 +1448,64 @@
             </div>
         </footer>
     </div>
-    <script src="https://github.com/weihuan830/weihuan830.github.io/blob/master/script.js"></script>
+    <script type="text/javascript">
+        function createMatrixRain() {
+            const matrixContainer = document.getElementById('matrix-rain');
+            const characters = ['0', '1'];
+            const numberOfDrops = 200;
+
+            function createDrop() {
+                const drop = document.createElement('div');
+                drop.className = 'matrix-drop';
+                
+                // Random positioning with better distribution
+                drop.style.left = `${Math.random() * 100}%`;
+                drop.style.top = `${Math.random() * 100}%`;
+                
+                // Random size (increased)
+                const size = Math.floor(Math.random() * 10) + 20;
+                drop.style.fontSize = `${size}px`;
+                
+                // Random opacity
+                drop.style.opacity = Math.random() * 0.4 + 0.2;
+                
+                // Random character
+                drop.innerText = characters[Math.floor(Math.random() * characters.length)];
+                
+                // Add random rotation animation
+                drop.style.setProperty('--rotate-start', `${Math.random() * 360}deg`);
+                drop.style.setProperty('--rotate-end', `${Math.random() * 360}deg`);
+                
+                // Random animation duration
+                const duration = Math.random() * 8 + 6;
+                drop.style.animationDuration = `${duration}s`;
+                
+                // Random delay for staggered start
+                drop.style.animationDelay = `${Math.random() * 5}s`;
+
+                drop.addEventListener('animationend', function() {
+                    drop.remove();
+                    createDrop();
+                });
+
+                matrixContainer.appendChild(drop);
+            }
+
+            // Create many more initial drops
+            for (let i = 0; i < numberOfDrops; i++) {
+                setTimeout(createDrop, Math.random() * 1000);
+            }
+        }
+
+        // Start the animation when the page loads
+        document.addEventListener('DOMContentLoaded', createMatrixRain);
+
+        // Add periodic creation of new drops
+        setInterval(() => {
+            if (document.getElementById('matrix-rain').children.length < 200) {
+                createDrop();
+            }
+        }, 1000); 
+    </script>
 </body>
 </html>
