@@ -1,253 +1,369 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color: #c5cae9;">
-
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <title>Huan WEI, Year 1 PhD in VisLAB</title>
-
-
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="robots" content="index, follow">
-    <meta name="msapplication-TileColor" content="#c5cae9">
-    <link rel="stylesheet" href="./src/bootstrap.css">
-    <link rel="stylesheet" href="./src/cube.css">
-    <link rel="stylesheet" href="./src/circle.css">
-    <!-- <script async="" src="./src/analytics.js"></script> -->
-    <!-- <script type="text/javascript" src="./src/wdj6cpr.js"></script> -->
-    <!-- <script type="text/javascript" src="./src/cube.css"></script> -->
-    <style type="text/css">
-        .tk-adobe-garamond-pro {
-            font-family: "adobe-garamond-pro", sans-serif;
+    <title>Huan's Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --grid-color: rgba(204, 85, 0, 0.3); /* More visible orange */
         }
-        
-        .tk-brandon-grotesque {
-            font-family: "brandon-grotesque", sans-serif;
+
+        .matrix-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background-color: #000000;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 80px 50px; /* Larger grid size = more sparse */
+            opacity: 0.8;
+        }
+
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.92);
+            min-height: 100vh;
+            width: 100%;
         }
     </style>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
 </head>
+<body>
+    <div class="matrix-background"></div>
+    <div class="page-wrapper">
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#publications">Publications</a></li>
+            </ul>
+        </nav>
 
-<body class="" >
-    <section id="top">
-
-        <header id="home-top" class="nav-top nav-fixed headroom headroom--pinned nav-root headroom--top">
-
+        <!-- About Section -->
+        <section id="about">
             <div class="container">
-
-                <div class="row">
-
-                    <div class="col-md-4 col-xs-4">
-
-                        <h1 id="header-logo" class="image-text">
-
-                            <a href="https://github.com/huanhuanBOY">
-                                <span class="mask"></span>
-                                <span class="behind"></span> WEI Huan's github
-                                <i class=""></i>
-                            </a>
-
-                        </h1>
-                    </div>
-                    <div class="col-md-8 col-xs-8">
-                        <nav id="top-nav">
-                            <ul class="nav-list transistion">
-                                <li><a href="http://vis.cse.ust.hk/" target="__blank">VisLAB</a></li>
-                                <li><a href="https://github.com/huanhuanBOY" target="__blank">Github</a></li>
-                                <li><a href="https://www.linkedin.com/in/%E6%AC%A2-%E5%8D%B1-300994112/" target="__blank">LinkedIn</a></li>
-                                <li><a href="https://weihuan.tech/platex/index.html" target="__blank">Platex gallery</a></li>
-                                <li><a href="https://weihuan.tech/myfile/HuanWEI_CV.pdf" target="__blank">CV here</a></li>
-                            </ul>
-                        </nav>
-                    </div>
+                <h1>Huan WEI</h1>
+                <h2>Data Analyst</h2>
+                <p class="professional-summary">
+                    Data Analyst and Quantitative Researcher with extensive experience in financial markets and data visualization. Currently developing quantitative trading strategies and alpha signals at CloudAlpha Capital. Specialized in building data-driven solutions combining fundamental analysis with quantitative methods. Strong background in visual analytics and machine learning, with multiple publications in top-tier conferences (ACM CHI, IEEE VIS). Proficient in developing full-stack applications for timeseries multi-modal and financial analysis.
+                </p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/%E6%AC%A2-%E5%8D%B1-300994112/" target="_blank">LinkedIn</a>
+                    <a href="mailto:weihuan1994@outlook.com">Email</a>
+                    <a href="https://scholar.google.com.hk/citations?hl=zh-CN&user=i_0qy-0AAAAJ" target="_blank">
+                        Google Scholar
+                    </a>
                 </div>
             </div>
-        </header>
-        <div class="masthead-wrap">
+        </section>
 
-            <div id="title">
-                <div class="container">
-                    <div class="row">
+        <!-- Experience Section -->
+        <section id="experience">
+            <div class="container">
+                <h2>Working Experience</h2>
 
-                        <div class="col-md-12">
-                            <div id="head-slider" class="transistion">
-                                <div class="slide-contents">
-                                    <div class="slide">
-                                        <h2 class="im-huan">
-                                            <figure class="transistion">
-                                                <img src="./src/im-huan.png">
-                                            </figure>
-                                        </h2>
-                                        <p class="header-desc">A Year 2 PhD Student in HKUST VisLab</p>
-                                    </div>
-                                </div>
-                            </div>
+                <!-- Current Position -->
+                <div class="experience-item current-role">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Quantitative Data Analyst</h3>
+                            <p class="company">CloudAlpha Capital</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="location">Shenzhen, China</p>
+                            <p class="date">Mar 2021 - Present</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Develop and maintain quantitative libraries and tools for research and trading purposes. Identify profitable trading opportunities by analyzing stock data, alternative datasets, and market trends. Build and maintain complex models to evaluate investment opportunities</li>
+                        <li>Design and build internal information infrastructure including risk-reward system. Build crawler systems and analytic tools for alternative data. Develop efficient and scalable code to automate data processing, analysis, and modeling processes</li>
+                        <li>Design and develop quantitative analysis system, multiple quantitative indicators. Design and develop Alpha signals based on quantitative indicators, build Alpha seeker system for both fundamental and quantitative research</li>
+                        <li>Work closely with portfolio managers, traders, and research analysts to identify investment opportunities and strategies. Communicate complex quantitative concepts and analysis results to both technical and non-technical cooperators</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Data Analyst Intern</h3>
+                            <p class="company">CloudAlpha Capital</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="location">Hong Kong, China</p>
+                            <p class="date">Aug 2020 - Mar 2021</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Gather, clean, organize data from various sources. Perform simple statistical analysis, identify patterns and trends in data for analysis</li>
+                        <li>Conduct research to identify new data sources and explore innovative ways to extract valuable insights. Assist with ad hoc data requests and queries</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Research Assistant</h3>
+                            <p class="company">HKUST VisLab</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="location">Hong Kong, China</p>
+                            <p class="date">Aug 2018 - Aug 2019</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Clean and preprocess research data to ensure accuracy and consistency. Handle missing values, outliers, and data irregularities</li>
+                        <li>Design and maintain efficient data storage and visualization systems for scientific research. Ensure fast and reliable data retrieval for visualization purposes</li>
+                        <li>Design and implement data models suitable for research visualization needs. Transform and aggregate data to support various visualization requirements. Develop custom data visualization tools and dashboards in ReactJS, D3js, etc</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Engineer</h3>
+                            <p class="company">Sogou Technology</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="location">Beijing, China</p>
+                            <p class="date">Mar 2017 - Aug 2017</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Design intuitive and visually appealing user interfaces. Create responsive and cross-browser-compatible layouts using HTML, CSS, and JavaScript. Optimize UI/UX performance and ensure a smooth user experience</li>
+                        <li>Implement interactive features and user interactions using JavaScript and related libraries, create engaging animations and transitions to enhance the user experience in mobile web browser</li>
+                        <li>Integrate frontend with backend APIs, handle asynchronous data requests, and manage application state. Implement error handling and data validation in frontend</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Engineer</h3>
+                            <p class="company">Meritco Service</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="location">Beijing, China</p>
+                            <p class="date">Dec 2015 - Dec 2016</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Collaborate with designers, data analysts, and stakeholders to understand data visualization requirements</li>
+                        <li>Develop custom visualizations when required to meet specific data representation needs. Handle data updates and real-time data streaming for dynamic visualizations</li>
+                        <li>Integrate visualizations with backend APIs and data sources. Implement interactive features that allow users to explore and manipulate data visualizations</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2>Projects</h2>
+                
+                <div class="project-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Alpha9C - Quantamental Analysis Platform</h3>
+                            <p class="company">An In-developing Project</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="status">Production</p>
+                            <p class="link"><a href="https://ai.alpha9c.com/fundamental" target="_blank">Live Demo</a></p>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">
+                            A sophisticated quantamental analysis platform that combines quantitative and fundamental analysis for stock market insights. The platform follows the principle "Complex World, Simple Rule" to generate alpha signals in the cloud.
+                        </p>
+                        <ul>
+                            <li>Developed an automated system for gathering and analyzing both fundamental data and quantitative signals to identify potential alpha opportunities</li>
+                            <li>Built comprehensive business and sector competition analysis modules to provide deeper market insights</li>
+                            <li>Created an intuitive ticker-based interface for generating alpha signals with sophisticated backend algorithms</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Financial Analysis</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">Cloud Computing</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="holder">
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
-            </div> -->
-        </div>
-        <div class="masthead-wrap">
-            <div id="masthead">
-                <div id="earth-holder">
-                    <!-- <img src="./src/land.svg"> -->
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <div class="container">
+                <h2>Education</h2>
+                
+                <div class="education-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>PhD Candidate, Discontinued</h3>
+                            <p class="company">The Hong Kong University of Science and Technology</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="location">Hong Kong, China</p>
+                            <p class="date">Sep 2019 - Aug 2022</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Conducted research under the supervision of Prof. Huamin Qu at the HKUST VisLab, focusing on data visualization and visual analytics</li>
+                        <li>Developed novel visualization techniques for exploring and analyzing large-scale, complex datasets</li>
+                        <li>Published research findings in prestigious conferences and journals in the field of data visualization and human-computer interaction</li>
+                        <li>Taught undergraduate courses and mentored junior students in data visualization and programming</li>
+                    </ul>
                 </div>
 
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <section id="hello">
-
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-12">
-
-
-                    <article>
-
-                        <figure>
-
-                            <img src="./src/student.png">
-
-                        </figure>
-
-
-                        <h3>Publications</h3>
-                        <p>Haotian Li, Min Xu, Yong Wang, <strong>Huan Wei</strong> Huamin Qu, <a href="https://haotian-li.com/project/online-proctoring.html">A Visual Analytics Approach to Facilitate the Proctoring of Online Exams, ACM CHI 2021</a></p>
-                        <p>Haotian Li, <strong>Huan Wei</strong>, Yong Wang, Yong Wang, Huamin Qu, <a href="https://dl.acm.org/doi/pdf/10.1145/3340531.3412733">Peer-inspired Student Performance Prediction in Interactive Online Question Pools with Graph Neural Network, ACM CIKM 2020</a></p>
-                        <p><strong>Huan Wei</strong>, Haotian Li, Meng Xia, Yong Wang, Huamin Qu, <a href="https://dl.acm.org/doi/abs/10.1145/3375462.3375521">Predicting Student Performance in Interactive Online QuestionPools Using Mouse Interactions, ACM LAK 2020 (Learning Analytics & Knowledge)</a></p>
-                        <p>Meng Xia, <strong>Huan Wei</strong>, Min Xu, Leo Yu Ho Lo, Yong Wang, Rong Zhang, Huamin Qu, <a href="https://www.xiameng.org/vis19e-sub1091-i6.pdf">Visual Analytics of Student Learning Behaviors on K-12 Mathematics E-learning Platforms</a>,
-                            Poster, IEEE VIS 2019 Posters, Best Poster Award</p>
-                        <p>Meng Xia, Mingfei Sun, <strong>Huan Wei</strong>, Qing Chen, Yong Wang, Lei Shi, Huamin Qu, Xiaojuan Ma, <a href="https://www.xiameng.org/2019_CHI_PeerLens.pdf">PeerLens: Peer-inspired Interactive Learning PathPlanning in Online Question Pool, video ACM CHI 2019</a></p>
-
-                    </article>
-
+                <div class="education-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Master of Science, Big Data Technology</h3>
+                            <p class="company">The Hong Kong University of Science and Technology</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="location">Hong Kong, China</p>
+                            <p class="date">Sep 2017 - Nov 2018</p>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>Conducted a master's thesis project on scalable machine learning algorithms for processing massive datasets</li>
+                        <li>Participated in big data hackathons and workshops to gain hands-on experience and collaborate with industry professionals</li>
+                    </ul>
                 </div>
 
+                <div class="education-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Bachelor of Engineering in Computer Science</h3>
+                            <p class="company">Beijing University of Posts and Telecommunications</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="location">Beijing, China</p>
+                            <p class="date">Sep 2012 - June 2016</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-        </div>
-
-
-    </section>
-
-
-    <div class="breaker">
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-12">
-
-                    <div class="line"></div>
-
+        <!-- Publications Section -->
+        <section id="publications">
+            <div class="container">
+                <h2>Academic Publications</h2>
+                
+                <div class="publication-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>A Visual Analytics Approach to Facilitate the Proctoring of Online Exams</h3>
+                            <p class="company">Paper</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="venue">ACM CHI</p>
+                            <p class="date">2021</p>
+                        </div>
+                    </div>
                 </div>
 
+                <div class="publication-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Peer-inspired Student Performance Prediction in Interactive Online Question Pools with Graph Neural Network</h3>
+                            <p class="company">Paper</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="venue">ACM CHI</p>
+                            <p class="date">2020</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="publication-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Predicting Student Performance in Interactive Online Question Pools Using Mouse Interactions</h3>
+                            <p class="company">Paper</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="venue">ACM LAK</p>
+                            <p class="date">2020</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="publication-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>Visual Analytics of Student Learning Behaviors on K-12 Mathematics E-learning Platforms</h3>
+                            <p class="company">Poster</p>
+                            <p class="award">🏆 Best Poster Award</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="venue">IEEE VIS</p>
+                            <p class="date">2019</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="publication-item">
+                    <div class="experience-header">
+                        <div class="experience-title">
+                            <h3>PeerLens: Peer-inspired Interactive Learning Path Planning in Online Question Pool</h3>
+                            <p class="company">Paper, Video</p>
+                        </div>
+                        <div class="experience-meta">
+                            <p class="venue">ACM CHI</p>
+                            <p class="date">2019</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-        </div>
-
+        <footer>
+            <div class="footer-circuit"></div>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: your.email@domain.com</p>
+                    <p>Location: Your City, Country</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="#about">About</a></p>
+                    <p><a href="#projects">Projects</a></p>
+                    <p><a href="#publications">Publications</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="footer-social">
+                        <a href="https://github.com/yourusername" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/yourhandle" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Your Name | <span class="typed-text">AI Researcher & Developer</span></p>
+            </div>
+        </footer>
     </div>
-
-
-
-    <section id="what-i-do">
-
-        <div class="cubecontainer">
-            <div class="rubiks-cube rubiks-cube-1" id="side1">
-
-            </div>
-        </div>
-
-
-    </section>
-
-
-
-    <div class="breaker">
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-12">
-
-                    <div class="line"></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-    <section id="wk-experience">
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-12">
-                    <article>
-                        <header class="nav-root">
-
-                            <h2>Working Experience</h2>
-                            <h3>2019.09 - now, PhD in CSE department HKUST, VisLab</h3>
-                            <h3>2018.07 - 2019.09 Research Assistant in Vislab HKUST</h3>
-                            <h3>2017.09 - 2018.06 Msc in Big Data Technology in HKUST</h3>
-                            <h3>2017.03 - 2017.08 Beijing Sogou Technology LMT, Frontend Engineer</h3>
-                            <h3>2015.12 - 2016.10 Meritco Services Beijing, Frontend Engineer</h3>
-                            <h3>2012.09 - 2016.06 Bachelor in CS, Beijing University of Posts and Telecommunication</h3>
-                        </header>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-    <footer>
-        <svg id="svg_grass"></svg>
-    </footer>
-
-    <script src="./src/jquery-1.10.2.min.js"></script>
-
-    <script src="./src/bootstrap.min.js"></script>
-    <script src="./src/app.js"></script>
-    <script src="./src/init.min.js"></script>
-    <script type="text/javascript" src="./src/cube.js"></script>
-    <script type="text/javascript" src="./src/grass.js"></script>
+    <script src="script.js"></script>
 </body>
-
 </html>
