@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Tracking System - AI Intern Agent</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .slide {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            padding: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        .slide:nth-child(2) { animation-delay: 0.2s; }
+        .slide:nth-child(3) { animation-delay: 0.4s; }
+        .slide:nth-child(4) { animation-delay: 0.6s; }
+        .slide:nth-child(5) { animation-delay: 0.8s; }
+        .slide:nth-child(6) { animation-delay: 1s; }
+        .slide:nth-child(7) { animation-delay: 1.2s; }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #4a5568;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        h2:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 80%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+
+        p, li {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        ul li:before {
+            content: '▸';
+            color: #667eea;
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5em;
+            margin-left: -1.5em;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f6f8ff 0%, #f0f4ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .key-point {
+            background: #f7fafc;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .key-point:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+
+        .principle-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .principle-card h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .principle-card p, .principle-card li {
+            color: white;
+            opacity: 0.95;
+        }
+
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            color: #718096;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+
+            .image-container img {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Title Slide -->
+        <div class="slide">
+            <h1>Agent Tracking System</h1>
+            <p class="subtitle">AI Intern Agent - 智能研究助手系统</p>
+            <div class="highlight-box">
+                <p><strong>核心理念：</strong>我们以往说到过希望有一个 AI的 Intern Agent，AI来辅助我们做Research Check，这个Agent Tracking System，就是 Intern Agent</p>
+            </div>
+        </div>
+
+        <!-- Why Agent Tracking System -->
+        <div class="slide">
+            <h2>1. 为什么叫做 Agent Tracking System？</h2>
+            <div class="highlight-box">
+                <p><strong>Answer：</strong> 重点在于Tracking，Intern（包括Analyst）很多时候做的事情，是长期追踪某一个公司的业务相关的问题和问题背后的答案。PM在得到某个事情的持续性输出后，会学习到新的事情，建立conviction，做出判断。</p>
+                <p><strong>因此，AI能辅助长期Track一件事情至关重要。</strong></p>
+            </div>
+        </div>
+
+        <!-- Three Key Points -->
+        <div class="slide">
+            <h2>2. Intern Agent 的三个关键要素</h2>
+            <p>做一个 Intern Agent 辅助做 Research Check，有三个关键点：</p>
+            <div class="key-points">
+                <div class="key-point">
+                    <h3>📊 Data</h3>
+                    <p>高质量、实时、相关的数据源</p>
+                </div>
+                <div class="key-point">
+                    <h3>🤖 AI Model</h3>
+                    <p>强大的AI模型进行分析和理解</p>
+                </div>
+                <div class="key-point">
+                    <h3>❓ Prompt</h3>
+                    <p>精准的research questions</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Initial Attempts -->
+        <div class="slide">
+            <h2>3. 最初的尝试与挑战</h2>
+            <p>我们最初尝试过类似Manus和Deep Research的方式，在互联网直接搜索相关的文档，但遇到了以下问题：</p>
+            <ul>
+                <li>Data的实效性、相关性无法保障</li>
+                <li>自动生成的research questions和分析师想要的方向不同</li>
+                <li>AI输出的结果无法做任何保障 - Idea Too Ambitious to use</li>
+                <li>无法让分析师对每个问题都写有效的prompt，拆解问题本身也是一个问题</li>
+            </ul>
+            <div class="highlight-box">
+                <p><strong>核心挑战：</strong>知道自己的问题是什么，并且知道AI + 数据可以完成什么内容，是非常困难的</p>
+            </div>
+        </div>
+
+        <!-- MVP Solution -->
+        <div class="slide">
+            <h2>4. Minimum Viable Product (MVP)</h2>
+            <p>为了AI输出结果的可使用性，考虑到Analyst能使用，并且data易获取，产生的报告有意义的前提下，我先实现了一个MVP：</p>
+            
+            <h3>实现内容：</h3>
+            <ul>
+                <li>DataCenter的报告</li>
+                <li>Auto EV相关的报告</li>
+                <li>偏行业宏观或特斯拉的报告（我比较熟悉）</li>
+            </ul>
+
+            <h3>数据来源：</h3>
+            <ul>
+                <li>行业公司的垂直分类新闻网站</li>
+                <li>公司主页等</li>
+                <li>我们以往的爬虫有数据积累</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>与Manus的区别：</strong>我们相当于是指定了数据集，数据是可控的、可解释的数据集</p>
+                <p><strong>Prompt优势：</strong>这些报告的prompt正好我也可以写，我知道主要的research question是什么，并且因为是长期追踪的内容，我也方便和分析师讨论迭代</p>
+            </div>
+        </div>
+
+        <!-- Data Limitations -->
+        <div class="slide">
+            <h2>5. 数据成为限制的原因</h2>
+            <p>在此MVP基础上，我发现数据本身逐渐成为限制，理由如下：</p>
+            <ul>
+                <li>一些分析师能看到的sellside portal report，AI获取不到，会影响分析师的conviction</li>
+                <li>一些行业的public information不够</li>
+                <li>中小型公司的public information不够</li>
+            </ul>
+        </div>
+
+        <!-- AI Report Generation -->
+        <div class="slide">
+            <h2>6. AI是怎么生产report的？</h2>
+            <div class="highlight-box">
+                <p><strong>核心逻辑：</strong>非常简单的逻辑，使用数据回答问题，数据量很大的时候分块回答，再合并。</p>
+                <p>从分析师的角度，容易理解；报告的角度，容易解释。</p>
+            </div>
+            <p>目前的系统设定1个报告：</p>
+            <div class="image-container">
+                <img src="system.png" alt="系统设定报告" />
+            </div>
+        </div>
+
+        <!-- Advanced Analysis -->
+        <div class="slide">
+            <h2>7. AI会做更高级的分析吗？</h2>
+            <p><strong>可以，但暂时还不足以发出来，无法量产，也无法保障结果，但是非常有趣。</strong></p>
+            
+            <h3>进阶分析尝试：</h3>
+            <p>我们每周都会有对于特定研究问题的report，如果我们把连续的report发给AI让AI来阅读report，并且做出一定程度的分析，会怎么样？</p>
+            
+            <h3>Example：APH的专家会议</h3>
+            <p>下表中，每一行是一个时间点的report：</p>
+            <div class="image-container">
+                <img src="aph1.png" alt="APH专家会议报告表格" />
+            </div>
+            <div class="image-container">
+                <img src="aph2.png" alt="行业分析与关键发现" />
+            </div>
+        </div>
+
+        <!-- Principles -->
+        <div class="slide">
+            <h2>Agent Tracking System 的核心原则</h2>
+            <div class="principle-card">
+                <h3>系统运作的三大原则：</h3>
+                <ul>
+                    <li>我们长期对一个research相关的问题进行追踪</li>
+                    <li>需要Analyst提出合适的问题，以及我找到能回答问题的数据</li>
+                    <li>如果分析师所见的数据，就是AI所见的数据，那么AI去辅助解决问题就会有一定程度的conviction</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
